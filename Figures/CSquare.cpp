@@ -24,5 +24,5 @@ void CSquare::PrintInfo(Output* pOut)
 
 void CSquare::Save(ofstream& OutFile)
 {
-	OutFile << "SQUARE\t" << ID << Center.x << "\t" << Center.y << "\t" << endl;
+	OutFile << "SQUARE\t" << ID << Center.x << "\t" << Center.y << "\t" << GetDrawClrName() << "\t" << GetFillClrName()<<endl;
 }

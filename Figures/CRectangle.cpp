@@ -32,5 +32,5 @@ void CRectangle::PrintInfo(Output* pOut)
 
 void CRectangle::Save(ofstream& OutFile)
 {
-	OutFile << "RECT\t"<< ID << Corner1.x<<"\t"<< Corner1.y<<"\t"<< Corner2.x << "\t" << Corner2.y<<"\t" << endl;
+	OutFile << "RECT\t"<< ID << Corner1.x<<"\t"<< Corner1.y<<"\t"<< Corner2.x << "\t" << Corner2.y<<"\t" << GetDrawClrName()<<"\t" << GetFillClrName() << endl;
 }

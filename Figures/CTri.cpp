@@ -35,5 +35,5 @@ void CTri::PrintInfo(Output* pOut)
 
 void CTri::Save(ofstream& OutFile)
 {
-	OutFile << "TRIANG\t" << Vertex1.x << "\t" << Vertex1.y << "\t" << Vertex2.x << "\t" << Vertex2.y << "\t" << Vertex3.x << "\t" << Vertex3.y << "\t" << endl;
+	OutFile << "TRIANG\t" << Vertex1.x << "\t" << Vertex1.y << "\t" << Vertex2.x << "\t" << Vertex2.y << "\t" << Vertex3.x << "\t" << Vertex3.y << "\t" << GetDrawClrName() << "\t" << GetFillClrName()<<endl;
 }

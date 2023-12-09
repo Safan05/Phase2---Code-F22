@@ -44,14 +44,14 @@ window* Output::CreateWind(int w, int h, int x, int y) const
 {
 	window* pW = new window(w, h, x, y);
 	pW->SetBrush(UI.BkGrndColor);
-	pW->SetPen(UI.BkGrndColor, 1);
+	pW->SetPen(UI.BkGrndColor, UI.PenWidth);
 	pW->DrawRectangle(0, UI.ToolBarHeight, w, h);
 	return pW;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 void Output::CreateStatusBar() const
 {
-	pWind->SetPen(UI.StatusBarColor, 1);
+	pWind->SetPen(UI.StatusBarColor, UI.PenWidth);
 	pWind->SetBrush(UI.StatusBarColor);
 	pWind->DrawRectangle(0, UI.height - UI.StatusBarHeight, UI.width, UI.height);
 }
@@ -98,7 +98,7 @@ void Output::CreatePickToolBar() const
 void Output::ClearToolbar() const
 {
 	//Clear Tool bar by drawing a filled white rectangle
-	pWind->SetPen(UI.ToolBarColor, 1);
+	pWind->SetPen(UI.ToolBarColor, UI.PenWidth);
 	pWind->SetBrush(UI.ToolBarColor);
 	pWind->DrawRectangle(0, 0, UI.width, UI.ToolBarHeight);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
@@ -106,7 +106,7 @@ void Output::ClearToolbar() const
 void Output::ClearStatusBar() const
 {
 	//Clear Status bar by drawing a filled white rectangle
-	pWind->SetPen(UI.StatusBarColor, 1);
+	pWind->SetPen(UI.StatusBarColor, UI.PenWidth);
 	pWind->SetBrush(UI.StatusBarColor);
 	pWind->DrawRectangle(0, UI.height - UI.StatusBarHeight, UI.width, UI.height);
 }
@@ -152,7 +152,7 @@ void Output::CreateDrawToolBar() const
 
 
 	//Draw a line under the toolbar
-	pWind->SetPen(RED, 3);
+	pWind->SetPen(RED, UI.PenWidth);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -228,7 +228,7 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 	else
 		DrawingClr = RectGfxInfo.DrawClr;
 
-	pWind->SetPen(DrawingClr, 1);
+	pWind->SetPen(DrawingClr, UI.PenWidth);
 	drawstyle style;
 	if (RectGfxInfo.isFilled)
 	{
@@ -248,7 +248,7 @@ void Output::DrawSQ(Point P1, GfxInfo RectGfxInfo, bool selected) const
 	else
 		DrawingClr = RectGfxInfo.DrawClr;
 
-	pWind->SetPen(DrawingClr, 1);
+	pWind->SetPen(DrawingClr, UI.PenWidth);
 	drawstyle style;
 	if (RectGfxInfo.isFilled)
 	{
@@ -277,7 +277,7 @@ void Output::DrawTri(Point P1, Point P2, Point P3, GfxInfo TriGfxInfo, bool sele
 	else
 		DrawingClr = TriGfxInfo.DrawClr;
 
-	pWind->SetPen(DrawingClr, 1);
+	pWind->SetPen(DrawingClr, UI.PenWidth);
 	drawstyle style;
 	if (TriGfxInfo.isFilled)
 	{
@@ -297,7 +297,7 @@ void Output::Drawhexa(Point P1, GfxInfo RectGfxInfo, bool selected) const
 	else
 		DrawingClr = RectGfxInfo.DrawClr;
 
-	pWind->SetPen(DrawingClr, 1);
+	pWind->SetPen(DrawingClr, UI.PenWidth);
 	drawstyle style;
 	if (RectGfxInfo.isFilled)
 	{
@@ -330,7 +330,7 @@ void Output::DrawCirc(Point P1, Point P2, GfxInfo CircGfxInfo, bool selected) co
 	else
 		DrawingClr = CircGfxInfo.DrawClr;
 
-	pWind->SetPen(DrawingClr, 1);
+	pWind->SetPen(DrawingClr, UI.PenWidth);
 	drawstyle style;
 	if (CircGfxInfo.isFilled)
 	{

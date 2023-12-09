@@ -36,5 +36,5 @@ void CHexa::PrintInfo(Output* pOut)
 
 void CHexa::Save(ofstream& OutFile)
 {
-	OutFile << "HEXA\t" << ID << Center.x << "\t" << Center.y << "\t" << endl;
+	OutFile << "HEXA\t" << ID << Center.x << "\t" << Center.y << "\t" << GetDrawClrName() << "\t" << GetFillClrName()<<endl;
 }

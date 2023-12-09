@@ -30,6 +30,6 @@ void CCirc::PrintInfo(Output* pOut)
 }
 void CCirc::Save(ofstream& OutFile)
 {
-	OutFile << "CIRC\t" << ID << Center.x << "\t" << Center.y << "\t" << endl;
+	OutFile << "CIRC\t" << ID << Center.x << "\t" << Center.y << "\t" << GetDrawClrName() << "\t" << GetFillClrName()<< endl;
 }
 ;

@@ -33,4 +33,23 @@ void CFigure::ChngFillClr(color Fclr)
 }
 color CFigure::get_color() {
 	return FigGfxInfo.DrawClr;
-};
+}
+string CFigure::GetDrawClrName()
+{
+	if (FigGfxInfo.DrawClr == RED) return "RED";
+	else if (FigGfxInfo.DrawClr == ORANGE) return "ORANGE";
+	else if (FigGfxInfo.DrawClr == BLUE) return  "BLUE";
+	else if (FigGfxInfo.DrawClr == GREEN) return  "GREEN";
+	else if (FigGfxInfo.DrawClr == YELLOW) return "YELLOW";
+	else if (FigGfxInfo.DrawClr == BLACK) return "BLACK";
+}
+string CFigure::GetFillClrName()
+{
+	if (FigGfxInfo.FillClr == RED) return "RED";
+	else if (FigGfxInfo.FillClr == ORANGE) return "ORANGE";
+	else if (FigGfxInfo.FillClr == BLUE) return  "BLUE";
+	else if (FigGfxInfo.FillClr == GREEN) return  "GREEN";
+	else if (FigGfxInfo.FillClr == YELLOW) return "YELLOW";
+	else if (FigGfxInfo.FillClr == BLACK) return "BLACK";
+}
+;

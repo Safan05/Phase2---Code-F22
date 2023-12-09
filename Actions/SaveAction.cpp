@@ -1,5 +1,6 @@
 #include "SaveAction.h"
 #include<fstream>
+#include "..\GUI\UI_Info.h"
 #include "..\GUI\input.h"
 #include "..\GUI\output.h"
 #include "..\ApplicationManager.h"
@@ -31,6 +32,18 @@ void SaveAction::Execute()
 	ReadActionParameters();
 	ofstream Out;
 	Out.open(FileName, ios::out);
+	if (UI.DrawColor == RED) Out << "RED\t";
+	else if (UI.DrawColor == ORANGE) Out << "ORANGE\t";
+	else if (UI.DrawColor == BLUE) Out << "BLUE\t";
+	else if (UI.DrawColor == GREEN) Out << "GREEN\t";
+	else if (UI.DrawColor == YELLOW) Out << "YELLOW\t";
+	else if (UI.DrawColor == BLACK) Out << "BLACK\t";
+	if (UI.FillColor == RED) Out << "RED\n";
+	else if (UI.FillColor == ORANGE) Out << "ORANGE\n";
+	else if (UI.FillColor == BLUE) Out << "BLUE\n";
+	else if (UI.FillColor == GREEN) Out << "GREEN\n";
+	else if (UI.FillColor == YELLOW) Out << "YELLOW\n";
+	else if (UI.FillColor == BLACK) Out << "BLACK\n";
 	Out << pManager->GetFigCount() << endl;
 	pManager->SaveAll(Out);
 	Out.close();
