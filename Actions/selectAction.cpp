@@ -1,0 +1,35 @@
+#include "selectAction.h"
+#include "..\ApplicationManager.h"
+
+#include "..\GUI\input.h"
+#include "..\GUI\Output.h"
+selectAction::selectAction(ApplicationManager* pApp) :Action(pApp) {};//constructor
+
+//Reads parameters required for action to execute (code depends on action type)
+void selectAction::ReadActionParameters() {
+	Output* pOut = pManager->GetOutput();
+	Input* pIn = pManager->GetInput();
+	pOut->PrintMessage("click point to Select figure");
+	pIn->GetPointClicked(P.x, P.y);
+	pOut->ClearStatusBar();
+};
+
+//Execute action (code depends on action type)
+void selectAction::Execute() {
+	ReadActionParameters();
+	Output* pOut = pManager->GetOutput();
+	CFigure* d = pManager->GetFigure(P.x, P.y);
+	if (d != NULL) {
+		if (d->IsSelected() == 0) {
+			pManager->de_select();
+			(d->SetSelected(1));
+			d->PrintInfo(pOut);
+			(pManager->set_selected(d));
+		}
+		else {
+			(pManager->de_select());
+			pManager->set_selected(NULL);
+		}
+
+	}
+}
