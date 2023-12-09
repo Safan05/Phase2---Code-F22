@@ -43,6 +43,7 @@ public:
 	int count_fig(int Fig_t,color c);
 	int count_fig(color c);
 	void SaveAll(ofstream &);
+	int GetFigCount();
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
