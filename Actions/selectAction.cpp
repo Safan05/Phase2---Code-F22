@@ -8,7 +8,10 @@
 #include <mciapi.h>
 #include "VoiceAction.h"
 #pragma comment (lib, "Winmm.lib")
-selectAction::selectAction(ApplicationManager* pApp) :Action(pApp) {};//constructor
+selectAction::selectAction(ApplicationManager* pApp) :Action(pApp) {
+	if (VoiceAction::voice)
+		PlaySound(TEXT("voice\\select figure.wav"), NULL, SND_FILENAME | SND_ASYNC);
+};//constructor
 
 //Reads parameters required for action to execute (code depends on action type)
 void selectAction::ReadActionParameters() {
