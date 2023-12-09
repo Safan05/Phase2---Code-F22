@@ -82,6 +82,10 @@ void ApplicationManager::SaveAll(ofstream &Out)
 		FigList[i]->Save(Out);
 	}
 }
+int ApplicationManager::GetFigCount()
+{
+	return FigCount;
+}
 int ApplicationManager::count_fig(int Fig_t, color col) {
 	int count = 0;
 	switch (Fig_t) {

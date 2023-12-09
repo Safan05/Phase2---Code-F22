@@ -31,6 +31,7 @@ void SaveAction::Execute()
 	ReadActionParameters();
 	ofstream Out;
 	Out.open(FileName, ios::out);
+	Out << pManager->GetFigCount() << endl;
 	pManager->SaveAll(Out);
 	Out.close();
 	Output* pOut = pManager->GetOutput();
