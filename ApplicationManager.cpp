@@ -7,6 +7,7 @@
 #include "Actions\selectAction.h"
 #include "Actions\delete_action.h"
 #include "Actions\SaveAction.h"
+#include "Actions\VoiceAction.h"
 #include "Actions\pick_figure.h"
 #include "Actions\ActionToPick.h"
 #include "Figures/CCirc.h"
@@ -22,9 +23,7 @@ ApplicationManager::ApplicationManager()
 	//Create Input and output
 	pOut = new Output;
 	pIn = pOut->CreateInput();
-	
 	FigCount = 0;
-		
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
 		FigList[i] = NULL;	
@@ -202,6 +201,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case Save_graph:
 			pAct = new SaveAction(this);
 			break;
+		case Voice:
+			pAct = new VoiceAction(this);
+				break;
 		case EXIT:
 			///create ExitAction here
 			break;

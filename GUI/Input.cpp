@@ -75,6 +75,7 @@ ActionType Input::GetUserAction() const
 			case ITM_GREEN1:  return GREEN1;
 			case ITM_BLUE1:   return BLUE1;
 			case ITM_MOVE:  return MOVE;
+			case ITM_Voice: return Voice;
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
 		}

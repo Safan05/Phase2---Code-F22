@@ -5,9 +5,16 @@
 
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
-
+#include <mmsystem.h>
+#include <Mmsystem.h>
+#include <mciapi.h>
+#include "VoiceAction.h"
+#pragma comment (lib, "Winmm.lib")
 AddTriAction::AddTriAction(ApplicationManager* pApp):Action(pApp)
-{}
+{
+	if (VoiceAction::voice)
+		PlaySound(TEXT("voice\\triangle.wav"), NULL, SND_FILENAME | SND_ASYNC);
+}
 
 void AddTriAction::ReadActionParameters()
 {

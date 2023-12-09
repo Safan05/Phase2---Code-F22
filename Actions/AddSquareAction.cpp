@@ -5,9 +5,17 @@
 
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
-
+#include <Windows.h>
+#include <mmsystem.h>
+#include <Mmsystem.h>
+#include <mciapi.h>
+#include "VoiceAction.h"
+#pragma comment (lib, "Winmm.lib")
 AddSquareAction::AddSquareAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	if(VoiceAction::voice)
+	PlaySound(TEXT("voice\\square.wav"),NULL,SND_FILENAME|SND_ASYNC);
+}
 
 void AddSquareAction::ReadActionParameters()
 {
@@ -54,4 +62,5 @@ void AddSquareAction::Execute()
 		//Add the square to the list of figures
 		pManager->AddFigure(S);
 	}
+
 }

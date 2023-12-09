@@ -6,9 +6,16 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 #include <cmath>
-
+#include <mmsystem.h>
+#include <Mmsystem.h>
+#include <mciapi.h>
+#include "VoiceAction.h"
+#pragma comment (lib, "Winmm.lib")
 AddCircAction::AddCircAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	if (VoiceAction::voice)
+		PlaySound(TEXT("voice\\circle.wav"), NULL, SND_FILENAME | SND_ASYNC);
+}
 
 void AddCircAction::ReadActionParameters()
 {

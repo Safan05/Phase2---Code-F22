@@ -3,6 +3,11 @@
 
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
+#include <mmsystem.h>
+#include <Mmsystem.h>
+#include <mciapi.h>
+#include "VoiceAction.h"
+#pragma comment (lib, "Winmm.lib")
 selectAction::selectAction(ApplicationManager* pApp) :Action(pApp) {};//constructor
 
 //Reads parameters required for action to execute (code depends on action type)

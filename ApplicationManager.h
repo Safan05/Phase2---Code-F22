@@ -14,13 +14,10 @@ class ApplicationManager
 private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
-
 	CFigure* SelectedFig; //Pointer to the selected figure
-
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
-
 public:	
 	ApplicationManager(); 
 	~ApplicationManager();

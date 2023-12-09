@@ -34,6 +34,7 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_SELECT,
 	ITM_DELETE,
 	ITM_CLEAR,
+	ITM_Voice,
 	ITM_StartRecording,
 	ITM_StopRecording,
 	ITM_PlayRecord,

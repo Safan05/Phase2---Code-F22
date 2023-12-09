@@ -30,6 +30,7 @@ enum ActionType //The actions supported (you can add more if needed)
 	Pick_color,
 	Pick_figure,
 	Pick_both,
+	Voice,
 	UNDO,
 	REDO,
 	FILLING,

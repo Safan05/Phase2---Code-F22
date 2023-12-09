@@ -144,6 +144,7 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_GREEN1] = "images\\MenuItems\\Menu_Green.jpeg";
 	MenuItemImages[ITM_BLUE1] = "images\\MenuItems\\Menu_Blue.jpeg";
 	MenuItemImages[ITM_MOVE] = "images\\MenuItems\\Menu_Move.jpeg";
+	MenuItemImages[ITM_Voice]= "images\\MenuItems\\Menu_Voice.jpeg";
 	//Draw menu item one image at a time
 	for (int i = 0; i < DRAW_ITM_COUNT; i++)
 		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
