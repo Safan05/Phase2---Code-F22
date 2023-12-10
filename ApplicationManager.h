@@ -52,6 +52,7 @@ public:
 	int  GetActionCount();
 	void AddAction(Action* pAct);
 	void SetIsRec(bool Rec);
+	bool GetIsRec();
 };
 
 #endif
