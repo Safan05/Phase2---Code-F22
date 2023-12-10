@@ -7,6 +7,7 @@
 #include "Actions\selectAction.h"
 #include "Actions\delete_action.h"
 #include "Actions\SaveAction.h"
+#include "Actions\LoadAction.h"
 #include "Actions\VoiceAction.h"
 #include "Actions\pick_figure.h"
 #include "Actions\ActionToPick.h"
@@ -204,6 +205,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case Save_graph:
 			pAct = new SaveAction(this);
+			break;
+		case load_graph:
+			pAct = new LoadAction(this);
 			break;
 		case Voice:
 			pAct = new VoiceAction(this);

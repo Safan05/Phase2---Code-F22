@@ -1,5 +1,12 @@
 #include "CFigure.h"
 int CFigure::LastID=1;
+CFigure::CFigure()
+{
+	ID = LastID++;
+	Selected = false;
+	hidden = false;
+	FigGfxInfo.isFilled = 0;
+}
 CFigure::CFigure(GfxInfo FigureGfxInfo)
 { 
 	ID=LastID++;
@@ -51,5 +58,23 @@ string CFigure::GetFillClrName()
 	else if (FigGfxInfo.FillClr == GREEN) return  "GREEN";
 	else if (FigGfxInfo.FillClr == YELLOW) return "YELLOW";
 	else if (FigGfxInfo.FillClr == BLACK) return "BLACK";
+}
+void CFigure::SetDrawClrName()
+{
+	if (DrawColor == "RED")    FigGfxInfo.DrawClr=RED;
+	else if (DrawColor == "ORANGE") FigGfxInfo.DrawClr=ORANGE;
+	else if (DrawColor == "BLUE")   FigGfxInfo.DrawClr= BLUE;
+	else if (DrawColor == "GREEN")  FigGfxInfo.DrawClr= GREEN;
+	else if (DrawColor == "YELLOW") FigGfxInfo.DrawClr=YELLOW;
+	else if (DrawColor == "BLACK")  FigGfxInfo.DrawClr=BLACK;
+}
+void CFigure::SetFillClrName()
+{
+	if (FillColor == "RED")         FigGfxInfo.FillClr = RED;
+	else if (FillColor == "ORANGE") FigGfxInfo.FillClr = ORANGE;
+	else if (FillColor == "BLUE")   FigGfxInfo.FillClr = BLUE;
+	else if (FillColor == "GREEN")  FigGfxInfo.FillClr = GREEN;
+	else if (FillColor == "YELLOW") FigGfxInfo.FillClr = YELLOW;
+	else if (FillColor == "BLACK")  FigGfxInfo.FillClr = BLACK;
 }
 ;

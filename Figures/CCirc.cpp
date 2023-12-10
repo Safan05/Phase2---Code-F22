@@ -1,5 +1,8 @@
 #include "CCirc.h"
 #include<fstream>
+CCirc::CCirc()
+{
+}
 CCirc::CCirc(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
@@ -30,6 +33,12 @@ void CCirc::PrintInfo(Output* pOut)
 }
 void CCirc::Save(ofstream& OutFile)
 {
-	OutFile << "CIRC\t" << ID << Center.x << "\t" << Center.y << "\t" << GetDrawClrName() << "\t" << GetFillClrName()<< endl;
+	OutFile << "CIRC\t" << ID << "\t" << Center.x << "\t" << Center.y << "\t" << point.x << "\t" << point.y << "\t" << GetDrawClrName() << "\t" << GetFillClrName()<< endl;
+}
+void CCirc::Load(ifstream& Infile)
+{
+	Infile >> ID >> Center.x >> Center.y >> point.x >> point.y >> DrawColor >> FillColor;
+	SetDrawClrName();
+	SetFillClrName();
 }
 ;

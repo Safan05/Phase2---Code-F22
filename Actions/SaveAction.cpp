@@ -22,7 +22,7 @@ void SaveAction::ReadActionParameters()
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	pOut->PrintMessage("Please Enter the file name");
-	FileName = pIn->GetSrting(pOut);
+	FileName = pIn->GetString(pOut);
 	pOut->PrintMessage("The File's name is " + FileName);
 }
 

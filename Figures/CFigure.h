@@ -12,10 +12,12 @@ protected:
 	bool Selected;	//true if the figure is selected.
 	GfxInfo FigGfxInfo;	//Figure graphis info
 	bool hidden;
+	string DrawColor, FillColor;
 	/// Add more parameters if needed.
 
 public:
 	static int LastID;
+	CFigure();
 	CFigure(GfxInfo FigureGfxInfo);
 	void SetSelected(bool s);	//select/unselect the figure
 	void Sethidden(bool h);	//hide/unhide the figure
@@ -28,11 +30,13 @@ public:
 	color get_color();
 	string GetDrawClrName();
 	string GetFillClrName();
+	void CFigure::SetDrawClrName();
+	void CFigure::SetFillClrName();
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
 	///Decide the parameters that you should pass to each function	
 	virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
-	//virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
+	virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
 	//print all figure info on the status bar
 	virtual void PrintInfo(Output* pOut) = 0;	
 };

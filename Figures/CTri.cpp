@@ -4,6 +4,9 @@ int area_cal(int x1, int x2, int x3, int y1, int y2, int y3) {
 	int area = abs((x1 * y2) - (x1 * y3) - (y1 * x2) + (y1 * x3) + (y3 * x2) - (y2 * x3));
 	return area;
 }
+CTri::CTri()
+{
+}
 CTri::CTri(Point P1, Point P2, Point P3, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Vertex1 = P1;
@@ -35,5 +38,12 @@ void CTri::PrintInfo(Output* pOut)
 
 void CTri::Save(ofstream& OutFile)
 {
-	OutFile << "TRIANG\t" << Vertex1.x << "\t" << Vertex1.y << "\t" << Vertex2.x << "\t" << Vertex2.y << "\t" << Vertex3.x << "\t" << Vertex3.y << "\t" << GetDrawClrName() << "\t" << GetFillClrName()<<endl;
+	OutFile << "TRIANG\t" << ID << "\t" << Vertex1.x << "\t" << Vertex1.y << "\t" << Vertex2.x << "\t" << Vertex2.y << "\t" << Vertex3.x << "\t" << Vertex3.y << "\t" << GetDrawClrName() << "\t" << GetFillClrName()<<endl;
+}
+
+void CTri::Load(ifstream& Infile)
+{
+	Infile >> ID >> Vertex1.x >> Vertex1.y >> Vertex2.x >> Vertex2.y >> Vertex3.x >> Vertex3.y >> DrawColor >> FillColor;
+	SetDrawClrName();
+	SetFillClrName();
 }

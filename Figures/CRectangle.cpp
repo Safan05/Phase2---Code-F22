@@ -1,5 +1,8 @@
 #include "CRectangle.h"
 #include <fstream>
+#include "..\ApplicationManager.h"
+CRectangle::CRectangle()
+{}
 
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
@@ -32,5 +35,12 @@ void CRectangle::PrintInfo(Output* pOut)
 
 void CRectangle::Save(ofstream& OutFile)
 {
-	OutFile << "RECT\t"<< ID << Corner1.x<<"\t"<< Corner1.y<<"\t"<< Corner2.x << "\t" << Corner2.y<<"\t" << GetDrawClrName()<<"\t" << GetFillClrName() << endl;
+	OutFile << "RECT\t"<< ID <<"\t" << Corner1.x << "\t" << Corner1.y << "\t" << Corner2.x << "\t" << Corner2.y << "\t" << GetDrawClrName() << "\t" << GetFillClrName() << endl;
+}
+
+void CRectangle::Load(ifstream& Infile)
+{
+	Infile >> ID >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y >> DrawColor >> FillColor ;
+	SetDrawClrName();
+	SetFillClrName();
 }

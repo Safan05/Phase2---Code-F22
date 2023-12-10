@@ -182,6 +182,7 @@
     <ClCompile Include="GUI\Input.cpp" />
     <ClCompile Include="GUI\Output.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
+    <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\VoiceAction.cpp" />
@@ -230,6 +231,7 @@
     <ClInclude Include="DEFS.h" />
     <ClInclude Include="Actions\SaveAction.h" />
     <ClInclude Include="Actions\VoiceAction.h" />
+    <ClInclude Include="Actions\LoadAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

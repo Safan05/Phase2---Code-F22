@@ -1,5 +1,8 @@
 #include "CSquare.h"
 #include<fstream>
+CSquare::CSquare()
+{
+}
 CSquare::CSquare(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
@@ -24,5 +27,12 @@ void CSquare::PrintInfo(Output* pOut)
 
 void CSquare::Save(ofstream& OutFile)
 {
-	OutFile << "SQUARE\t" << ID << Center.x << "\t" << Center.y << "\t" << GetDrawClrName() << "\t" << GetFillClrName()<<endl;
+	OutFile << "SQUARE\t" << ID << "\t" << Center.x << "\t" << Center.y << "\t" << GetDrawClrName() << "\t" << GetFillClrName()<<endl;
+}
+
+void CSquare::Load(ifstream& Infile)
+{
+	Infile >> ID >> Center.x >> Center.y >> DrawColor >> FillColor;
+	SetDrawClrName();
+	SetFillClrName();
 }

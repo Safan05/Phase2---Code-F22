@@ -4,6 +4,9 @@ double area_cal(int x1, int x2, int x3, int y1, int y2, int y3) {
 	double area = abs((x1 * y2) - (x1 * y3) - (y1 * x2) + (y1 * x3) + (y3 * x2) - (y2 * x3));
 	return area;
 }
+CHexa::CHexa()
+{
+}
 CHexa::CHexa(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
@@ -36,5 +39,12 @@ void CHexa::PrintInfo(Output* pOut)
 
 void CHexa::Save(ofstream& OutFile)
 {
-	OutFile << "HEXA\t" << ID << Center.x << "\t" << Center.y << "\t" << GetDrawClrName() << "\t" << GetFillClrName()<<endl;
+	OutFile << "HEXA\t" << ID << "\t" << Center.x << "\t" << Center.y << "\t" << GetDrawClrName() << "\t" << GetFillClrName()<<endl;
+}
+
+void CHexa::Load(ifstream& Infile)
+{
+	Infile >> ID >> Center.x >> Center.y >> DrawColor >> FillColor;
+	SetDrawClrName();
+	SetFillClrName();
 }
