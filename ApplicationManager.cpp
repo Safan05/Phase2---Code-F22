@@ -16,6 +16,9 @@
 #include "Figures/CRectangle.h"
 #include "Figures/CSquare.h"
 #include "Figures/CTri.h"
+#include "Actions\StartRecAction.h"
+#include "Actions\StopRecAction.h"
+#include "Actions\PlayRecAction.h"
 #include <fstream>
 
 //Constructor
@@ -28,6 +31,8 @@ ApplicationManager::ApplicationManager()
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
 		FigList[i] = NULL;	
+	for (int i = 0; i < MaxRecActions; i++)
+		ActionList[i] = NULL;
 }
 int ApplicationManager::count_fig(int Fig_t) {
 	int count = 0;
@@ -187,6 +192,15 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case Pick_figure:
 			pAct = new pick_figure(this);
 			break;
+		case Start_Rec:
+			pAct = new StartRecAction(this);
+			break;
+		case Stop_Rec:
+			pAct = new StopRecAction(this);
+			break;
+		case Play_Rec:
+			pAct = new PlayRecAction(this);
+			break;
 		case TO_DRAW:
 			pOut->CreateDrawToolBar();
 			break;
@@ -272,6 +286,27 @@ void ApplicationManager::unhide() const
 			FigList[i]->Sethidden(0);
 	}
 }
+Action** ApplicationManager::GetActionList()
+{
+	return ActionList;
+}
+
+int ApplicationManager::GetActionCount()
+{
+	return ActionCount;
+}
+
+void ApplicationManager::AddAction(Action* pAct)
+{
+	if (ActionCount < MaxRecActions)
+		ActionList[ActionCount++] = pAct;
+}
+
+void ApplicationManager::SetIsRec(bool Rec)
+{
+	Is_Recording = Rec;
+}
+
 
 //==================================================================================//
 //							Interface Management Functions							//

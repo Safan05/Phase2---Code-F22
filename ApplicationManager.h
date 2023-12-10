@@ -5,19 +5,22 @@
 #include "Figures\CFigure.h"
 #include "GUI\input.h"
 #include "GUI\output.h"
-
+#include "Actions\Action.h"
 //Main class that manages everything in the application.
 class ApplicationManager
 {
-	enum { MaxFigCount = 200 };	//Max no of figures
+	enum { MaxFigCount = 200, MaxRecActions = 20 };	//Max no of figures
 
 private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 	CFigure* SelectedFig; //Pointer to the selected figure
 	//Pointers to Input and Output classes
-	Input *pIn;
-	Output *pOut;
+	Input* pIn;
+	Output* pOut;
+	Action* ActionList[MaxRecActions]; // list for all action(for the recording)
+	int ActionCount;
+	bool Is_Recording;
 public:	
 	ApplicationManager(); 
 	~ApplicationManager();
@@ -45,6 +48,10 @@ public:
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window	
+	Action** GetActionList();
+	int  GetActionCount();
+	void AddAction(Action* pAct);
+	void SetIsRec(bool Rec);
 };
 
 #endif

@@ -190,7 +190,17 @@
     <ClCompile Include="Actions\VoiceAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Actions\LoadAction.cpp">
+=======
+    <ClCompile Include="Actions\PlayRecAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\StartRecAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\StopRecAction.cpp">
+>>>>>>> 2965cb42d8398875a29443c0dae574da6902a1e9
       <Filter>Action Classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -322,7 +332,17 @@
     <ClInclude Include="Actions\VoiceAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Actions\LoadAction.h">
+=======
+    <ClInclude Include="Actions\PlayRecAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\StartRecAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\StopRecAction.h">
+>>>>>>> 2965cb42d8398875a29443c0dae574da6902a1e9
       <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>
