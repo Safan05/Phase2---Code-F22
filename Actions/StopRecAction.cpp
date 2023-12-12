@@ -10,9 +10,12 @@ StopRecAction::StopRecAction(ApplicationManager* pApp) :Action(pApp)
 
 void StopRecAction::Execute()
 {
-	pManager->SetIsRec(false);
-	Output* pOut = pManager->GetOutput();
-	pOut->PrintMessage(" stopped Recording");
+	if (pManager->GetIsRec())
+	{
+		pManager->SetIsRec(false);
+		Output* pOut = pManager->GetOutput();
+		pOut->PrintMessage(" stopped Recording");
+	}
 }
 
 void StopRecAction::ReadActionParameters()
