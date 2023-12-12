@@ -307,6 +307,11 @@ void ApplicationManager::SetIsRec(bool Rec)
 	Is_Recording = Rec;
 }
 
+bool ApplicationManager::GetIsRec()
+{
+	return Is_Recording;
+}
+
 
 //==================================================================================//
 //							Interface Management Functions							//
