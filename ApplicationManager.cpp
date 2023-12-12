@@ -11,6 +11,8 @@
 #include "Actions\VoiceAction.h"
 #include "Actions\pick_figure.h"
 #include "Actions\ActionToPick.h"
+#include "Actions\FillingAction.h"
+#include "Actions\DrawingAction.h"
 #include "Figures/CCirc.h"
 #include "Figures/CHexa.h"
 #include "Figures/CRectangle.h"
@@ -85,6 +87,7 @@ int ApplicationManager::count_fig(color col) {
 void ApplicationManager::SaveAll(ofstream &Out)
 {
 	for (int i = 0; i < FigCount; i++) {
+		if(FigList[i]!=NULL)
 		FigList[i]->Save(Out);
 	}
 }
@@ -222,6 +225,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case load_graph:
 			pAct = new LoadAction(this);
+			break;
+		case FILLING:
+			pAct = new FillingAction(this);
+			break;
+		case DRAWING:
+			pAct = new DrawingAction(this);
 			break;
 		case Voice:
 			pAct = new VoiceAction(this);
