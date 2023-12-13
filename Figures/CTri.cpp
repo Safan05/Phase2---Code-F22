@@ -38,12 +38,20 @@ void CTri::PrintInfo(Output* pOut)
 
 void CTri::Save(ofstream& OutFile)
 {
-	OutFile << "TRIANG\t" << ID << "\t" << Vertex1.x << "\t" << Vertex1.y << "\t" << Vertex2.x << "\t" << Vertex2.y << "\t" << Vertex3.x << "\t" << Vertex3.y << "\t" << GetDrawClrName() << "\t" << GetFillClrName()<<endl;
+	OutFile << "TRIANG\t" << ID << "\t" << Vertex1.x << "\t" << Vertex1.y << "\t" << Vertex2.x << "\t" << Vertex2.y << "\t" << Vertex3.x << "\t" << Vertex3.y << "\t" << GetDrawClrName() << "\t";
+	if (FigGfxInfo.isFilled) {
+		OutFile << GetFillClrName() << endl;
+	}
+	else OutFile << "NO_FILL\n";
 }
 
 void CTri::Load(ifstream& Infile)
 {
-	Infile >> ID >> Vertex1.x >> Vertex1.y >> Vertex2.x >> Vertex2.y >> Vertex3.x >> Vertex3.y >> DrawColor >> FillColor;
+	Infile >> ID >> Vertex1.x >> Vertex1.y >> Vertex2.x >> Vertex2.y >> Vertex3.x >> Vertex3.y >> DrawColor ;
 	SetDrawClrName();
-	SetFillClrName();
+	Infile >> FillColor;
+	if (FillColor == "NO_FILL") {
+		FigGfxInfo.isFilled = 0;
+	}
+	else SetFillClrName();
 }

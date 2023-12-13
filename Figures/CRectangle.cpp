@@ -35,12 +35,20 @@ void CRectangle::PrintInfo(Output* pOut)
 
 void CRectangle::Save(ofstream& OutFile)
 {
-	OutFile << "RECT\t"<< ID <<"\t" << Corner1.x << "\t" << Corner1.y << "\t" << Corner2.x << "\t" << Corner2.y << "\t" << GetDrawClrName() << "\t" << GetFillClrName() << endl;
+	OutFile << "RECT\t" << ID << "\t" << Corner1.x << "\t" << Corner1.y << "\t" << Corner2.x << "\t" << Corner2.y << "\t" << GetDrawClrName() << "\t";
+	if (FigGfxInfo.isFilled) {
+		OutFile << GetFillClrName() << endl;
+	}
+	else OutFile << "NO_FILL\n";
 }
 
 void CRectangle::Load(ifstream& Infile)
 {
-	Infile >> ID >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y >> DrawColor >> FillColor ;
+	Infile >> ID >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y >> DrawColor;
 	SetDrawClrName();
-	SetFillClrName();
+	Infile >> FillColor;
+	if (FillColor == "NO_FILL") {
+		FigGfxInfo.isFilled = 0;
+	}
+	else SetFillClrName();
 }

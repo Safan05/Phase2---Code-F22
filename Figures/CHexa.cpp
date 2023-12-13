@@ -39,12 +39,20 @@ void CHexa::PrintInfo(Output* pOut)
 
 void CHexa::Save(ofstream& OutFile)
 {
-	OutFile << "HEXA\t" << ID << "\t" << Center.x << "\t" << Center.y << "\t" << GetDrawClrName() << "\t" << GetFillClrName()<<endl;
+	OutFile << "HEXA\t" << ID << "\t" << Center.x << "\t" << Center.y << "\t" << GetDrawClrName() << "\t";
+	if (FigGfxInfo.isFilled) {
+		OutFile << GetFillClrName() << endl;
+	}
+	else OutFile << "NO_FILL\n";
 }
 
 void CHexa::Load(ifstream& Infile)
 {
-	Infile >> ID >> Center.x >> Center.y >> DrawColor >> FillColor;
+	Infile >> ID >> Center.x >> Center.y >> DrawColor ;
 	SetDrawClrName();
-	SetFillClrName();
+	Infile >> FillColor;
+	if (FillColor == "NO_FILL") {
+		FigGfxInfo.isFilled = 0;
+	}
+	else SetFillClrName();
 }

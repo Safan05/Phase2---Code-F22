@@ -139,6 +139,7 @@
     <ClCompile Include="Actions\selectAction.cpp" />
     <ClCompile Include="Actions\StartRecAction.cpp" />
     <ClCompile Include="Actions\StopRecAction.cpp" />
+    <ClCompile Include="Actions\ClearAllAction.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
     <ClCompile Include="CMUgraphicsLib\colors.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="Actions\selectAction.h" />
     <ClInclude Include="Actions\StartRecAction.h" />
     <ClInclude Include="Actions\StopRecAction.h" />
+    <ClInclude Include="Actions\ClearAllAction.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
     <ClInclude Include="CMUgraphicsLib\colors.h" />

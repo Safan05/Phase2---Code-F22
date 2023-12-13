@@ -33,12 +33,20 @@ void CCirc::PrintInfo(Output* pOut)
 }
 void CCirc::Save(ofstream& OutFile)
 {
-	OutFile << "CIRC\t" << ID << "\t" << Center.x << "\t" << Center.y << "\t" << point.x << "\t" << point.y << "\t" << GetDrawClrName() << "\t" << GetFillClrName()<< endl;
+	OutFile << "CIRC\t" << ID << "\t" << Center.x << "\t" << Center.y << "\t" << point.x << "\t" << point.y << "\t" << GetDrawClrName() << "\t";
+	if (FigGfxInfo.isFilled) {
+		OutFile << GetFillClrName() << endl;
+	}
+	else OutFile << "NO_FILL\n";
 }
 void CCirc::Load(ifstream& Infile)
 {
-	Infile >> ID >> Center.x >> Center.y >> point.x >> point.y >> DrawColor >> FillColor;
+	Infile >> ID >> Center.x >> Center.y >> point.x >> point.y >> DrawColor;
 	SetDrawClrName();
-	SetFillClrName();
+	Infile >> FillColor;
+	if (FillColor == "NO_FILL") {
+		FigGfxInfo.isFilled = 0;
+	}
+	else SetFillClrName();
 }
 ;
