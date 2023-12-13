@@ -134,6 +134,8 @@
     <ClCompile Include="Actions\AddSquareAction.cpp" />
     <ClCompile Include="Actions\AddTriAction.cpp" />
     <ClCompile Include="Actions\delete_action.cpp" />
+    <ClCompile Include="Actions\DrawingAction.cpp" />
+    <ClCompile Include="Actions\FillingAction.cpp" />
     <ClCompile Include="Actions\pick_figure.cpp" />
     <ClCompile Include="Actions\PlayRecAction.cpp" />
     <ClCompile Include="Actions\selectAction.cpp" />
@@ -190,6 +192,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\VoiceAction.cpp" />
+    <ClCompile Include="Actions\pick_both.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\ActionToPick.h" />
@@ -198,6 +201,8 @@
     <ClInclude Include="Actions\AddSquareAction.h" />
     <ClInclude Include="Actions\AddTriAction.h" />
     <ClInclude Include="Actions\delete_action.h" />
+    <ClInclude Include="Actions\DrawingAction.h" />
+    <ClInclude Include="Actions\FillingAction.h" />
     <ClInclude Include="Actions\pick_figure.h" />
     <ClInclude Include="Actions\PlayRecAction.h" />
     <ClInclude Include="Actions\selectAction.h" />
@@ -240,6 +245,7 @@
     <ClInclude Include="Actions\SaveAction.h" />
     <ClInclude Include="Actions\VoiceAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
+    <ClInclude Include="Actions\pick_both.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

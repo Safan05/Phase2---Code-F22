@@ -54,5 +54,8 @@ void CHexa::Load(ifstream& Infile)
 	if (FillColor == "NO_FILL") {
 		FigGfxInfo.isFilled = 0;
 	}
-	else SetFillClrName();
+	else {
+		FigGfxInfo.isFilled = 1;
+		SetFillClrName();
+	}
 }

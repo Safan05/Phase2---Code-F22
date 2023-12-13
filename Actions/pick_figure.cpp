@@ -42,8 +42,10 @@ void pick_figure::Execute() {
 				ReadActionParameters();
 				if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_figure)
 					Execute();
-				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play)
+				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
+					pManager->ExecuteAction(TO_PLAY);
 					break;
+				}
 				CFigure* d = pManager->GetFigure(P.x, P.y);
 				if (d != NULL) {
 					CRectangle* r = dynamic_cast<CRectangle*>(d);
@@ -70,8 +72,10 @@ void pick_figure::Execute() {
 				ReadActionParameters();
 				if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_figure)
 					Execute();
-				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play)
+				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
+					pManager->ExecuteAction(TO_PLAY);
 					break;
+				}
 				CFigure* d = pManager->GetFigure(P.x, P.y);
 				if (d != NULL) {
 					CCirc* c = dynamic_cast<CCirc*>(d);
@@ -98,8 +102,10 @@ void pick_figure::Execute() {
 				ReadActionParameters();
 				if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_figure)
 					Execute();
-				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play)
+				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
+					pManager->ExecuteAction(TO_PLAY);
 					break;
+				}
 				CFigure* d = pManager->GetFigure(P.x, P.y);
 				if (d != NULL) {
 					CSquare* s = dynamic_cast<CSquare*>(d);
@@ -126,8 +132,10 @@ void pick_figure::Execute() {
 				ReadActionParameters();
 				if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_figure)
 					Execute();
-				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play)
+				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
+					pManager->ExecuteAction(TO_PLAY);
 					break;
+				}
 				CFigure* d = pManager->GetFigure(P.x, P.y);
 				if (d != NULL) {
 					CHexa* h = dynamic_cast<CHexa*>(d);
@@ -154,8 +162,10 @@ void pick_figure::Execute() {
 				ReadActionParameters();
 				if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_figure)
 					Execute();
-				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play)
+				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
+					pManager->ExecuteAction(TO_PLAY);
 					break;
+				}
 				CFigure* d = pManager->GetFigure(P.x, P.y);
 				if (d != NULL) {
 					CTri* t = dynamic_cast<CTri*>(d);

@@ -12,9 +12,7 @@ public:
 	//Reads Square parameters
 	virtual void ReadActionParameters();
 	bool Valid();
-	bool Valid_point(Point p1);
 	bool ValidP(Point);
-	//Add Square to the ApplicationManager
 	virtual void Execute();
 
 };

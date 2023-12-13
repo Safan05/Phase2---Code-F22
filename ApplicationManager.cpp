@@ -11,6 +11,8 @@
 #include "Actions\VoiceAction.h"
 #include "Actions\pick_figure.h"
 #include "Actions\ActionToPick.h"
+#include "Actions\FillingAction.h"
+#include "Actions\DrawingAction.h"
 #include "Actions\ClearAllAction.h"
 #include "Figures/CCirc.h"
 #include "Figures/CHexa.h"
@@ -225,6 +227,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case load_graph:
 			pAct = new LoadAction(this);
 			break;
+		case FILLING:
+			pAct = new FillingAction(this);
+			break;
+		case DRAWING:
+			pAct = new DrawingAction(this);
+			break;
 		case Voice:
 			pAct = new VoiceAction(this);
 				break;
@@ -307,6 +315,11 @@ void ApplicationManager::AddAction(Action* pAct)
 void ApplicationManager::SetIsRec(bool Rec)
 {
 	Is_Recording = Rec;
+}
+
+bool ApplicationManager::GetIsRec()
+{
+	return Is_Recording;
 }
 
 
