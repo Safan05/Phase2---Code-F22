@@ -47,3 +47,13 @@ void CSquare::Load(ifstream& Infile)
 		SetFillClrName();
 	}
 }
+void CSquare::Move(Point c, Output* out)
+{
+	if (((c.y + 50 - UI.ToolBarHeight) > 100) && (UI.height - (c.y + 50) > UI.StatusBarHeight))
+	{
+		Center = c;
+	}
+	else
+		out->PrintMessage("Invalid point");
+
+}

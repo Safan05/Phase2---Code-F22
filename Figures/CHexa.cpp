@@ -59,3 +59,13 @@ void CHexa::Load(ifstream& Infile)
 		SetFillClrName();
 	}
 }
+
+void CHexa::Move(Point c, Output* out)
+{
+	if ((((c.y + 43.3 - UI.ToolBarHeight) > 86.6) && ((UI.height - UI.StatusBarHeight) - c.y >= 43.3)))
+	{
+		Center = c;
+	}
+	else
+		out->PrintMessage("Invalid point");
+}

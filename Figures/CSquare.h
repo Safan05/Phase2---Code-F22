@@ -12,5 +12,6 @@ public:
 	void PrintInfo(Output* pOut);
 	void Save(ofstream& OutFile);
 	void Load(ifstream& Infile);
+	virtual void Move(Point c, Output* out);
 };
 

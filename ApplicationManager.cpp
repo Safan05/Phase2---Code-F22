@@ -22,6 +22,7 @@
 #include "Actions\StartRecAction.h"
 #include "Actions\StopRecAction.h"
 #include "Actions\PlayRecAction.h"
+#include "Actions/MoveAction.h"
 #include <fstream>
 
 //Constructor
@@ -236,6 +237,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case Voice:
 			pAct = new VoiceAction(this);
 				break;
+		case MOVE:
+			pAct = new MoveAction(this);
+			break;
 		case EXIT:
 			pAct = new ClearAllAction(this);
 			break;

@@ -136,6 +136,7 @@
     <ClCompile Include="Actions\delete_action.cpp" />
     <ClCompile Include="Actions\DrawingAction.cpp" />
     <ClCompile Include="Actions\FillingAction.cpp" />
+    <ClCompile Include="Actions\MoveAction.cpp" />
     <ClCompile Include="Actions\pick_figure.cpp" />
     <ClCompile Include="Actions\PlayRecAction.cpp" />
     <ClCompile Include="Actions\selectAction.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="Actions\delete_action.h" />
     <ClInclude Include="Actions\DrawingAction.h" />
     <ClInclude Include="Actions\FillingAction.h" />
+    <ClInclude Include="Actions\MoveAction.h" />
     <ClInclude Include="Actions\pick_figure.h" />
     <ClInclude Include="Actions\PlayRecAction.h" />
     <ClInclude Include="Actions\selectAction.h" />

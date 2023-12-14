@@ -52,3 +52,25 @@ void CCirc::Load(ifstream& Infile)
 		SetFillClrName();
 	}
 }
+
+void CCirc::Move(Point c, Output* out)
+{
+	Point c2;
+	int x = point.x - Center.x;
+	int y = point.y - Center.y;
+	c2.x = c.x + x;
+	c2.y = c.y + y;
+	int a, b, r;
+	a = abs(c.x - c2.x);
+	b = abs(c.y - c2.y);
+	r = sqrt(a * a + b * b);
+	if ((((c.y - UI.ToolBarHeight) >= r) && ((UI.height - UI.StatusBarHeight) - c.y >= r)))
+	{
+		Center = c;
+		point = c2;
+
+	}
+	else
+		out->PrintMessage("Invalid point");
+
+}

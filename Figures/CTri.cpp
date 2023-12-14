@@ -58,3 +58,27 @@ void CTri::Load(ifstream& Infile)
 		SetFillClrName();
 	}
 }
+void CTri::Move(Point c, Output* out)
+{
+	Point c2, c3;
+	int x12 = Vertex2.x - Vertex1.x;
+	int y12 = Vertex2.y - Vertex1.y;
+	c2.x = c.x + x12;
+	c2.y = c.y + y12;
+	int x13 = Vertex3.x - Vertex1.x;
+	int y13 = Vertex3.y - Vertex1.y;
+	c3.x = c2.x + x13;
+	c3.y = c2.y + x13;
+	int x23 = Vertex3.x - Vertex2.x;
+	int y23 = Vertex3.y - Vertex2.y;
+	c3.x = c2.x + x23;
+	c3.y = c2.y + y23;
+	if ((c.y > UI.ToolBarHeight) && (c.y < UI.height - UI.StatusBarHeight) && (c2.y > UI.ToolBarHeight) && (c2.y < UI.height - UI.StatusBarHeight) && (c3.y > UI.ToolBarHeight) && (c3.y < UI.height - UI.StatusBarHeight))
+	{
+		Vertex1 = c;
+		Vertex2 = c2;
+		Vertex3 = c3;
+	}
+	else
+		out->PrintMessage("Invalid point");
+}

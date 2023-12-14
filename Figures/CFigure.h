@@ -39,6 +39,7 @@ public:
 	virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
 	//print all figure info on the status bar
 	virtual void PrintInfo(Output* pOut) = 0;	
+	virtual void Move(Point c, Output* out) = 0;
 };
 
 #endif

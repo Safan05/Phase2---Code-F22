@@ -55,3 +55,20 @@ void CRectangle::Load(ifstream& Infile)
 		SetFillClrName();
 	}
 }
+void CRectangle::Move(Point c, Output* out)
+{
+	Point c2;
+	int x = Corner2.x - Corner1.x;
+	int y = Corner2.y - Corner1.y;
+	c2.x = c.x + x;
+	c2.y = c.y + y;
+	if (((c.y > UI.ToolBarHeight) && (c.y < UI.height - UI.StatusBarHeight)) && ((c2.y > UI.ToolBarHeight) && (c2.y < UI.height - UI.StatusBarHeight)))
+	{
+
+		Corner1 = c;
+		Corner2.x = c2.x;
+		Corner2.y = c2.y;
+	}
+	else
+		out->PrintMessage("Invalid point");
+}
