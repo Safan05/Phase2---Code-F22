@@ -22,7 +22,7 @@ bool CSquare::is_inside(int x, int y) const {
 
 void CSquare::PrintInfo(Output* pOut)
 {
-	pOut->PrintMessage("Square   ID " + std::to_string(ID));
+	pOut->PrintMessage("Square   ID " + std::to_string(ID) + "       Center ( " + std::to_string(Center.x) + " , " + std::to_string(Center.y) + " ) " + "      Length = 100");
 }
 
 void CSquare::Save(ofstream& OutFile)

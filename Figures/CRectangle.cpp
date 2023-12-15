@@ -30,7 +30,7 @@ void CRectangle::PrintInfo(Output* pOut)
 {
 	int h = abs(Corner1.y - Corner2.y);
 	int w = abs(Corner1.x - Corner2.x);
-	pOut->PrintMessage("Rectangle   ID " + std::to_string(ID) + "   Length = " + std::to_string(w) + "  Width = " + std::to_string(h));
+	pOut->PrintMessage("Rectangle   ID " + std::to_string(ID) + "       Corner 1 ( " + std::to_string(Corner1.x) + " , " + std::to_string(Corner1.y) + " ) " + "      Corner 2 ( " + std::to_string(Corner1.x) + " , " + std::to_string(Corner1.y) + " ) " +"   Length = " + std::to_string(w) + "  Width = " + std::to_string(h));
 }
 
 void CRectangle::Save(ofstream& OutFile)

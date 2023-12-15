@@ -7,6 +7,10 @@ CCirc::CCirc(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
 	point = P2;
+	int a, b;
+	a = abs(Center.x - point.x);
+	b = abs(Center.y - point.y);
+	r = sqrt(a * a + b * b);
 }
 
 void CCirc::Draw(Output* pOut) const
@@ -29,7 +33,7 @@ bool CCirc::is_inside(int x, int y) const {
 }
 void CCirc::PrintInfo(Output* pOut)
 {
-	pOut->PrintMessage("Circle    ID " + std::to_string(ID));
+	pOut->PrintMessage("Circle    ID " + std::to_string(ID) + "       Center ( " + std::to_string(Center.x) + " , " + std::to_string(Center.y) + " ) " + "      Radius = " + std::to_string(r));
 }
 void CCirc::Save(ofstream& OutFile)
 {

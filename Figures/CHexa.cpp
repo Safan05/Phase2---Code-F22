@@ -34,7 +34,7 @@ bool CHexa::is_inside(int x, int y) const {
 }
 void CHexa::PrintInfo(Output* pOut)
 {
-	pOut->PrintMessage("Hexagon    ID " + std::to_string(ID));
+	pOut->PrintMessage("Hexagon    ID " + std::to_string(ID)+ "       Center ( " + std::to_string(Center.x) + " , " + std::to_string(Center.y) + " ) " + "      Side = 50");
 }
 
 void CHexa::Save(ofstream& OutFile)

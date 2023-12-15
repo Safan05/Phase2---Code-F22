@@ -33,7 +33,7 @@ bool CTri::is_inside(int x, int y) const {
 
 void CTri::PrintInfo(Output* pOut)
 {
-	pOut->PrintMessage("Triangle  ID " + std::to_string(ID));
+	pOut->PrintMessage("Triangle  ID " + std::to_string(ID) + "       Vertex 1 ( " + std::to_string(Vertex1.x) + " , " + std::to_string(Vertex1.y) + " ) " + "       Vertex 2 ( " + std::to_string(Vertex2.x) + " , " + std::to_string(Vertex2.y) + " ) " + +"       Vertex 3 ( " + std::to_string(Vertex3.x) + " , " + std::to_string(Vertex3.y) + " ) ");
 }
 
 void CTri::Save(ofstream& OutFile)

@@ -5,6 +5,7 @@ class CCirc : public CFigure
 private:
 	Point Center;
 	Point point;
+	int r;
 public:
 	CCirc();
 	CCirc(Point, Point, GfxInfo FigureGfxInfo);
