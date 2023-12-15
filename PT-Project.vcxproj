@@ -143,6 +143,7 @@
     <ClCompile Include="Actions\StartRecAction.cpp" />
     <ClCompile Include="Actions\StopRecAction.cpp" />
     <ClCompile Include="Actions\ClearAllAction.cpp" />
+    <ClCompile Include="Actions\ActionToplay.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
     <ClCompile Include="CMUgraphicsLib\colors.cpp" />
@@ -194,6 +195,7 @@
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\VoiceAction.cpp" />
     <ClCompile Include="Actions\pick_both.cpp" />
+    <ClCompile Include="Actions\Pick_color.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\ActionToPick.h" />
@@ -211,6 +213,7 @@
     <ClInclude Include="Actions\StartRecAction.h" />
     <ClInclude Include="Actions\StopRecAction.h" />
     <ClInclude Include="Actions\ClearAllAction.h" />
+    <ClInclude Include="Actions\ActionToplay.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
     <ClInclude Include="CMUgraphicsLib\colors.h" />
@@ -248,6 +251,7 @@
     <ClInclude Include="Actions\VoiceAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\pick_both.h" />
+    <ClInclude Include="Actions\Pick_color.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
