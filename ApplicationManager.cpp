@@ -14,6 +14,8 @@
 #include "Actions\FillingAction.h"
 #include "Actions\DrawingAction.h"
 #include "Actions\ClearAllAction.h"
+#include "Actions\Pick_color.h"
+#include "Actions\pick_both.h"
 #include "Figures/CCirc.h"
 #include "Figures/CHexa.h"
 #include "Figures/CRectangle.h"
@@ -37,6 +39,7 @@ ApplicationManager::ApplicationManager()
 		FigList[i] = NULL;	
 	for (int i = 0; i < MaxRecActions; i++)
 		ActionList[i] = NULL;
+	SelectedFig = NULL;
 }
 int ApplicationManager::count_fig(int Fig_t) {
 	int count = 0;
@@ -242,6 +245,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case EXIT:
 			pAct = new ClearAllAction(this);
+			break;
+		case PickColor:
+			pAct = new Pick_color(this);
+			break;
+		case Pick_both:
+			pAct = new pick_both(this);
 			break;
 		case STATUS:	//a click on the status bar ==> no action
 			return;

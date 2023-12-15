@@ -1,4 +1,4 @@
-#include "pick_both.h"
+#include "Pick_color.h"
 #include "..\ApplicationManager.h"
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
@@ -7,19 +7,18 @@
 #include "..\Figures\CRectangle.h"
 #include "..\Figures\CTri.h"
 #include "..\Figures\CSquare.h"
-
-pick_both::pick_both(ApplicationManager* pApp) :Action(pApp) {};//constructor
+Pick_color::Pick_color(ApplicationManager* pApp) :Action(pApp) {}//constructor
 
 //Reads parameters required for action to execute (code depends on action type)
-void pick_both::ReadActionParameters() {
+void Pick_color::ReadActionParameters() {
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	pIn->GetPointClicked(P.x, P.y);
 	pOut->ClearStatusBar();
-};
+}
 
 //Execute action (code depends on action type)
-void pick_both::Execute() {
+void Pick_color::Execute() {
 	Output* pOut = pManager->GetOutput();
 	if (pManager->getfigcount() == 0) {
 		pOut->PrintMessage("Invalid there is no figures to pick from.");
@@ -27,54 +26,220 @@ void pick_both::Execute() {
 	else {
 		pManager->unhide();
 		pManager->UpdateInterface();
-		int col = rand() % 7;// generating random color to choose
+		int col = rand() % 7;// generating random figure to choose
 		// 0 is red , 1 is blue , 2 is yellow , 3 is orange ,4 is green , 5 is black and 6 no fill
-		int f = rand() % 5;// generating random figure to choose
-		// 0 is rect , 1 is square , 2 is triangle , 3 is circle ,4 is hexagon
 		int t_count = 0; //true choices counter
 		int f_count = 0; //wrong choices counter
+		int number = 0;
 		color x;
-		string colour;
 		switch (col) {
 		case 0:
 			x = RED;
-			colour = "red";
-			break;
-		case 1:
-			x = BLUE;
-			colour = "blue";
+			number = pManager->count_fig(x); //calculating chosed figure
+			if (number == 0)//if random generated figure DNE the program generates another one
+				Execute();
+			pOut->PrintMessage("You have to choose red figures");
+			while (number != 0) {
+				ReadActionParameters();
+				if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_color)
+					Execute();
+				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
+					pManager->ExecuteAction(TO_PLAY);
+					break;
+				}
+				CFigure* d = pManager->GetFigure(P.x, P.y);
+				if (d != NULL) {
+					if (!d->Ishidden() && d->get_color() == x) {
+						d->Sethidden(1);
+						pManager->UpdateInterface();
+						number--;
+						t_count++;
+						pOut->PrintMessage("true selection count of true now is: " + to_string(t_count));
+					}
+					else {
+						f_count++;
+						pOut->PrintMessage("false selection count of false now is: " + to_string(f_count));
+					}
+				}
+			}
+			pManager->unhide();
+			pManager->UpdateInterface();
+			pOut->PrintMessage("Number of correct choices is " + to_string(t_count) + " Number of wrong choices is" + to_string(f_count));
 			break;
 		case 2:
+			x = BLUE;
+			number = pManager->count_fig(x); //calculating chosed figure
+			if (number == 0)//if random generated figure DNE the program generates another one
+				Execute();
+			pOut->PrintMessage("You have to choose blue figures");
+			while (number != 0) {
+				ReadActionParameters();
+				if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_color)
+					Execute();
+				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
+					pManager->ExecuteAction(TO_PLAY);
+					break;
+				}
+				CFigure* d = pManager->GetFigure(P.x, P.y);
+				if (d != NULL) {
+					if (!d->Ishidden() && d->get_color() == x) {
+						d->Sethidden(1);
+						pManager->UpdateInterface();
+						number--;
+						t_count++;
+						pOut->PrintMessage("true selection count of true now is: " + to_string(t_count));
+					}
+					else {
+						f_count++;
+						pOut->PrintMessage("false selection count of false now is: " + to_string(f_count));
+					}
+				}
+			}
+			pManager->unhide();
+			pManager->UpdateInterface();
+			pOut->PrintMessage("Number of correct choices is " + to_string(t_count) + " Number of wrong choices is" + to_string(f_count));
+			break;
+		case 1:
 			x = YELLOW;
-			colour = "yellow";
+			number = pManager->count_fig(x); //calculating chosed figure
+			if (number == 0)//if random generated figure DNE the program generates another one
+				Execute();
+			pOut->PrintMessage("You have to choose yellow figures");
+			while (number != 0) {
+				ReadActionParameters();
+				if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_color)
+					Execute();
+				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
+					pManager->ExecuteAction(TO_PLAY);
+					break;
+				}
+				CFigure* d = pManager->GetFigure(P.x, P.y);
+				if (d != NULL) {
+					if (!d->Ishidden() && d->get_color() == x) {
+						d->Sethidden(1);
+						pManager->UpdateInterface();
+						number--;
+						t_count++;
+						pOut->PrintMessage("true selection count of true now is: " + to_string(t_count));
+					}
+					else {
+						f_count++;
+						pOut->PrintMessage("false selection count of false now is: " + to_string(f_count));
+					}
+				}
+			}
+			pManager->unhide();
+			pManager->UpdateInterface();
+			pOut->PrintMessage("Number of correct choices is " + to_string(t_count) + " Number of wrong choices is" + to_string(f_count));
 			break;
 		case 3:
 			x = ORANGE;
-			colour = "orange";
+			number = pManager->count_fig(x); //calculating chosed figure
+			if (number == 0)//if random generated figure DNE the program generates another one
+				Execute();
+			pOut->PrintMessage("You have to choose orange figures");
+			while (number != 0) {
+				ReadActionParameters();
+				if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_color)
+					Execute();
+				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
+					pManager->ExecuteAction(TO_PLAY);
+					break;
+				}
+				CFigure* d = pManager->GetFigure(P.x, P.y);
+				if (d != NULL) {
+					if (!d->Ishidden() && d->get_color() == x) {
+						d->Sethidden(1);
+						pManager->UpdateInterface();
+						number--;
+						t_count++;
+						pOut->PrintMessage("true selection count of true now is: " + to_string(t_count));
+					}
+					else {
+						f_count++;
+						pOut->PrintMessage("false selection count of false now is: " + to_string(f_count));
+					}
+				}
+			}
+			pManager->unhide();
+			pManager->UpdateInterface();
+			pOut->PrintMessage("Number of correct choices is " + to_string(t_count) + " Number of wrong choices is" + to_string(f_count));
 			break;
 		case 4:
 			x = GREEN;
-			colour = "green";
+			number = pManager->count_fig(x); //calculating chosed figure
+			if (number == 0)//if random generated figure DNE the program generates another one
+				Execute();
+			pOut->PrintMessage("You have to choose green figures");
+			while (number != 0) {
+				ReadActionParameters();
+				if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_color)
+					Execute();
+				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
+					pManager->ExecuteAction(TO_PLAY);
+					break;
+				}
+				CFigure* d = pManager->GetFigure(P.x, P.y);
+				if (d != NULL) {
+					if (!d->Ishidden() && d->get_color() == x) {
+						d->Sethidden(1);
+						pManager->UpdateInterface();
+						number--;
+						t_count++;
+						pOut->PrintMessage("true selection count of true now is: " + to_string(t_count));
+					}
+					else {
+						f_count++;
+						pOut->PrintMessage("false selection count of false now is: " + to_string(f_count));
+					}
+				}
+			}
+			pManager->unhide();
+			pManager->UpdateInterface();
+			pOut->PrintMessage("Number of correct choices is " + to_string(t_count) + " Number of wrong choices is" + to_string(f_count));
 			break;
 		case 5:
 			x = BLACK;
-			colour = "black";
+			number = pManager->count_fig(x); //calculating chosed figure
+			if (number == 0)//if random generated figure DNE the program generates another one
+				Execute();
+			pOut->PrintMessage("You have to choose black figures");
+			while (number != 0) {
+				ReadActionParameters();
+				if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_color)
+					Execute();
+				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
+					pManager->ExecuteAction(TO_PLAY);
+					break;
+				}
+				CFigure* d = pManager->GetFigure(P.x, P.y);
+				if (d != NULL) {
+					if (!d->Ishidden() && d->get_color() == x) {
+						d->Sethidden(1);
+						pManager->UpdateInterface();
+						number--;
+						t_count++;
+						pOut->PrintMessage("true selection count of true now is: " + to_string(t_count));
+					}
+					else {
+						f_count++;
+						pOut->PrintMessage("false selection count of false now is: " + to_string(f_count));
+					}
+				}
+			}
+			pManager->unhide();
+			pManager->UpdateInterface();
+			pOut->PrintMessage("Number of correct choices is " + to_string(t_count) + " Number of wrong choices is" + to_string(f_count));
 			break;
 		case 6:
-			x = GREY;
-			colour = "non-filled";
-			break;
-		}
-		int number = pManager->count_fig(f,x); //calculating chosed figure
-		if (number == 0)//if random generated figure DNE the program generates another one
-			Execute();
-		switch (f)
-		{
-		case ITM_RECT:
-			pOut->PrintMessage("You have to choose "+ colour+ " rectangles");
+			x = GRAY;
+			number = pManager->count_fig(x); //calculating chosed figure
+			if (number == 0)//if random generated figure DNE the program generates another one
+				Execute();
+			pOut->PrintMessage("You have to choose non-filled figures");
 			while (number != 0) {
 				ReadActionParameters();
-				if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_both)
+				if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_color)
 					Execute();
 				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
 					pManager->ExecuteAction(TO_PLAY);
@@ -82,128 +247,7 @@ void pick_both::Execute() {
 				}
 				CFigure* d = pManager->GetFigure(P.x, P.y);
 				if (d != NULL) {
-					CRectangle* r = dynamic_cast<CRectangle*>(d);
-					if (r && !d->Ishidden()&&d->get_color() == x) {
-						d->Sethidden(1);
-						pManager->UpdateInterface();
-						number--;
-						t_count++;
-						pOut->PrintMessage("true selection count of true now is: " + to_string(t_count));
-					}
-					else {
-						f_count++;
-						pOut->PrintMessage("false selection count of false now is: " + to_string(f_count));
-					}
-				}
-			}
-			pManager->unhide();
-			pManager->UpdateInterface();
-			pOut->PrintMessage("Number of correct choices is " + to_string(t_count) + " Number of wrong choices is" + to_string(f_count));
-			break;
-		case ITM_CIRC:
-			pOut->PrintMessage("You have to choose " + colour + " circles");
-			while (number != 0) {
-				ReadActionParameters();
-				if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_both)
-					Execute();
-				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
-					pManager->ExecuteAction(TO_PLAY);
-					break;
-				}
-				CFigure* d = pManager->GetFigure(P.x, P.y);
-				if (d != NULL) {
-					CCirc* c = dynamic_cast<CCirc*>(d);
-					if (c && !d->Ishidden() && d->get_color() == x) {
-						d->Sethidden(1);
-						pManager->UpdateInterface();
-						number--;
-						t_count++;
-						pOut->PrintMessage("true selection count of true now is: " + to_string(t_count));
-					}
-					else {
-						f_count++;
-						pOut->PrintMessage("false selection count of false now is: " + to_string(f_count));
-					}
-				}
-			}
-			pManager->unhide();
-			pManager->UpdateInterface();
-			pOut->PrintMessage("Number of correct choices is " + to_string(t_count) + " Number of wrong choices is" + to_string(f_count));
-			break;
-		case ITM_SQUARE:
-			pOut->PrintMessage("You have to choose " + colour + " squares");
-			while (number != 0) {
-				ReadActionParameters();
-				if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_both)
-					Execute();
-				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
-					pManager->ExecuteAction(TO_PLAY);
-					break;
-				}
-				CFigure* d = pManager->GetFigure(P.x, P.y);
-				if (d != NULL) {
-					CSquare* s = dynamic_cast<CSquare*>(d);
-					if (s && !s->Ishidden() && d->get_color() == x) {
-						d->Sethidden(1);
-						pManager->UpdateInterface();
-						number--;
-						t_count++;
-						pOut->PrintMessage("true selection count of true now is: " + to_string(t_count));
-					}
-					else {
-						f_count++;
-						pOut->PrintMessage("false selection count of false now is: " + to_string(f_count));
-					}
-				}
-			}
-			pManager->unhide();
-			pManager->UpdateInterface();
-			pOut->PrintMessage("Number of correct choices is " + to_string(t_count) + " Number of wrong choices is" + to_string(f_count));
-			break;
-		case ITM_HEXA:
-			pOut->PrintMessage("You have to choose " + colour + " hexagons");
-			while (number != 0) {
-				ReadActionParameters();
-				if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_both)
-					Execute();
-				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
-					pManager->ExecuteAction(TO_PLAY);
-					break;
-				}
-				CFigure* d = pManager->GetFigure(P.x, P.y);
-				if (d != NULL) {
-					CHexa* h = dynamic_cast<CHexa*>(d);
-					if (h && !h->Ishidden() && d->get_color() == x) {
-						d->Sethidden(1);
-						pManager->UpdateInterface();
-						number--;
-						t_count++;
-						pOut->PrintMessage("true selection count of true now is: " + to_string(t_count));
-					}
-					else {
-						f_count++;
-						pOut->PrintMessage("false selection count of false now is: " + to_string(f_count));
-					}
-				}
-			}
-			pManager->unhide();
-			pManager->UpdateInterface();
-			pOut->PrintMessage("Number of correct choices is " + to_string(t_count) + " Number of wrong choices is" + to_string(f_count));
-			break;
-		case ITM_TRI:
-			pOut->PrintMessage("You have to choose " + colour + " triangles");
-			while (number != 0) {
-				ReadActionParameters();
-				if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_both)
-					Execute();
-				else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
-					pManager->ExecuteAction(TO_PLAY);
-					break;
-				}
-				CFigure* d = pManager->GetFigure(P.x, P.y);
-				if (d != NULL) {
-					CTri* t = dynamic_cast<CTri*>(d);
-					if (t && !t->Ishidden() && d->get_color() == x) {
+					if (!d->Ishidden() && d->get_color() == x) {
 						d->Sethidden(1);
 						pManager->UpdateInterface();
 						number--;
@@ -221,5 +265,6 @@ void pick_both::Execute() {
 			pOut->PrintMessage("Number of correct choices is " + to_string(t_count) + " Number of wrong choices is" + to_string(f_count));
 			break;
 		}
+
 	}
 }

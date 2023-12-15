@@ -131,7 +131,7 @@ ActionType Input::GetUserAction() const
 
 			switch (ClickedItemOrder)
 			{
-			case ITM_Pick_color:return Pick_color;
+			case ITM_Pick_color:return PickColor;
 			case ITM_Pick_figure:return Pick_figure;
 			case ITM_Pick_both:return Pick_both;
 			case ITM_Back_play:return TO_PLAY;

@@ -39,7 +39,9 @@ void CFigure::ChngFillClr(color Fclr)
 	FigGfxInfo.FillClr = Fclr; 
 }
 color CFigure::get_color() {
-	return FigGfxInfo.DrawClr;
+	if(FigGfxInfo.isFilled)
+	return FigGfxInfo.FillClr;
+	return GRAY;
 }
 string CFigure::GetDrawClrName()
 {
