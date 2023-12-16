@@ -14,6 +14,9 @@ void CSquare::Draw(Output* pOut) const
 	pOut->DrawSQ(Center, FigGfxInfo, Selected);
 
 }
+char CSquare::type() {
+	return 'S';
+}
 bool CSquare::is_inside(int x, int y) const {
 	if (x > Center.x + 50 || x<Center.x - 50 || y>Center.y + 50 || y < Center.y - 50)
 		return 0;

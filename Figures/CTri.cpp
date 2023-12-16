@@ -13,7 +13,9 @@ CTri::CTri(Point P1, Point P2, Point P3, GfxInfo FigureGfxInfo) :CFigure(FigureG
 	Vertex2 = P2;
 	Vertex3 = P3;
 }
-
+char CTri::type() {
+	return 'T';
+}
 void CTri::Draw(Output* pOut) const
 {
 	//Call Output::DrawTri to draw a triangle on the screen	

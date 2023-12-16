@@ -18,6 +18,9 @@ void CHexa::Draw(Output* pOut) const
 	pOut->Drawhexa(Center, FigGfxInfo, Selected);
 
 }
+char CHexa::type() {
+	return 'H';
+}
 bool CHexa::is_inside(int x, int y) const {
 	double area_hex = 13050;
 	          //area_cal(P1.x         , x, P2.x         ,P1.y    ,y,         P2,y)

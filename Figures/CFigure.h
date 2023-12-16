@@ -25,6 +25,7 @@ public:
 	bool Ishidden() const;	//check whether fig is hidden
 	virtual bool is_inside(int x,int y) const = 0;
 	virtual void Draw(Output* pOut) const  = 0 ;		//Draw the figure
+	virtual char type() = 0;
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
 	color get_color();

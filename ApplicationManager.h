@@ -39,8 +39,8 @@ public:
 	void set_selected(CFigure* pFig);
 	CFigure* Get_selected() const; //get selected figure
 	void deletefig(CFigure* pFig);
-	int count_fig(int Fig_t);
-	int count_fig(int Fig_t,color c);
+	int count_fig(char Fig_t);
+	int count_fig(char Fig_t, color c);
 	int count_fig(color c);
 	void SaveAll(ofstream &);
 	int GetFigCount();

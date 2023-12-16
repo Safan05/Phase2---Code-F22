@@ -41,45 +41,12 @@ ApplicationManager::ApplicationManager()
 		ActionList[i] = NULL;
 	SelectedFig = NULL;
 }
-int ApplicationManager::count_fig(int Fig_t) {
+int ApplicationManager::count_fig(char Fig_t) {
 	int count = 0;
-	switch (Fig_t) {
-	case ITM_RECT:
 		for (int i = 0; i < FigCount; i++) {
-			CRectangle* r = dynamic_cast<CRectangle*>(FigList[i]);
-			if (r)
+			if (FigList[i]->type()==Fig_t)
 				count++;
 		}
-		break;
-	case ITM_CIRC:
-		for (int i = 0; i < FigCount; i++) {
-			CCirc* c = dynamic_cast<CCirc*>(FigList[i]);
-			if (c)
-				count++;
-		}
-		break;
-	case ITM_TRI:
-		for (int i = 0; i < FigCount; i++) {
-			CTri* t = dynamic_cast<CTri*>(FigList[i]);
-			if (t)
-				count++;
-		}
-		break;
-	case ITM_HEXA:
-		for (int i = 0; i < FigCount; i++) {
-			CHexa* h = dynamic_cast<CHexa*>(FigList[i]);
-			if (h)
-				count++;
-		}
-		break;
-	case ITM_SQUARE:
-		for (int i = 0; i < FigCount; i++) {
-			CSquare* s = dynamic_cast<CSquare*>(FigList[i]);
-			if (s)
-				count++;
-		}
-		break;
-}
 	return count;
 };
 int ApplicationManager::count_fig(color col) {
@@ -100,44 +67,11 @@ int ApplicationManager::GetFigCount()
 {
 	return FigCount;
 }
-int ApplicationManager::count_fig(int Fig_t, color col) {
+int ApplicationManager::count_fig(char Fig_t, color col) {
 	int count = 0;
-	switch (Fig_t) {
-	case ITM_RECT:
-		for (int i = 0; i < FigCount; i++) {
-			CRectangle* r = dynamic_cast<CRectangle*>(FigList[i]);
-			if (r&&FigList[i]->get_color()==col)
-				count++;
-		}
-		break;
-	case ITM_CIRC:
-		for (int i = 0; i < FigCount; i++) {
-			CCirc* c = dynamic_cast<CCirc*>(FigList[i]);
-			if (c&&FigList[i]->get_color() == col)
-				count++;
-		}
-		break;
-	case ITM_TRI:
-		for (int i = 0; i < FigCount; i++) {
-			CTri* t = dynamic_cast<CTri*>(FigList[i]);
-			if (t&&FigList[i]->get_color() == col)
-				count++;
-		}
-		break;
-	case ITM_HEXA:
-		for (int i = 0; i < FigCount; i++) {
-			CHexa* h = dynamic_cast<CHexa*>(FigList[i]);
-			if (h && FigList[i]->get_color() == col)
-				count++;
-		}
-		break;
-	case ITM_SQUARE:
-		for (int i = 0; i < FigCount; i++) {
-			CSquare* s = dynamic_cast<CSquare*>(FigList[i]);
-			if (s && FigList[i]->get_color() == col)
-				count++;
-		}
-		break;
+	for (int i = 0; i < FigCount; i++) {
+		if (FigList[i]->type() == Fig_t&&FigList[i]->get_color()==col)
+			count++;
 	}
 	return count;
 };

@@ -19,6 +19,9 @@ void CCirc::Draw(Output* pOut) const
 	pOut->DrawCirc(Center, point, FigGfxInfo, Selected);
 
 }
+char CCirc::type() {
+	return 'C';
+}
 bool CCirc::is_inside(int x, int y) const {
 	int a, b, c, d, r1, r2;
 	a = abs(Center.x - point.x);
