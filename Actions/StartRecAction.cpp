@@ -16,9 +16,9 @@ void StartRecAction::Execute()
 	}
 	else 
 	{
+		pManager->SetIsRec(true);
 		Output* pOut = pManager->GetOutput();
 		pOut->PrintMessage(" Started recording ");
-		pManager->SetIsRec(true);
 		
 	}
 	

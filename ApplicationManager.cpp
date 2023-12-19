@@ -26,14 +26,21 @@
 #include "Actions\PlayRecAction.h"
 #include "Actions/MoveAction.h"
 #include <fstream>
+#include "Actions/ExitAction.h"
+#include "Actions/ToPlayAction.h"
+#include "Actions/ToDrawAction.h"
+#include "Actions/ToFiguresAction.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
 {
 	//Create Input and output
+	Is_Recording=false;
+	Is_playing=false;
 	pOut = new Output;
 	pIn = pOut->CreateInput();
 	FigCount = 0;
+	ActionCount = 0;
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
 		FigList[i] = NULL;	
@@ -126,7 +133,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new selectAction(this) ;
 			break;
 		case FIGURES:
-			pOut->CreateFigureToolBar();
+			pAct = new ToFiguresAction(this);
 			break;
 		case DELETE_FIG:
 			pAct = new delete_action(this);
@@ -144,14 +151,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new PlayRecAction(this);
 			break;
 		case TO_DRAW:
-			pOut->CreateDrawToolBar();
+			pAct = new ToDrawAction(this);
 			break;
 		case TO_PLAY:
-			unhide();
-			pOut->CreatePlayToolBar();
+			pAct = new ToPlayAction(this);
 			break;
 		case BACK_TO_DRAW:
-			pOut->CreateDrawToolBar();
+			pAct = new ToDrawAction(this);
 			break;
 		case TO_PICK:
 			pAct = new ActionToPick(this);
@@ -178,7 +184,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new MoveAction(this);
 			break;
 		case EXIT:
-			pAct = new ClearAllAction(this);
+			pAct = new ExitAction(this);
 			break;
 		case PickColor:
 			pAct = new Pick_color(this);
@@ -194,7 +200,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	if(pAct != NULL)
 	{
 		pAct->Execute();//Execute
-		delete pAct;	//You may need to change this line depending to your implementation
+		if (!Is_Recording)
+			delete pAct;	//You may need to change this line depending to your implementation
 		pAct = NULL;
 	}
 }
@@ -267,6 +274,16 @@ void ApplicationManager::SetIsRec(bool Rec)
 bool ApplicationManager::GetIsRec()
 {
 	return Is_Recording;
+}
+
+void ApplicationManager::SetIsPlay(bool play)
+{
+	this->Is_playing = play;
+}
+
+bool ApplicationManager::GetIsPlay()
+{
+	return this->Is_playing;
 }
 
 

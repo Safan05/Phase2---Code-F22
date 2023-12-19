@@ -21,6 +21,7 @@ private:
 	Action* ActionList[MaxRecActions]; // list for all action(for the recording)
 	int ActionCount;
 	bool Is_Recording;
+	bool Is_playing;
 public:	
 	ApplicationManager(); 
 	~ApplicationManager();
@@ -53,6 +54,9 @@ public:
 	void AddAction(Action* pAct);
 	void SetIsRec(bool Rec);
 	bool GetIsRec();
+	void SetIsPlay(bool play);
+	bool GetIsPlay();
+
 };
 
 #endif

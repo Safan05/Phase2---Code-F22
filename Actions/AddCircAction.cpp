@@ -65,12 +65,19 @@ bool AddCircAction::ValidP(Point P)
 void AddCircAction::Execute()
 {
 	//This action needs to read some parameters first
-	ReadActionParameters();
-	if (Valid()) {
-		//Create a circle with the parameters read from the user
-		CCirc* C = new CCirc(center, point, CircGfxInfo);
+	if (!pManager->GetIsPlay())
+	{
+		
+		ReadActionParameters();
+		if (Valid()) {
+			//Create a circle with the parameters read from the user
+			CCirc* C = new CCirc(center, point, CircGfxInfo);
 
-		//Add the circle to the list of figures
-		pManager->AddFigure(C);
+			//Add the circle to the list of figures
+			pManager->AddFigure(C);
+		}
+		if (pManager->GetIsRec())
+			pManager->AddAction(this);
+		
 	}
 }

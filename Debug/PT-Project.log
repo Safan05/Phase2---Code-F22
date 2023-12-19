@@ -1,0 +1,6 @@
+﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  ToPlayAction.cpp
+  ToDrawAction.cpp
+  Generating Code...
+ActionToPick.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+  PT-Project.vcxproj -> D:\studfy\programming\phase 2\Debug\PT Project.exe
