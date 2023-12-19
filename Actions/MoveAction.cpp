@@ -1,12 +1,13 @@
 #include "MoveAction.h"
 #include "Action.h"
-
 #include "..\ApplicationManager.h"
-
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
+#include "VoiceAction.h"
 MoveAction::MoveAction(ApplicationManager* pApp) :Action(pApp)
 {
+	if (VoiceAction::voice)
+		PlaySound(TEXT("voice\\move figure.wav"), NULL, SND_FILENAME | SND_ASYNC);
 }
 
 void MoveAction::ReadActionParameters()

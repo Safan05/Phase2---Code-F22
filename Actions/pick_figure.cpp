@@ -89,10 +89,10 @@ void pick_figure::Execute() {
 				break;
 			}
 			CFigure* d = pManager->GetFigure(P.x, P.y);
-			if (d != NULL) {
-				if (d->type() == t && !d->Ishidden()) {
-					d->Sethidden(1);
-					pManager->UpdateInterface();
+			if (d != NULL&& !d->Ishidden()) {
+				d->Sethidden(1);
+				pManager->UpdateInterface();
+				if (d->type() == t) {
 					number--;
 					t_count++;
 					pOut->PrintMessage("true selection count of true now is: " + to_string(t_count));

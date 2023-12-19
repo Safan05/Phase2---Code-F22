@@ -26,6 +26,7 @@
 #include "Actions\PlayRecAction.h"
 #include "Actions/MoveAction.h"
 #include <fstream>
+#include "Actions/ExitAction.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -178,7 +179,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new MoveAction(this);
 			break;
 		case EXIT:
-			pAct = new ClearAllAction(this);
+			pAct = new ExitAction(this);
 			break;
 		case PickColor:
 			pAct = new Pick_color(this);
