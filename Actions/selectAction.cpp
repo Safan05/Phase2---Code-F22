@@ -24,20 +24,25 @@ void selectAction::ReadActionParameters() {
 
 //Execute action (code depends on action type)
 void selectAction::Execute() {
-	ReadActionParameters();
-	Output* pOut = pManager->GetOutput();
-	CFigure* d = pManager->GetFigure(P.x, P.y);
-	if (d != NULL) {
-		if (d->IsSelected() == 0) {
-			pManager->de_select();
-			(d->SetSelected(1));
-			d->PrintInfo(pOut);
-			(pManager->set_selected(d));
-		}
-		else {
-			(pManager->de_select());
-			pManager->set_selected(NULL);
-		}
+	if (!pManager->GetIsPlay()) 
+	{
+		ReadActionParameters();
+		Output* pOut = pManager->GetOutput();
+		CFigure* d = pManager->GetFigure(P.x, P.y);
+		if (d != NULL) {
+			if (d->IsSelected() == 0) {
+				pManager->de_select();
+				(d->SetSelected(1));
+				d->PrintInfo(pOut);
+				(pManager->set_selected(d));
+			}
+			else {
+				(pManager->de_select());
+				pManager->set_selected(NULL);
+			}
 
+		}
+		if (pManager->GetIsRec())
+			pManager->AddAction(this);
 	}
 }

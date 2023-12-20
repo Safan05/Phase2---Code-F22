@@ -197,6 +197,9 @@
     <ClCompile Include="Actions\VoiceAction.cpp" />
     <ClCompile Include="Actions\pick_both.cpp" />
     <ClCompile Include="Actions\Pick_color.cpp" />
+    <ClCompile Include="Actions\ToPlayAction.cpp" />
+    <ClCompile Include="Actions\ToDrawAction.cpp" />
+    <ClCompile Include="Actions\ToFiguresAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\ActionToPick.h" />
@@ -254,6 +257,9 @@
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\pick_both.h" />
     <ClInclude Include="Actions\Pick_color.h" />
+    <ClInclude Include="Actions\ToPlayAction.h" />
+    <ClInclude Include="Actions\ToDrawAction.h" />
+    <ClInclude Include="Actions\ToFiguresAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

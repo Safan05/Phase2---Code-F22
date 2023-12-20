@@ -74,19 +74,19 @@ void pick_figure::Execute() {
 			ReadActionParameters();
 			if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_figure) {
 				Execute();
-				break;
+				return;
 			}
 			else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
 				pManager->ExecuteAction(TO_PLAY);
-				break;
+				return;
 			}
 			else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_both) {
 				pManager->ExecuteAction(Pick_both);
-				break;
+				return;
 			}
 			else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_color) {
 				pManager->ExecuteAction(PickColor);
-				break;
+				return;
 			}
 			CFigure* d = pManager->GetFigure(P.x, P.y);
 			if (d != NULL&& !d->Ishidden()) {

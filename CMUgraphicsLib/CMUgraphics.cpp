@@ -377,11 +377,8 @@ bool window::SetWaitClose(const bool bSetting) const {
 }
 
 bool window::SetBuffering(const bool bSetting) {
-
     bool bReturnVal;
-
 	ProcessMessage(); // Kludge
-
     // Is this changing the setting?
     if(bDoubleBuffer == bSetting) {
         return bDoubleBuffer;

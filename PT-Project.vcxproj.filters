@@ -70,6 +70,12 @@
     <ClCompile Include="Actions\Pick_color.cpp" />
     <ClCompile Include="Actions\ActionToplay.cpp" />
     <ClCompile Include="Actions\ExitAction.cpp" />
+<<<<<<< HEAD
+=======
+    <ClCompile Include="Actions\ToPlayAction.cpp" />
+    <ClCompile Include="Actions\ToDrawAction.cpp" />
+    <ClCompile Include="Actions\ToFiguresAction.cpp" />
+>>>>>>> 745157dfe335ad997b66bd4f25a3eb26c8835254
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\ActionToPick.h" />
@@ -127,6 +133,12 @@
     <ClInclude Include="Actions\Pick_color.h" />
     <ClInclude Include="Actions\ActionToplay.h" />
     <ClInclude Include="Actions\ExitAction.h" />
+<<<<<<< HEAD
+=======
+    <ClInclude Include="Actions\ToPlayAction.h" />
+    <ClInclude Include="Actions\ToDrawAction.h" />
+    <ClInclude Include="Actions\ToFiguresAction.h" />
+>>>>>>> 745157dfe335ad997b66bd4f25a3eb26c8835254
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

@@ -52,12 +52,18 @@ bool AddHexaAction::ValidP(Point P)
 void AddHexaAction::Execute()
 {
 	//This action needs to read some parameters first
-	ReadActionParameters();
-	if (Valid()) {
-		//Create a hexagon with the parameters read from the user
-		CHexa* H = new CHexa(center, HexaGfxInfo);
+	if (!pManager->GetIsPlay())
+	{
+		ReadActionParameters();
+		if (Valid()) {
+			//Create a hexagon with the parameters read from the user
+			CHexa* H = new CHexa(center, HexaGfxInfo);
 
-		//Add the hexagon to the list of figures
-		pManager->AddFigure(H);
+			//Add the hexagon to the list of figures
+			pManager->AddFigure(H);
+		}
+
+		if (pManager->GetIsRec())
+			pManager->AddAction(this);
 	}
 }

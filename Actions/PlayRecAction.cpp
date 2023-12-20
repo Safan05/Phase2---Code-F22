@@ -9,6 +9,7 @@ PlayRecAction::PlayRecAction(ApplicationManager* pApp):Action(pApp)
 
 void PlayRecAction::Execute()
 {
+	pManager->SetIsPlay(true);
 	Output* pOut = pManager->GetOutput();
 	pOut->PrintMessage(" Playing Recording ");
 
@@ -17,6 +18,12 @@ void PlayRecAction::Execute()
 	for (int i = 0; i <pManager->GetActionCount(); i++) 
 	{
 		pManager->GetActionList()[i]->Execute();
+	}
+	pManager->SetIsPlay(false);
+	for (int i = 0; i < pManager->GetActionCount(); i++)
+	{
+		delete pManager->GetActionList()[i];
+		pManager->GetActionList()[i] = NULL;
 	}
 }
 
