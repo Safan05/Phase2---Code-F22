@@ -5,7 +5,7 @@ Output::Output()
 {
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
-	UI.width = 1400;
+	UI.width = 1450;
 	UI.height = 700;
 	UI.wx = 5;
 	UI.wy = 5;
@@ -144,6 +144,7 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_GREEN1] = "images\\MenuItems\\Menu_Green.jpeg";
 	MenuItemImages[ITM_BLUE1] = "images\\MenuItems\\Menu_Blue.jpeg";
 	MenuItemImages[ITM_MOVE] = "images\\MenuItems\\Menu_Move.jpeg";
+	MenuItemImages[ITM_MOVEBYDRAG] = "images\\MenuItems\\MoveByDrag.jpg";
 	MenuItemImages[ITM_Voice]= "images\\MenuItems\\Menu_Voice.jpeg";
 	//Draw menu item one image at a time
 	for (int i = 0; i < DRAW_ITM_COUNT; i++)
@@ -254,14 +255,7 @@ void Output::DrawSQ(Point P1, GfxInfo RectGfxInfo, bool selected) const
 	else
 		style = FRAME;
 
-	pWind->DrawRectangle(P1.x - 50, P1.y - 50, P1.x + 50, P1.y + 50, style);
-	/*if ((P1.y + 50 - UI.ToolBarHeight) < 100) {
-		ClearToolbar();
-		if (UI.InterfaceMode == MODE_DRAW)
-			CreateDrawToolBar();
-		else
-			CreateFigureToolBar();
-	}*/
+	pWind->DrawRectangle(P1.x - 75, P1.y - 75, P1.x + 75, P1.y + 75, style);
 }
 
 
@@ -306,13 +300,6 @@ void Output::Drawhexa(Point P1, GfxInfo RectGfxInfo, bool selected) const
 	int arrY[6] = { P1.y + 43.3, P1.y  , P1.y - 43.3, P1.y - 43.3  ,  P1.y  , P1.y + 43.3 };
 
 	pWind->DrawPolygon(arrX, arrY, 6, style);
-	/*if ((P1.y + 43.3 - UI.ToolBarHeight) < 86.6) {
-		ClearToolbar();
-		if (UI.InterfaceMode == MODE_DRAW)
-			CreateDrawToolBar();
-		else
-			CreateFigureToolBar();
-	}*/
 }
 void Output::DrawCirc(Point P1, Point P2, GfxInfo CircGfxInfo, bool selected) const
 {
@@ -337,13 +324,6 @@ void Output::DrawCirc(Point P1, Point P2, GfxInfo CircGfxInfo, bool selected) co
 		style = FRAME;
 
 	pWind->DrawCircle(P1.x, P1.y, r, style);
-	/*if (r > (P1.y - UI.ToolBarHeight)) {
-		ClearToolbar();
-		if (UI.InterfaceMode == MODE_DRAW)
-			CreateDrawToolBar();
-		else
-			CreateFigureToolBar();
-	}*/
 }
 
 

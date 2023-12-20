@@ -18,7 +18,7 @@ char CSquare::type() {
 	return 'S';
 }
 bool CSquare::is_inside(int x, int y) const {
-	if (x > Center.x + 50 || x<Center.x - 50 || y>Center.y + 50 || y < Center.y - 50)
+	if (x > Center.x + 75 || x<Center.x - 75 || y>Center.y + 75 || y < Center.y - 75)
 		return 0;
 	return 1;
 }

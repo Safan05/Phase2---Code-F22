@@ -12,6 +12,19 @@ void Input::GetPointClicked(int& x, int& y) const
 	pWind->WaitMouseClick(x, y);	//Wait for mouse click
 }
 
+buttonstate Input::GetLeftClickState() const
+{
+	int x, y;
+	pWind->GetMouseCoord(x, y);
+	return pWind->GetButtonState(LEFT_BUTTON, x, y);
+}
+
+void Input::GetMouseCord(int& x, int& y) const
+{
+	pWind->GetMouseCoord(x,y);
+}
+
+
 string Input::GetString(Output* pO) const
 {
 	pWind->FlushKeyQueue();
@@ -75,6 +88,7 @@ ActionType Input::GetUserAction() const
 			case ITM_GREEN1:  return GREEN1;
 			case ITM_BLUE1:   return BLUE1;
 			case ITM_MOVE:  return MOVE;
+			case ITM_MOVEBYDRAG:  return MOVEBYDRAG;
 			case ITM_Voice: return Voice;
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
