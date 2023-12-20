@@ -20,7 +20,7 @@ void MoveByDrag::Execute()
 	Input* pIn = pManager->GetInput();
 	CFigure* f = pManager->Get_selected();
 	buttonstate B = BUTTON_DOWN;
-	d.x = 0; d.y = 0;							//Statements with comments still under development
+	d.x = 0; d.y = 0;						
 	if (f != NULL)
 	{
 		if (f->IsSelected()&& (B == BUTTON_DOWN))
@@ -32,6 +32,7 @@ void MoveByDrag::Execute()
 				pIn->GetMouseCord(d.x, d.y);
 				ReadActionParameters();
 				if (M.x != d.x && M.y != d.y) {
+				ReadActionParameters();
 					if (f->is_inside(d.x, d.y)) {
 						f->Move(d, pOut);
 						pManager->UpdateInterface();
@@ -42,7 +43,6 @@ void MoveByDrag::Execute()
 						break;
 					}
 				}
-				
 			}
 		}
 		else
