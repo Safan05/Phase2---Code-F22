@@ -49,6 +49,7 @@ public:
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window	
+	void Updatefigure(CFigure * Fig) const;
 	Action** GetActionList();
 	int  GetActionCount();
 	void AddAction(Action* pAct);

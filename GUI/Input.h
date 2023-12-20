@@ -14,6 +14,8 @@ private:
 public:
 	Input(window* pW);		//Consturctor
 	void GetPointClicked(int& x, int& y) const;//Get coordinate where user clicks
+	buttonstate GetLeftClickState() const;
+	void GetMouseCord(int& x, int& y) const;
 	string GetString(Output* pO) const;	 //Returns a string entered by the user
 
 	ActionType GetUserAction() const; //Read the user click and map to an action

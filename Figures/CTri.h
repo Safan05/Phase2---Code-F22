@@ -7,6 +7,7 @@ private:
 	Point Vertex1;
 	Point Vertex2;
 	Point Vertex3;
+	Point Center;
 public:
 	CTri();
 	CTri(Point, Point, Point, GfxInfo FigureGfxInfo);
@@ -16,6 +17,7 @@ public:
 	void Save(ofstream& OutFile);
 	void Load(ifstream& Infile);
 	virtual void Move(Point c, Output* out);
+	int CalcDistfromCenter(Point P,Point C,char cord);
 	virtual char type();
 
 };

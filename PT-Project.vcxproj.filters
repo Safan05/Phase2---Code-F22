@@ -73,6 +73,7 @@
     <ClCompile Include="Actions\ToPlayAction.cpp" />
     <ClCompile Include="Actions\ToDrawAction.cpp" />
     <ClCompile Include="Actions\ToFiguresAction.cpp" />
+    <ClCompile Include="Actions\MoveByDrag.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\ActionToPick.h" />
@@ -133,6 +134,7 @@
     <ClInclude Include="Actions\ToPlayAction.h" />
     <ClInclude Include="Actions\ToDrawAction.h" />
     <ClInclude Include="Actions\ToFiguresAction.h" />
+    <ClInclude Include="Actions\MoveByDrag.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

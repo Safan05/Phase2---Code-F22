@@ -60,15 +60,17 @@ void CRectangle::Load(ifstream& Infile)
 }
 void CRectangle::Move(Point c, Output* out)
 {
-	Point c2;
+	Point c1,c2;
 	int x = Corner2.x - Corner1.x;
 	int y = Corner2.y - Corner1.y;
-	c2.x = c.x + x;
-	c2.y = c.y + y;
-	if (((c.y > UI.ToolBarHeight) && (c.y < UI.height - UI.StatusBarHeight)) && ((c2.y > UI.ToolBarHeight) && (c2.y < UI.height - UI.StatusBarHeight)))
+	c1.x = c.x - x / 2;
+	c1.y = c.y - y / 2;
+	c2.x = c.x + x / 2;
+	c2.y = c.y + y / 2;
+	if (((c.y > UI.ToolBarHeight) && (c.y < UI.height - UI.StatusBarHeight)) && ((c2.y > UI.ToolBarHeight) && (c2.y < UI.height - UI.StatusBarHeight))&& (c1.y > UI.ToolBarHeight) && (c1.y < UI.height - UI.StatusBarHeight))
 	{
 
-		Corner1 = c;
+		Corner1 = c1;
 		Corner2.x = c2.x;
 		Corner2.y = c2.y;
 	}
