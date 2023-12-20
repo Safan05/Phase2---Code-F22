@@ -255,9 +255,20 @@ Action** ApplicationManager::GetActionList()
 	return ActionList;
 }
 
+CFigure** ApplicationManager::GetRECFigList()
+{
+	return RECFigList;
+}
+
 int ApplicationManager::GetActionCount()
 {
 	return ActionCount;
+}
+
+void ApplicationManager::AddRECFig(CFigure* pFig)
+{
+	if (ActionCount < MaxRecActions)
+		RECFigList[ActionCount++] = pFig;
 }
 
 void ApplicationManager::AddAction(Action* pAct)

@@ -7,5 +7,6 @@ public:
     PlayRecAction(ApplicationManager* pApp);
     void Execute();
     void ReadActionParameters();
+    void UpdateRECInterface();
 };
 
