@@ -12,6 +12,8 @@ CTri::CTri(Point P1, Point P2, Point P3, GfxInfo FigureGfxInfo) :CFigure(FigureG
 	Vertex1 = P1;
 	Vertex2 = P2;
 	Vertex3 = P3;
+	Center.x = (Vertex1.x+ Vertex2.x+ Vertex3.x)/3;
+	Center.y = (Vertex1.y + Vertex2.y + Vertex3.y) / 3;
 }
 char CTri::type() {
 	return 'T';
@@ -62,25 +64,39 @@ void CTri::Load(ifstream& Infile)
 }
 void CTri::Move(Point c, Output* out)
 {
-	Point c2, c3;
-	int x12 = Vertex2.x - Vertex1.x;
-	int y12 = Vertex2.y - Vertex1.y;
-	c2.x = c.x + x12;
-	c2.y = c.y + y12;
-	int x13 = Vertex3.x - Vertex1.x;
-	int y13 = Vertex3.y - Vertex1.y;
-	c3.x = c2.x + x13;
-	c3.y = c2.y + x13;
-	int x23 = Vertex3.x - Vertex2.x;
-	int y23 = Vertex3.y - Vertex2.y;
-	c3.x = c2.x + x23;
-	c3.y = c2.y + y23;
-	if ((c.y > UI.ToolBarHeight) && (c.y < UI.height - UI.StatusBarHeight) && (c2.y > UI.ToolBarHeight) && (c2.y < UI.height - UI.StatusBarHeight) && (c3.y > UI.ToolBarHeight) && (c3.y < UI.height - UI.StatusBarHeight))
+	Point v1,v2, v3;
+	int Xcc1 = CalcDistfromCenter(Vertex1, Center, 'x');
+	int Xcc2 = CalcDistfromCenter(Vertex2, Center, 'x');
+	int Xcc3 = CalcDistfromCenter(Vertex3, Center, 'x');
+	int Ycc1 = CalcDistfromCenter(Vertex1, Center, 'y');
+	int Ycc2 = CalcDistfromCenter(Vertex2, Center, 'y');
+	int Ycc3 = CalcDistfromCenter(Vertex3, Center, 'y');
+	v1.x = c.x + Xcc1;
+	v2.x = c.x + Xcc2;
+	v3.x = c.x + Xcc3;
+	v1.y = c.y + Ycc1;
+	v2.y = c.y + Ycc2;
+	v3.y = c.y + Ycc3;
+	if ((c.y > UI.ToolBarHeight) && (c.y < UI.height - UI.StatusBarHeight) && (v2.y > UI.ToolBarHeight) && (v2.y < UI.height - UI.StatusBarHeight) && (v3.y > UI.ToolBarHeight) && (v3.y < UI.height - UI.StatusBarHeight) && (v1.y > UI.ToolBarHeight) && (v1.y < UI.height - UI.StatusBarHeight))
 	{
-		Vertex1 = c;
-		Vertex2 = c2;
-		Vertex3 = c3;
+		Vertex1 = v1;
+		Vertex2 = v2;
+		Vertex3 = v3;
+		Center = c ;
 	}
 	else
 		out->PrintMessage("Invalid point");
+}
+void CTri::ReSize(Point c, Output* out){}
+
+int CTri::CalcDistfromCenter(Point P, Point C, char cord)
+{
+	if (cord == 'x') {
+		int a = P.x - C.x;
+		return a;
+	}
+	else if (cord == 'y') {
+		int b = P.y - C.y;
+		return b;
+	}
 }

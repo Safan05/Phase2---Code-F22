@@ -1,6 +1,5 @@
 #include "ExitAction.h"
 #include "ClearAllAction.h"
-
 ExitAction::ExitAction(ApplicationManager* pApp):Action(pApp)
 {
 }

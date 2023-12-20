@@ -72,3 +72,4 @@ void CHexa::Move(Point c, Output* out)
 	else
 		out->PrintMessage("Invalid point");
 }
+void CHexa::ReSize(Point c, Output* out) {}

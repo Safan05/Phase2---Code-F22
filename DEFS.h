@@ -42,6 +42,7 @@ enum ActionType //The actions supported (you can add more if needed)
 	GREEN1,
 	BLUE1,
 	MOVE,
+	MOVEBYDRAG,
 	STATUS			//A click on the status bar
 
 	///TODO: Add the other action types of the two modes

@@ -74,25 +74,25 @@ void pick_figure::Execute() {
 			ReadActionParameters();
 			if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_figure) {
 				Execute();
-				break;
+				return;
 			}
 			else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
 				pManager->ExecuteAction(TO_PLAY);
-				break;
+				return;
 			}
 			else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_both) {
 				pManager->ExecuteAction(Pick_both);
-				break;
+				return;
 			}
 			else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_color) {
 				pManager->ExecuteAction(PickColor);
-				break;
+				return;
 			}
 			CFigure* d = pManager->GetFigure(P.x, P.y);
-			if (d != NULL) {
-				if (d->type() == t && !d->Ishidden()) {
-					d->Sethidden(1);
-					pManager->UpdateInterface();
+			if (d != NULL&& !d->Ishidden()) {
+				d->Sethidden(1);
+				pManager->UpdateInterface();
+				if (d->type() == t) {
 					number--;
 					t_count++;
 					pOut->PrintMessage("true selection count of true now is: " + to_string(t_count));

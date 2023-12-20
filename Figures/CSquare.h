@@ -14,6 +14,7 @@ public:
 	void Load(ifstream& Infile);
 	virtual void Move(Point c, Output* out);
 	virtual char type();
+	virtual void ReSize(Point c, Output* out);
 
 };
 

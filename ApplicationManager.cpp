@@ -25,12 +25,12 @@
 #include "Actions\StopRecAction.h"
 #include "Actions\PlayRecAction.h"
 #include "Actions/MoveAction.h"
+#include "Actions/MoveByDrag.h"
 #include <fstream>
 #include "Actions/ExitAction.h"
 #include "Actions/ToPlayAction.h"
 #include "Actions/ToDrawAction.h"
 #include "Actions/ToFiguresAction.h"
-
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -183,6 +183,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case MOVE:
 			pAct = new MoveAction(this);
 			break;
+		case MOVEBYDRAG:
+			pAct = new MoveByDrag(this);
+			break;
 		case EXIT:
 			pAct = new ExitAction(this);
 			break;
@@ -309,6 +312,13 @@ void ApplicationManager::UpdateInterface() const
 	for (int i = 0; i < FigCount; i++) {
 		if(FigList[i]!=NULL&&!(FigList[i]->Ishidden()))
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
+	}
+}
+void ApplicationManager::Updatefigure(CFigure* Fig) const
+{
+	for (int i = 0; i < FigCount; i++) {
+		if (FigList[i] != NULL && !(FigList[i]->Ishidden())&&FigList[i]->IsSelected())		//under development
+			FigList[i]->Draw(pOut);
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////////

@@ -80,4 +80,17 @@ void CCirc::Move(Point c, Output* out)
 	else
 		out->PrintMessage("Invalid point");
 
+
+}
+void CCirc::ReSize(Point c, Output* out)
+{
+	Point c2;
+	if ((((c.y - UI.ToolBarHeight) >= r) && ((UI.height - UI.StatusBarHeight) - c.y >= r)))
+	{
+		point = c;
+
+	}
+	else
+		out->PrintMessage("Invalid point");
+
 }

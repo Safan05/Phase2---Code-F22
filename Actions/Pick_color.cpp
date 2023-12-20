@@ -81,30 +81,32 @@ void Pick_color::Execute() {
 				Execute();
 			pOut->PrintMessage("You have to choose non-filled figures");
 				break;
+
+				
 			}
 		while (number != 0) {
 			ReadActionParameters();
 			if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_color) {
 				Execute();
-				break;
+				return;
 			}
 			else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Back_play) {
 				pManager->ExecuteAction(TO_PLAY);
-				break;
+				return;
 			}
 			else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_figure) {
 				pManager->ExecuteAction(Pick_figure);
-				break;
+				return;
 			}
 			else if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_both) {
 				pManager->ExecuteAction(Pick_both);
-				break;
+				return;
 			}
 			CFigure* d = pManager->GetFigure(P.x, P.y);
-			if (d != NULL) {
-				if (d->get_color() == x && !d->Ishidden()) {
-					d->Sethidden(1);
-					pManager->UpdateInterface();
+			if (d != NULL&&!d->Ishidden()) {
+				d->Sethidden(1);
+				pManager->UpdateInterface();
+				if (d->get_color() == x) {
 					number--;
 					t_count++;
 					pOut->PrintMessage("true selection count of true now is: " + to_string(t_count));
@@ -118,6 +120,5 @@ void Pick_color::Execute() {
 		pManager->unhide();
 		pManager->UpdateInterface();
 		pOut->PrintMessage("Number of correct choices is " + to_string(t_count) + " Number of wrong choices is" + to_string(f_count));
-
 	}
 }

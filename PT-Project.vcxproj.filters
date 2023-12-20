@@ -70,9 +70,20 @@
     <ClCompile Include="Actions\Pick_color.cpp" />
     <ClCompile Include="Actions\ActionToplay.cpp" />
     <ClCompile Include="Actions\ExitAction.cpp" />
+<<<<<<< HEAD
+=======
     <ClCompile Include="Actions\ToPlayAction.cpp" />
     <ClCompile Include="Actions\ToDrawAction.cpp" />
     <ClCompile Include="Actions\ToFiguresAction.cpp" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 745157dfe335ad997b66bd4f25a3eb26c8835254
+=======
+    <ClCompile Include="Actions\MoveByDrag.cpp" />
+>>>>>>> 4dd311eddc933b72ee48419c32c2de282b629fc4
+=======
+    <ClCompile Include="Actions\MoveByDrag.cpp" />
+>>>>>>> 4dd311eddc933b72ee48419c32c2de282b629fc4
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\ActionToPick.h" />
@@ -130,9 +141,20 @@
     <ClInclude Include="Actions\Pick_color.h" />
     <ClInclude Include="Actions\ActionToplay.h" />
     <ClInclude Include="Actions\ExitAction.h" />
+<<<<<<< HEAD
+=======
     <ClInclude Include="Actions\ToPlayAction.h" />
     <ClInclude Include="Actions\ToDrawAction.h" />
     <ClInclude Include="Actions\ToFiguresAction.h" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 745157dfe335ad997b66bd4f25a3eb26c8835254
+=======
+    <ClInclude Include="Actions\MoveByDrag.h" />
+>>>>>>> 4dd311eddc933b72ee48419c32c2de282b629fc4
+=======
+    <ClInclude Include="Actions\MoveByDrag.h" />
+>>>>>>> 4dd311eddc933b72ee48419c32c2de282b629fc4
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
