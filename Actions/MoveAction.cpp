@@ -30,7 +30,6 @@ void MoveAction::Execute()
 		if (f->IsSelected())
 		{
 			f->Move(d, pOut);
-
 		}
 		else
 			pOut->PrintMessage("Move Figure : select figure");

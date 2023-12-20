@@ -84,3 +84,4 @@ void CTri::Move(Point c, Output* out)
 	else
 		out->PrintMessage("Invalid point");
 }
+void CTri::ReSize(Point c, Output* out){}

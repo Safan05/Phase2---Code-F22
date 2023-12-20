@@ -60,3 +60,4 @@ void CSquare::Move(Point c, Output* out)
 		out->PrintMessage("Invalid point");
 
 }
+void CSquare::ReSize(Point c, Output* out) {}
