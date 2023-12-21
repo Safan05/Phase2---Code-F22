@@ -70,39 +70,29 @@ void pick_both::Execute() {
 		switch (f) {
 		case 0:
 			t = 'R';
-			number = pManager->count_fig(t,x); //calculating chosed figure
-			if (number == 0)//if random generated figure DNE the program generates another one
-				Execute();
 			pOut->PrintMessage("You have to choose " + colour + " Rectangles");
 			break;
 		case 1:
 			t = 'S';
-			number = pManager->count_fig(t, x); //calculating chosed figure
-			if (number == 0)//if random generated figure DNE the program generates another one
-				Execute();
 			pOut->PrintMessage("You have to choose " + colour + " Squares");
 			break;
 		case 2:
 			t = 'T';
-			number = pManager->count_fig(t, x); //calculating chosed figure
-			if (number == 0)//if random generated figure DNE the program generates another one
-				Execute();
 			pOut->PrintMessage("You have to choose " + colour + " Triangles");
 			break;
 		case 3:
 			t = 'C';
-			number = pManager->count_fig(t, x); //calculating chosed figure
-			if (number == 0)//if random generated figure DNE the program generates another one
-				Execute();
 			pOut->PrintMessage("You have to choose " + colour + " Circles");
 			break;
 		case 4:
 			t = 'H';
-			number = pManager->count_fig(t, x); //calculating chosed figure
-			if (number == 0)//if random generated figure DNE the program generates another one
-				Execute();
 			pOut->PrintMessage("You have to choose "+ colour+ " Hexagons");
 			break;
+		}
+		number = pManager->count_fig(t, x); //calculating chosed figure
+		if (number == 0) {//if random generated figure DNE the program generates another one
+			Execute();
+			return;
 		}
 		while (number != 0) {
 			ReadActionParameters();

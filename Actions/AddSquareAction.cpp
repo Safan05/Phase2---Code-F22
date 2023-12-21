@@ -42,7 +42,7 @@ void AddSquareAction::ReadActionParameters()
 
 bool AddSquareAction::Valid()
 {
-	return (((P.y + 50 - UI.ToolBarHeight) > 100) && (UI.height - (P.y + 50) > UI.StatusBarHeight));
+	return (((P.y + 75 - UI.ToolBarHeight) > 150) && (UI.height - (P.y + 75) > UI.StatusBarHeight));
 }
 
 bool AddSquareAction::ValidP(Point P)

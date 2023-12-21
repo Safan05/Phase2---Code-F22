@@ -34,39 +34,29 @@ void pick_figure::Execute() {
 		switch (f) {
 		case 0:
 			t = 'R';
-			number = pManager->count_fig(t); //calculating chosed figure
-			if (number == 0)//if random generated figure DNE the program generates another one
-				Execute();
 			pOut->PrintMessage("You have to choose Rectangles");
 			break;
 		case 1:
 			t = 'S';
-			number = pManager->count_fig(t); //calculating chosed figure
-			if (number == 0)//if random generated figure DNE the program generates another one
-				Execute();
 			pOut->PrintMessage("You have to choose Squares");
 			break;
 		case 2:
 			t = 'T';
-			number = pManager->count_fig(t); //calculating chosed figure
-			if (number == 0)//if random generated figure DNE the program generates another one
-				Execute();
 			pOut->PrintMessage("You have to choose Triangles");
 			break;
 		case 3:
 			t = 'C';
-			number = pManager->count_fig(t); //calculating chosed figure
-			if (number == 0)//if random generated figure DNE the program generates another one
-				Execute();
 			pOut->PrintMessage("You have to choose Circles");
 			break;
 		case 4:
 			t = 'H';
-			number = pManager->count_fig(t); //calculating chosed figure
-			if (number == 0)//if random generated figure DNE the program generates another one
-				Execute();
 			pOut->PrintMessage("You have to choose Hexagons");
 			break;
+		}
+		number = pManager->count_fig(t); //calculating chosed figure
+		if (number == 0) {//if random generated figure DNE the program generates another one
+			Execute();
+			return;
 		}
 		int t_count = 0; //true choices counter
 		int f_count = 0; //wrong choices counter
