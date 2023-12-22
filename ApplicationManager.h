@@ -11,6 +11,7 @@ class ApplicationManager
 {
 	enum { MaxFigCount = 200, MaxRecActions = 20 };	//Max no of figures
 
+
 private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
@@ -18,10 +19,9 @@ private:
 	//Pointers to Input and Output classes
 	Input* pIn;
 	Output* pOut;
-	Action* ActionList[MaxRecActions]; // list for all action(for the recording)
-	int ActionCount;
+	CFigure* RECFigList[MaxRecActions];
+	int RecFIGCount;
 	bool Is_Recording;
-	bool Is_playing;
 public:	
 	ApplicationManager(); 
 	~ApplicationManager();
@@ -50,13 +50,12 @@ public:
 	Output *GetOutput() const; //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window	
 	void Updatefigure(CFigure * Fig) const;
-	Action** GetActionList();
-	int  GetActionCount();
+	CFigure** GetRECFigList();
+	int  GetRecFIGCount();
+	void AddRECFig(CFigure* pFig);
 	void AddAction(Action* pAct);
 	void SetIsRec(bool Rec);
 	bool GetIsRec();
-	void SetIsPlay(bool play);
-	bool GetIsPlay();
 
 };
 

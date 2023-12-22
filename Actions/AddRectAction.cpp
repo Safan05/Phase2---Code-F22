@@ -57,8 +57,8 @@ bool AddRectAction::ValidP(Point P)
 void AddRectAction::Execute() 
 {
 	//This action needs to read some parameters first
-	if (!pManager->GetIsPlay())
-	{
+	//if (!pManager->GetIsPlay())
+	//{
 		ReadActionParameters();
 		if (Valid()) {
 			//Create a rectangle with the parameters read from the user
@@ -66,9 +66,14 @@ void AddRectAction::Execute()
 
 			//Add the rectangle to the list of figures
 			pManager->AddFigure(R);
+			if (pManager->GetIsRec()) 
+			{
+				CRectangle* R1 = new CRectangle(P1, P2, RectGfxInfo);
+				pManager->AddRECFig(R1);
+			}
 		}
 
-		if (pManager->GetIsRec())
-			pManager->AddAction(this);
-	}
+		//if (pManager->GetIsRec())
+		//	pManager->AddAction(this);
+	//}
 }

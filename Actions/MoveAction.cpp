@@ -30,6 +30,11 @@ void MoveAction::Execute()
 		if (f->IsSelected())
 		{
 			f->Move(d, pOut);
+			if (pManager->GetIsRec()) 
+			{
+				CFigure* f1  (f);
+				pManager->AddRECFig(f1);
+			}
 		}
 		else
 			pOut->PrintMessage("Move Figure : select figure");

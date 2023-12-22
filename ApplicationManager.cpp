@@ -36,16 +36,16 @@ ApplicationManager::ApplicationManager()
 {
 	//Create Input and output
 	Is_Recording=false;
-	Is_playing=false;
+	
 	pOut = new Output;
 	pIn = pOut->CreateInput();
 	FigCount = 0;
-	ActionCount = 0;
+	RecFIGCount = 0;
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
 		FigList[i] = NULL;	
 	for (int i = 0; i < MaxRecActions; i++)
-		ActionList[i] = NULL;
+		RECFigList[i] = NULL;
 	SelectedFig = NULL;
 }
 int ApplicationManager::count_fig(char Fig_t) {
@@ -253,21 +253,24 @@ void ApplicationManager::unhide() const
 			FigList[i]->Sethidden(0);
 	}
 }
-Action** ApplicationManager::GetActionList()
+
+CFigure** ApplicationManager::GetRECFigList()
 {
-	return ActionList;
+	return RECFigList;
 }
 
-int ApplicationManager::GetActionCount()
+int ApplicationManager::GetRecFIGCount()
 {
-	return ActionCount;
+	return RecFIGCount;
 }
 
-void ApplicationManager::AddAction(Action* pAct)
+void ApplicationManager::AddRECFig(CFigure* pFig)
 {
-	if (ActionCount < MaxRecActions)
-		ActionList[ActionCount++] = pAct;
+	if (RecFIGCount < MaxRecActions)
+		RECFigList[RecFIGCount++] = pFig;
+
 }
+
 
 void ApplicationManager::SetIsRec(bool Rec)
 {
@@ -277,16 +280,6 @@ void ApplicationManager::SetIsRec(bool Rec)
 bool ApplicationManager::GetIsRec()
 {
 	return Is_Recording;
-}
-
-void ApplicationManager::SetIsPlay(bool play)
-{
-	this->Is_playing = play;
-}
-
-bool ApplicationManager::GetIsPlay()
-{
-	return this->Is_playing;
 }
 
 
