@@ -52,7 +52,7 @@ void CSquare::Load(ifstream& Infile)
 }
 void CSquare::Move(Point c, Output* out)
 {
-	if (((c.y + 50 - UI.ToolBarHeight) > 100) && (UI.height - (c.y + 50) > UI.StatusBarHeight))
+	if (((c.y + 75 - UI.ToolBarHeight) > 150) && (UI.height - (c.y + 75) > UI.StatusBarHeight))
 	{
 		Center = c;
 	}

@@ -35,55 +35,37 @@ void Pick_color::Execute() {
 		switch (col) {
 		case 0:
 			x = RED;
-			number = pManager->count_fig(x); //calculating chosed figure
-			if (number == 0)//if random generated figure DNE the program generates another one
-				Execute();
 			pOut->PrintMessage("You have to choose red figures");
 			break;
 		case 2:
 			x = BLUE;
-			number = pManager->count_fig(x); //calculating chosed figure
-			if (number == 0)//if random generated figure DNE the program generates another one
-				Execute();
 			pOut->PrintMessage("You have to choose blue figures");
 			break;
 		case 1:
 			x = YELLOW;
-			number = pManager->count_fig(x); //calculating chosed figure
-			if (number == 0)//if random generated figure DNE the program generates another one
-				Execute();
 			pOut->PrintMessage("You have to choose yellow figures");
 			break;
 		case 3:
 			x = ORANGE;
-			number = pManager->count_fig(x); //calculating chosed figure
-			if (number == 0)//if random generated figure DNE the program generates another one
-				Execute();
 			pOut->PrintMessage("You have to choose orange figures");
 		case 4:
 			x = GREEN;
-			number = pManager->count_fig(x); //calculating chosed figure
-			if (number == 0)//if random generated figure DNE the program generates another one
-				Execute();
 			pOut->PrintMessage("You have to choose green figures");
 			break;
 		case 5:
 			x = BLACK;
-			number = pManager->count_fig(x); //calculating chosed figure
-			if (number == 0)//if random generated figure DNE the program generates another one
-				Execute();
 			pOut->PrintMessage("You have to choose black figures");
 			break;
 		case 6:
 			x = GRAY;
-			number = pManager->count_fig(x); //calculating chosed figure
-			if (number == 0)//if random generated figure DNE the program generates another one
-				Execute();
 			pOut->PrintMessage("You have to choose non-filled figures");
 				break;
-
-				
 			}
+		number = pManager->count_fig(x); //calculating chosed figure
+		if (number == 0) {//if random generated figure DNE the program generates another one
+			Execute();
+			return;
+		}
 		while (number != 0) {
 			ReadActionParameters();
 			if (P.y < UI.ToolBarHeight && P.x / UI.MenuItemWidth == ITM_Pick_color) {
