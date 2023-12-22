@@ -18,6 +18,10 @@ CTri::CTri(Point P1, Point P2, Point P3, GfxInfo FigureGfxInfo) :CFigure(FigureG
 char CTri::type() {
 	return 'T';
 }
+CFigure* CTri::copy() {
+	CTri* c = new CTri(*this);
+	return c;
+};
 void CTri::Draw(Output* pOut) const
 {
 	//Call Output::DrawTri to draw a triangle on the screen	

@@ -20,5 +20,6 @@ public:
 	int CalcDistfromCenter(Point P,Point C,char cord);
 	virtual char type();
 	virtual void ReSize(Point c, Output* out);
+	virtual CFigure* copy();
 
 };

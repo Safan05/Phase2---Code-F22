@@ -16,6 +16,7 @@ protected:
 	/// Add more parameters if needed.
 
 public:
+	virtual CFigure* copy()=0;
 	static int LastID;
 	CFigure();
 	CFigure(GfxInfo FigureGfxInfo);

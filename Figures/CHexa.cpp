@@ -18,6 +18,10 @@ void CHexa::Draw(Output* pOut) const
 	pOut->Drawhexa(Center, FigGfxInfo, Selected);
 
 }
+CFigure* CHexa::copy() {
+	CHexa* c = new CHexa(*this);
+	return c;
+};
 char CHexa::type() {
 	return 'H';
 }

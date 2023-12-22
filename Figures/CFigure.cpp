@@ -83,4 +83,3 @@ int CFigure::GetID()
 {
 	return ID;
 }
-;

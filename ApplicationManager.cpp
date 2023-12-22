@@ -203,8 +203,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	if(pAct != NULL)
 	{
 		pAct->Execute();//Execute
-		if (!Is_Recording)
-			delete pAct;	//You may need to change this line depending to your implementation
+		delete pAct;	//You may need to change this line depending to your implementation
 		pAct = NULL;
 	}
 }

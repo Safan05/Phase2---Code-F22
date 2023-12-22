@@ -1,5 +1,7 @@
 #pragma once
 #include "Action.h"
+#include "..\Figures\CFigure.h"
+
 class PlayRecAction :
     public Action
 {
@@ -8,6 +10,6 @@ public:
     void Execute();
     void ReadActionParameters();
     void UpdateRECInterface();
-    void CompareID(int id,int index);
+    void CompareID(CFigure * f,int index);
 };
 

@@ -43,7 +43,7 @@ void selectAction::Execute() {
 			}
 			if (pManager->GetIsRec())
 			{
-				CFigure* d1 (d);
+				CFigure* d1 = d->copy();
 				pManager->AddRECFig(d1);
 			}
 		}

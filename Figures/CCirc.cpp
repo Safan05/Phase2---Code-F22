@@ -19,6 +19,11 @@ void CCirc::Draw(Output* pOut) const
 	pOut->DrawCirc(Center, point, FigGfxInfo, Selected);
 
 }
+CFigure* CCirc::copy() {
+	CFigure::LastID--;
+	CCirc* c = new CCirc(*this);
+	return c;
+};
 char CCirc::type() {
 	return 'C';
 }

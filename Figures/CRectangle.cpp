@@ -19,6 +19,10 @@ void CRectangle::Draw(Output* pOut) const
 char CRectangle::type() {
 	return 'R';
 }
+CFigure* CRectangle::copy() {
+	CRectangle* c = new CRectangle(*this);
+	return c;
+};
 bool CRectangle::is_inside(int x, int y) const {
 	int h = abs(Corner1.y - Corner2.y);
 	int w = abs(Corner1.x - Corner2.x);

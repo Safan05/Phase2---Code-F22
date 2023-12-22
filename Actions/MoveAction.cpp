@@ -30,10 +30,10 @@ void MoveAction::Execute()
 		if (f->IsSelected())
 		{
 			f->Move(d, pOut);
-			if (pManager->GetIsRec()) 
+			if (pManager->GetIsRec())
 			{
-				CFigure* f1  (f);
-				pManager->AddRECFig(f1);
+				CFigure* d1 = f->copy();
+				pManager->AddRECFig(d1);
 			}
 		}
 		else

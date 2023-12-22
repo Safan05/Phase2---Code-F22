@@ -17,6 +17,10 @@ void CSquare::Draw(Output* pOut) const
 char CSquare::type() {
 	return 'S';
 }
+CFigure* CSquare::copy() {
+	CSquare* c = new CSquare(*this);
+	return c;
+};
 bool CSquare::is_inside(int x, int y) const {
 	if (x > Center.x + 75 || x<Center.x - 75 || y>Center.y + 75 || y < Center.y - 75)
 		return 0;
