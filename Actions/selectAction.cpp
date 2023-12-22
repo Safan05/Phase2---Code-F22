@@ -44,6 +44,7 @@ void selectAction::Execute() {
 			if (pManager->GetIsRec())
 			{
 				CFigure* d1 = d->copy();
+				d1->setID(d->GetID());
 				pManager->AddRECFig(d1);
 			}
 		}

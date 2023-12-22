@@ -25,7 +25,8 @@ private:
 public:	
 	ApplicationManager(); 
 	~ApplicationManager();
-	
+	void UpdateRecInterface(int j) const;
+
 	// -- Action-Related Functions
 	//Reads the input command from the user and returns the corresponding action type
 	void Clearall();

@@ -20,7 +20,6 @@ void CCirc::Draw(Output* pOut) const
 
 }
 CFigure* CCirc::copy() {
-	CFigure::LastID--;
 	CCirc* c = new CCirc(*this);
 	return c;
 };

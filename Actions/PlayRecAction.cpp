@@ -31,25 +31,24 @@ void PlayRecAction::UpdateRECInterface()
 	//pOut->ClearDrawArea();
 	for (int i = 0; i < pManager->GetRecFIGCount(); i++) 
 	{
-		CFigure::LastID--;
-		CFigure* f = pManager->GetRECFigList()[i];
-		if (f != NULL) 
+		if (pManager->GetRECFigList()[i] != NULL)
 		{
-			this->CompareID(f, i);
+			this->CompareID(pManager->GetRECFigList()[i]->GetID(), i);
 			Sleep(1000);
-			pManager->GetRECFigList()[i]->Draw(pOut);
+			pManager->UpdateRecInterface(i+1);
 		}
 	}
 		
 }
 
-void PlayRecAction::CompareID(CFigure* f, int index)
+void PlayRecAction::CompareID(int id, int index)
 {
 	int i = index - 1;
 	while (i >= 0) 
 	{
 		if (pManager->GetRECFigList()[i] != NULL) {
-			if (pManager->GetRECFigList()[i]->GetID() == f->GetID()) {
+			if (pManager->GetRECFigList()[i]->GetID() == id) {
+				pManager->GetRECFigList()[i]->Sethidden(1);
 				delete pManager->GetRECFigList()[i];
 				pManager->GetRECFigList()[i] = NULL;
 				break;

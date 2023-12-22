@@ -44,7 +44,7 @@ public:
 	virtual void PrintInfo(Output* pOut) = 0;	
 	virtual void Move(Point c, Output* out) = 0;	
 	virtual void ReSize(Point c, Output* out) = 0;
-
+	void setID(int i);
 };
 
 #endif

@@ -24,11 +24,9 @@ Output::Output()
 	pWind = CreateWind(UI.width, UI.height, UI.wx, UI.wy);
 	//Change the title
 	pWind->ChangeTitle("Paint for Kids - Programming Techniques Project");
-
 	CreateDrawToolBar();
 	CreateStatusBar();
 }
-
 
 Input* Output::CreateInput() const
 {

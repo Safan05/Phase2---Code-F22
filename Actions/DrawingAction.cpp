@@ -50,7 +50,7 @@ void DrawingAction::Execute()
 			drawing = pOut->getCrntDrawColor();
 
 			f->ChngDrawClr(drawing);
-
+			
 		}
 		else
 			pOut->PrintMessage("Change Filling Color : select figure ");

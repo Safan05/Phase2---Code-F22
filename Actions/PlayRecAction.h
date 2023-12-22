@@ -5,11 +5,12 @@
 class PlayRecAction :
     public Action
 {
+private:
 public:
     PlayRecAction(ApplicationManager* pApp);
     void Execute();
     void ReadActionParameters();
     void UpdateRECInterface();
-    void CompareID(CFigure * f,int index);
+    void CompareID(int f,int index);
 };
 

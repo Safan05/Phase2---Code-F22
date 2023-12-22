@@ -33,6 +33,7 @@ void MoveAction::Execute()
 			if (pManager->GetIsRec())
 			{
 				CFigure* d1 = f->copy();
+				d1->setID(f->GetID());
 				pManager->AddRECFig(d1);
 			}
 		}

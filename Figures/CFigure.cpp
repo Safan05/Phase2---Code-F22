@@ -83,3 +83,6 @@ int CFigure::GetID()
 {
 	return ID;
 }
+void  CFigure::setID(int i) {
+	ID = i;
+}
