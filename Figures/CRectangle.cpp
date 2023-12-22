@@ -44,9 +44,13 @@ void CRectangle::Save(ofstream& OutFile)
 {
 	OutFile << "RECT\t" << ID << "\t" << Corner1.x << "\t" << Corner1.y << "\t" << Corner2.x << "\t" << Corner2.y << "\t" << GetDrawClrName() << "\t";
 	if (FigGfxInfo.isFilled) {
-		OutFile << GetFillClrName() << endl;
+		OutFile << GetFillClrName() << "\t";
 	}
-	else OutFile << "NO_FILL\n";
+	else OutFile << "NO_FILL\t";
+	if (IsSelected()) {
+		OutFile << "Selected\n";
+	}
+	else OutFile << "NotSelected\n";
 }
 
 void CRectangle::Load(ifstream& Infile)
@@ -61,6 +65,11 @@ void CRectangle::Load(ifstream& Infile)
 		FigGfxInfo.isFilled = 1;
 		SetFillClrName();
 	}
+	Infile >> Selectedstring;
+	if (Selectedstring=="Selected") {
+		SetSelected(true);
+	}
+	else SetSelected(false);
 }
 void CRectangle::Move(Point c, Output* out)
 {

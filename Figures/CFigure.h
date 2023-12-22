@@ -12,7 +12,7 @@ protected:
 	bool Selected;	//true if the figure is selected.
 	GfxInfo FigGfxInfo;	//Figure graphis info
 	bool hidden;
-	string DrawColor, FillColor;
+	string DrawColor, FillColor,Selectedstring;
 	/// Add more parameters if needed.
 
 public:

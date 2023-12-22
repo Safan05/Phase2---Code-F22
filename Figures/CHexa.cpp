@@ -48,9 +48,14 @@ void CHexa::Save(ofstream& OutFile)
 {
 	OutFile << "HEXA\t" << ID << "\t" << Center.x << "\t" << Center.y << "\t" << GetDrawClrName() << "\t";
 	if (FigGfxInfo.isFilled) {
-		OutFile << GetFillClrName() << endl;
+		OutFile << GetFillClrName() << "\t";
 	}
-	else OutFile << "NO_FILL\n";
+	else OutFile << "NO_FILL\t";
+	if (IsSelected()) {
+		OutFile << "Selected\n";
+	}
+	else OutFile << "NotSelected\n";
+
 }
 
 void CHexa::Load(ifstream& Infile)
@@ -65,6 +70,11 @@ void CHexa::Load(ifstream& Infile)
 		FigGfxInfo.isFilled = 1;
 		SetFillClrName();
 	}
+	Infile >> Selectedstring;
+	if (Selectedstring == "Selected") {
+		SetSelected(true);
+	}
+	else SetSelected(false);
 }
 
 void CHexa::Move(Point c, Output* out)

@@ -48,9 +48,14 @@ void CTri::Save(ofstream& OutFile)
 {
 	OutFile << "TRIANG\t" << ID << "\t" << Vertex1.x << "\t" << Vertex1.y << "\t" << Vertex2.x << "\t" << Vertex2.y << "\t" << Vertex3.x << "\t" << Vertex3.y << "\t" << GetDrawClrName() << "\t";
 	if (FigGfxInfo.isFilled) {
-		OutFile << GetFillClrName() << endl;
+		OutFile << GetFillClrName() << "\t";
 	}
-	else OutFile << "NO_FILL\n";
+	else OutFile << "NO_FILL\t";
+	if (IsSelected()) {
+		OutFile << "Selected\n";
+	}
+	else OutFile << "NotSelected\n";
+
 }
 
 void CTri::Load(ifstream& Infile)
@@ -65,6 +70,11 @@ void CTri::Load(ifstream& Infile)
 		FigGfxInfo.isFilled = 1;
 		SetFillClrName();
 	}
+	Infile >> Selectedstring;
+	if (Selectedstring == "Selected") {
+		SetSelected(true);
+	}
+	else SetSelected(false);
 }
 void CTri::Move(Point c, Output* out)
 {
