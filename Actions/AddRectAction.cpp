@@ -66,8 +66,11 @@ void AddRectAction::Execute()
 
 			//Add the rectangle to the list of figures
 			pManager->AddFigure(R);
-			if (pManager->GetIsRec())
-				pManager->AddRECFig(R);
+			if (pManager->GetIsRec()) 
+			{
+				CRectangle* R1 = new CRectangle(P1, P2, RectGfxInfo);
+				pManager->AddRECFig(R1);
+			}
 		}
 
 		//if (pManager->GetIsRec())

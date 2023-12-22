@@ -33,6 +33,7 @@ public:
 	string GetFillClrName();
 	void CFigure::SetDrawClrName();
 	void CFigure::SetFillClrName();
+	int GetID();
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
 	///Decide the parameters that you should pass to each function	

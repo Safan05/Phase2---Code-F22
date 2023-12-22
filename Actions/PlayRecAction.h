@@ -8,5 +8,6 @@ public:
     void Execute();
     void ReadActionParameters();
     void UpdateRECInterface();
+    void CompareID(int id,int index);
 };
 

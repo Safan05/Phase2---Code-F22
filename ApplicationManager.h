@@ -19,11 +19,9 @@ private:
 	//Pointers to Input and Output classes
 	Input* pIn;
 	Output* pOut;
-	Action* ActionList[MaxRecActions]; // list for all action(for the recording)
 	CFigure* RECFigList[MaxRecActions];
-	int ActionCount;
+	int RecFIGCount;
 	bool Is_Recording;
-	bool Is_playing;
 public:	
 	ApplicationManager(); 
 	~ApplicationManager();
@@ -52,15 +50,12 @@ public:
 	Output *GetOutput() const; //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window	
 	void Updatefigure(CFigure * Fig) const;
-	Action** GetActionList();
 	CFigure** GetRECFigList();
-	int  GetActionCount();
+	int  GetRecFIGCount();
 	void AddRECFig(CFigure* pFig);
 	void AddAction(Action* pAct);
 	void SetIsRec(bool Rec);
 	bool GetIsRec();
-	void SetIsPlay(bool play);
-	bool GetIsPlay();
 
 };
 

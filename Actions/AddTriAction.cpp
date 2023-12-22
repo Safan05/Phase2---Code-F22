@@ -64,8 +64,8 @@ bool AddTriAction::ValidP(Point P)
 void AddTriAction::Execute()
 {
 	//This action needs to read some parameters first
-	if (!pManager->GetIsPlay()) 
-	{
+
+	
 		ReadActionParameters();
 		if (Valid()) {
 			//Create a triangle with the parameters read from the user
@@ -73,8 +73,11 @@ void AddTriAction::Execute()
 
 			//Add the triangle to the list of figures
 			pManager->AddFigure(T);
+			if (pManager->GetIsRec()) {
+				CTri* T1 = new CTri(Vertex1, Vertex2, Vertex3, TriGfxInfo);
+				pManager->AddRECFig(T1);
+			}
 		}
-		if (pManager->GetIsRec())
-			pManager->AddAction(this);
-	}
+		
+	
 }

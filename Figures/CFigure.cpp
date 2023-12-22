@@ -79,4 +79,8 @@ void CFigure::SetFillClrName()
 	else if (FillColor == "YELLOW") FigGfxInfo.FillClr = YELLOW;
 	else if (FillColor == "BLACK")  FigGfxInfo.FillClr = BLACK;
 }
+int CFigure::GetID()
+{
+	return ID;
+}
 ;
