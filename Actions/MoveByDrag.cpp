@@ -45,7 +45,7 @@ void MoveByDrag::Execute()
 						break;
 					}
 				}
-		//		Sleep(10);
+				Sleep(10);
 				B = pIn->GetLeftClickState();
 			}
 		}
