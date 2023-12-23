@@ -66,6 +66,7 @@ void AddSquareAction::Execute()
 		if (pManager->GetIsRec())
 		{
 			CSquare* S1 = new CSquare(P, SquareGfxInfo);
+			S1->setID(S->GetID());
 			pManager->AddRECFig(S1);
 		}
 

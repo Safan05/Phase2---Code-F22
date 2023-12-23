@@ -77,6 +77,7 @@ void AddCircAction::Execute()
 			pManager->AddFigure(C);
 			if (pManager->GetIsRec()) {
 				CCirc* C1 = new CCirc(center, point, CircGfxInfo);
+				C1->setID(C->GetID());
 				pManager->AddRECFig(C1);
 			}
 		}

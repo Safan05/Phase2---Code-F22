@@ -22,6 +22,7 @@ private:
 	CFigure* RECFigList[MaxRecActions];
 	int RecFIGCount;
 	bool Is_Recording;
+
 public:	
 	ApplicationManager(); 
 	~ApplicationManager();

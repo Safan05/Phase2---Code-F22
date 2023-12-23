@@ -75,6 +75,7 @@ void AddTriAction::Execute()
 			pManager->AddFigure(T);
 			if (pManager->GetIsRec()) {
 				CTri* T1 = new CTri(Vertex1, Vertex2, Vertex3, TriGfxInfo);
+				T1->setID(T->GetID());
 				pManager->AddRECFig(T1);
 			}
 		}

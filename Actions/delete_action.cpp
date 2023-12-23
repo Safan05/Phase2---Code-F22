@@ -21,6 +21,13 @@ void delete_action::ReadActionParameters() {
 //Execute action (code depends on action type)
 void delete_action::Execute() {
 	CFigure* f=pManager->Get_selected();
+	if (pManager->GetIsRec())
+	{
+		CFigure* d1 = f->copy();
+		d1->setID(f->GetID());
+		d1->Sethidden(1);
+		pManager->AddRECFig(d1);
+	}
 	pManager->deletefig(f);
 	Output* pOut = pManager->GetOutput();
 	pOut->ClearStatusBar();

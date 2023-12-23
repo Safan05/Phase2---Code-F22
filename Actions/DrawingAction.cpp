@@ -50,7 +50,12 @@ void DrawingAction::Execute()
 			drawing = pOut->getCrntDrawColor();
 
 			f->ChngDrawClr(drawing);
-			
+			if (pManager->GetIsRec())
+			{
+				CFigure* d1 = f->copy();
+				d1->setID(f->GetID());
+				pManager->AddRECFig(d1);
+			}
 		}
 		else
 			pOut->PrintMessage("Change Filling Color : select figure ");

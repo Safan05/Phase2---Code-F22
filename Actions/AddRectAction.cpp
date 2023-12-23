@@ -69,6 +69,7 @@ void AddRectAction::Execute()
 			if (pManager->GetIsRec()) 
 			{
 				CRectangle* R1 = new CRectangle(P1, P2, RectGfxInfo);
+				R1->setID(R->GetID());
 				pManager->AddRECFig(R1);
 			}
 		}

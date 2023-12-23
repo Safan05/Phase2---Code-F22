@@ -63,6 +63,7 @@ void AddHexaAction::Execute()
 			pManager->AddFigure(H);
 			if (pManager->GetIsRec()) {
 				CHexa*H1 = new CHexa(center, HexaGfxInfo);
+				H1->setID(H->GetID());
 				pManager->AddRECFig(H1);
 			
 			}
