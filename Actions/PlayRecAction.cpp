@@ -1,4 +1,5 @@
 #include "PlayRecAction.h"
+#include "ClearAllAction.h"
 #include "..\ApplicationManager.h"
 #include "..\Figures\CFigure.h"
 #include "..\GUI\input.h"
@@ -18,16 +19,12 @@ void PlayRecAction::Execute()
 	else {
 		pOut->PrintMessage(" Playing Recording ");
 		pManager->Clearall();
+		Sleep(500);
 		this->UpdateRECInterface();
 		Sleep(1000);
 		pOut->PrintMessage(" Finished playing ");
-
-		for (int i = 0; i < pManager->GetRecFIGCount(); i++)
-		{
-			delete pManager->GetRECFigList()[i];
-			pManager->GetRECFigList()[i] = NULL;
-		}
-		pManager->unhide();
+		ClearAllAction* c1 = new ClearAllAction(pManager);
+		c1->Execute();
 	}
 }
 
