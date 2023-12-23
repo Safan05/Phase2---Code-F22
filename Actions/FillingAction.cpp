@@ -50,6 +50,7 @@ void FillingAction::Execute()
 		{
 		filling = pOut->getCrntFillColor();
 		f->ChngFillClr(filling);
+		UI.IsFilledNext = 1;
 		if (pManager->GetIsRec())
 		{
 			CFigure* d1 = f->copy();

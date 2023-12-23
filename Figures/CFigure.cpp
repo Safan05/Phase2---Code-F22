@@ -13,6 +13,9 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
 	Selected = false;
 	hidden = false;
+	if (UI.IsFilledNext) {
+		FigGfxInfo.isFilled = 1;
+	}
 }
 
 void CFigure::SetSelected(bool s)

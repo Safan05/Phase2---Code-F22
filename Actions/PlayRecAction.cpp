@@ -40,11 +40,13 @@ void PlayRecAction::UpdateRECInterface()
 
 				if (pManager->GetRECFigList()[j] != NULL && !(pManager->GetRECFigList()[j]->Ishidden())) {
 					pManager->GetRECFigList()[j]->Draw(pOut);		//Call Draw function (virtual member fn)
+					pOut->Updatebuffer();
 				}
 			}
 		}
+		pOut->Updatebuffer();
 	}
-		
+
 }
 
 void PlayRecAction::CompareID(int id, int index)

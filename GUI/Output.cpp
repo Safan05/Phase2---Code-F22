@@ -41,9 +41,11 @@ Input* Output::CreateInput() const
 window* Output::CreateWind(int w, int h, int x, int y) const
 {
 	window* pW = new window(w, h, x, y);
+	pW->SetBuffering(1);
 	pW->SetBrush(UI.BkGrndColor);
 	pW->SetPen(UI.BkGrndColor, UI.PenWidth);
 	pW->DrawRectangle(0, UI.ToolBarHeight, w, h);
+	pW->UpdateBuffer();
 	return pW;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -52,6 +54,7 @@ void Output::CreateStatusBar() const
 	pWind->SetPen(UI.StatusBarColor, UI.PenWidth);
 	pWind->SetBrush(UI.StatusBarColor);
 	pWind->DrawRectangle(0, UI.height - UI.StatusBarHeight, UI.width, UI.height);
+	pWind->UpdateBuffer();
 }
 void Output::CreateFigureToolBar() const
 {
@@ -74,6 +77,7 @@ void Output::CreateFigureToolBar() const
 	//Draw a line under the toolbar
 	pWind->SetPen(RED, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
+	pWind->UpdateBuffer();
 
 }
 void Output::CreatePickToolBar() const
@@ -90,7 +94,11 @@ void Output::CreatePickToolBar() const
 	//Draw a line under the toolbar
 	pWind->SetPen(RED, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
-
+	pWind->UpdateBuffer();
+}
+void Output::Updatebuffer()
+{
+	pWind->UpdateBuffer();
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 void Output::ClearToolbar() const
@@ -100,6 +108,7 @@ void Output::ClearToolbar() const
 	pWind->SetBrush(UI.ToolBarColor);
 	pWind->DrawRectangle(0, 0, UI.width, UI.ToolBarHeight);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
+	pWind->UpdateBuffer();
 }
 void Output::ClearStatusBar() const
 {
@@ -107,6 +116,7 @@ void Output::ClearStatusBar() const
 	pWind->SetPen(UI.StatusBarColor, UI.PenWidth);
 	pWind->SetBrush(UI.StatusBarColor);
 	pWind->DrawRectangle(0, UI.height - UI.StatusBarHeight, UI.width, UI.height);
+	pWind->UpdateBuffer();
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 void Output::CreateDrawToolBar() const
@@ -153,6 +163,7 @@ void Output::CreateDrawToolBar() const
 	//Draw a line under the toolbar
 	pWind->SetPen(RED, UI.PenWidth);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
+	pWind->UpdateBuffer();
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -172,6 +183,7 @@ void Output::CreatePlayToolBar() const
 	//Draw a line under the toolbar
 	pWind->SetPen(RED, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
+	pWind->UpdateBuffer();
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -181,6 +193,7 @@ void Output::ClearDrawArea() const
 	pWind->SetBrush(UI.BkGrndColor);
 	pWind->DrawRectangle(0, UI.ToolBarHeight, UI.width, UI.height - UI.StatusBarHeight);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
+	pWind->UpdateBuffer();
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -191,6 +204,7 @@ void Output::PrintMessage(string msg) const	//Prints a message on status bar
 	pWind->SetPen(UI.MsgColor, 50);
 	pWind->SetFont(20, BOLD, BY_NAME, "Arial");
 	pWind->DrawString(10, UI.height - (int)(UI.StatusBarHeight / 1.5), msg);
+	pWind->UpdateBuffer();
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 

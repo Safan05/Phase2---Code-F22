@@ -287,6 +287,7 @@ void ApplicationManager::UpdateInterface() const
 		if(FigList[i]!=NULL&&!(FigList[i]->Ishidden()))
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
 	}
+	pOut->Updatebuffer();
 }
 void ApplicationManager::Updatefigure(CFigure* Fig) const
 {
