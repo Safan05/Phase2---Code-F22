@@ -9,26 +9,31 @@ PlayRecAction::PlayRecAction(ApplicationManager* pApp):Action(pApp)
 
 void PlayRecAction::Execute()
 {
+	
 	Output* pOut = pManager->GetOutput();
-	pOut->PrintMessage(" Playing Recording ");
-
-	//pManager->Clearall();
-	pOut->ClearDrawArea();
-	this->UpdateRECInterface();
-	pOut->PrintMessage(" Finished playing ");
-
-	/*for (int i = 0; i < pManager->GetRecFIGCount(); i++)
+	if (pManager->GetIsRec()) 
 	{
-		delete pManager->GetRECFigList()[i];
-		pManager->GetRECFigList()[i] = NULL;
-	}*/
-	pManager->unhide();
+		pOut->PrintMessage(" Stop Recording First ");
+	}
+	else {
+		pOut->PrintMessage(" Playing Recording ");
+		pManager->Clearall();
+		this->UpdateRECInterface();
+		Sleep(1000);
+		pOut->PrintMessage(" Finished playing ");
+
+		for (int i = 0; i < pManager->GetRecFIGCount(); i++)
+		{
+			delete pManager->GetRECFigList()[i];
+			pManager->GetRECFigList()[i] = NULL;
+		}
+		pManager->unhide();
+	}
 }
 
 void PlayRecAction::UpdateRECInterface()
 {
 	Output* pOut = pManager->GetOutput();
-	//pOut->ClearDrawArea();
 	for (int i = 0; i < pManager->GetRecFIGCount(); i++) 
 	{
 		if (pManager->GetRECFigList()[i] != NULL)
@@ -36,10 +41,22 @@ void PlayRecAction::UpdateRECInterface()
 			this->CompareID(pManager->GetRECFigList()[i]->GetID(), i);
 			Sleep(1000);
 			pOut->ClearDrawArea();
-			for (int j = 0; j < i+1; j++) {
+			if (pManager->GetRECFigList()[i]->GetID() == 140) 
+			{
+				for (int j = 0; j < i + 1; j++) {
+
+					if (pManager->GetRECFigList()[j] != NULL && !(pManager->GetRECFigList()[j]->Ishidden())) 
+					{
+						pManager->GetRECFigList()[j]->Sethidden(1);		
+						pOut->Updatebuffer();
+					}
+				}
+			}
+			else
+				for (int j = 0; j < i+1; j++) {
 
 				if (pManager->GetRECFigList()[j] != NULL && !(pManager->GetRECFigList()[j]->Ishidden())) {
-					pManager->GetRECFigList()[j]->Draw(pOut);		//Call Draw function (virtual member fn)
+					pManager->GetRECFigList()[j]->Draw(pOut);		
 					pOut->Updatebuffer();
 				}
 			}

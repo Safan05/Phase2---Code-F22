@@ -52,7 +52,6 @@ public:
 	CFigure** GetRECFigList();
 	int  GetRecFIGCount();
 	void AddRECFig(CFigure* pFig);
-	void AddAction(Action* pAct);
 	void SetIsRec(bool Rec);
 	bool GetIsRec();
 
