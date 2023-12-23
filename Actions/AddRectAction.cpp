@@ -2,7 +2,7 @@
 #include "..\Figures\CRectangle.h"
 
 #include "..\ApplicationManager.h"
-
+#include "..\Actions\FillingAction.h"
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 #include "..\GUI\UI_Info.h" 

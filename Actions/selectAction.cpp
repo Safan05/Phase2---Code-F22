@@ -31,20 +31,22 @@ void selectAction::Execute() {
 		CFigure* d = pManager->GetFigure(P.x, P.y);
 		if (d != NULL) {
 			if (d->IsSelected() == 0) {
-				pManager->de_select();
+		      	if(pManager->Get_selected()!=NULL)
+					pManager->Get_selected()->SetSelected(0);
 				(d->SetSelected(1));
 				d->PrintInfo(pOut);
 				(pManager->set_selected(d));
 				
 			}
 			else {
-				(pManager->de_select());
+				pManager->Get_selected()->SetSelected(0);	
 				pManager->set_selected(NULL);
 			}
 			if (pManager->GetIsRec())
 			{
 				CFigure* d1 = d->copy();
 				d1->setID(d->GetID());
+
 				pManager->AddRECFig(d1);
 			}
 		}

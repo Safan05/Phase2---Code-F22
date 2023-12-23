@@ -26,15 +26,12 @@ private:
 public:	
 	ApplicationManager(); 
 	~ApplicationManager();
-	void UpdateRecInterface(int j) const;
-
 	// -- Action-Related Functions
 	//Reads the input command from the user and returns the corresponding action type
 	void Clearall();
 	int getfigcount();
 	ActionType GetUserAction() const;
 	void ExecuteAction(ActionType) ; //Creates an action and executes it
-	void de_select() const; //deselect all figure
 	void unhide() const;//unhide all figures
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList

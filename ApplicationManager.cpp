@@ -238,13 +238,6 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 }
 int ApplicationManager::getfigcount() { return FigCount; }
 
-void ApplicationManager::de_select() const
-{
-	for (int i = 0; i < FigCount; i++) {
-		if(FigList[i]!=NULL)
-		FigList[i]->SetSelected(0);
-	}
-}
 void ApplicationManager::unhide() const
 {
 	for (int i = 0; i < FigCount; i++) {
@@ -293,16 +286,6 @@ void ApplicationManager::UpdateInterface() const
 	for (int i = 0; i < FigCount; i++) {
 		if(FigList[i]!=NULL&&!(FigList[i]->Ishidden()))
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
-	}
-}
-void ApplicationManager::UpdateRecInterface(int j) const
-{
-	pOut->ClearDrawArea();
-	for (int i = 0; i < j; i++) {
-
-		if (RECFigList[i] != NULL && !(RECFigList[i]->Ishidden())) {
-			RECFigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
-		}
 	}
 }
 void ApplicationManager::Updatefigure(CFigure* Fig) const

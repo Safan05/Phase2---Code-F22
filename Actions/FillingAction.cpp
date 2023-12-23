@@ -38,7 +38,6 @@ void FillingAction::ReadActionParameters()
 		UI.FillColor = ORANGE;
 	}
 }
-
 void FillingAction::Execute()
 {
 	CFigure* f = pManager->Get_selected();
@@ -49,7 +48,7 @@ void FillingAction::Execute()
 	if (f != NULL) {
 		if (f->IsSelected())
 		{
-			filling = pOut->getCrntFillColor();
+		filling = pOut->getCrntFillColor();
 		f->ChngFillClr(filling);
 		if (pManager->GetIsRec())
 		{
