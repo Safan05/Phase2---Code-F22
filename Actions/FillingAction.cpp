@@ -22,7 +22,6 @@ void FillingAction::Execute()
 	{
 		UI.FillColor = BLACK;
 	}
-
 	else if (p == YELLOW1)
 	{
 		UI.FillColor = YELLOW;

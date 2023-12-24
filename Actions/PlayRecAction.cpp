@@ -23,6 +23,7 @@ void PlayRecAction::Execute()
 		this->UpdateRECInterface();
 		Sleep(1000);
 		pOut->PrintMessage(" Finished playing ");
+		Sleep(1000);
 		ClearAllAction* c1 = new ClearAllAction(pManager);
 		c1->Execute();
 	}
