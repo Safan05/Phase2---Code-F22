@@ -17,23 +17,23 @@ void DrawingAction::ReadActionParameters()
 		UI.DrawColor = BLACK;
 	}
 
-	if (p == YELLOW1)
+	else if (p == YELLOW1)
 	{
 		UI.DrawColor = YELLOW;
 	}
-	if (p == BLUE1)
+	else if (p == BLUE1)
 	{
 		UI.DrawColor = BLUE;
 	}
-	if (p == RED1)
+	else if (p == RED1)
 	{
 		UI.DrawColor = RED;
 	}
-	if (p == GREEN1)
+	else if (p == GREEN1)
 	{
 		UI.DrawColor = GREEN;
 	}
-	if (p == ORANGE1)
+	else if (p == ORANGE1)
 	{
 		UI.DrawColor = ORANGE;
 	}

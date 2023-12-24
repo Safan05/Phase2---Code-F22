@@ -13,7 +13,7 @@ void ClearAllAction::Execute()
 {
 	pManager->Clearall();
 	UI.DrawColor = BLUE;
-	UI.FillColor = GREEN;
+	UI.FillColor = Transparent;
 	UI.IsFilledNext = 0;
 	if(pManager->GetIsRec())
 	{

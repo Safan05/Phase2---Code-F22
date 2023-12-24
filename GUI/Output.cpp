@@ -13,7 +13,7 @@ Output::Output()
 	UI.ToolBarHeight = 50;
 	UI.MenuItemWidth = 58;
 	UI.DrawColor = BLUE;	//Drawing color
-	UI.FillColor = GREEN;	//Filling color
+	UI.FillColor = Transparent;	//Filling color
 	UI.MsgColor = RED;		//Messages color
 	UI.BkGrndColor = LIGHTGOLDENRODYELLOW;	//Background color
 	UI.ToolBarColor = WHITE;

@@ -23,28 +23,28 @@ void FillingAction::Execute()
 		UI.FillColor = BLACK;
 	}
 
-	if (p == YELLOW1)
+	else if (p == YELLOW1)
 	{
 		UI.FillColor = YELLOW;
 	}
-	if (p == BLUE1)
+	else if (p == BLUE1)
 	{
 		UI.FillColor = BLUE;
 	}
-	if (p == RED1)
+	else if (p == RED1)
 	{
 		UI.FillColor = RED;
 	}
-	if (p == GREEN1)
+	else if (p == GREEN1)
 	{
 		UI.FillColor = GREEN;
 	}
-	if (p == ORANGE1)
+	else if (p == ORANGE1)
 	{
 		UI.FillColor = ORANGE;
 	}
-	if (p == transparent) {
-		UI.FillColor = GREY;
+	else if (p == transparent) {
+		UI.FillColor = Transparent;
 	}
 
 	if (f != NULL) {

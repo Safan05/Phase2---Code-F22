@@ -46,13 +46,9 @@ void CCirc::Save(ofstream& OutFile)
 {
 	OutFile << "CIRC\t" << ID << "\t" << Center.x << "\t" << Center.y << "\t" << point.x << "\t" << point.y << "\t" << GetDrawClrName() << "\t";
 	if (FigGfxInfo.isFilled) {
-		OutFile << GetFillClrName() << "\t";
+		OutFile << GetFillClrName() << "\n";
 	}
-	else OutFile << "NO_FILL\t";
-	if (IsSelected()) {
-		OutFile << "Selected\n";
-	}
-	else OutFile << "NotSelected\n";
+	else OutFile << "NO_FILL\n";
 }
 void CCirc::Load(ifstream& Infile)
 {
@@ -66,11 +62,6 @@ void CCirc::Load(ifstream& Infile)
 		FigGfxInfo.isFilled = 1;
 		SetFillClrName();
 	}
-	Infile >> Selectedstring;
-	if (Selectedstring == "Selected") {
-		SetSelected(true);
-	}
-	else SetSelected(false);
 }
 
 void CCirc::Move(Point c, Output* out)
