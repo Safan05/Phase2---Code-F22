@@ -11,25 +11,31 @@ FillingAction::FillingAction(ApplicationManager* pApp) : Action(pApp)
 void FillingAction::ReadActionParameters()
 {
 	Input* pIn = pManager->GetInput();
-	ActionType p = pIn->GetUserAction();
+	p = pIn->GetUserAction();
+}
+void FillingAction::Execute()
+{
+	CFigure* f = pManager->Get_selected();
+	Output* pOut = pManager->GetOutput();
+	ReadActionParameters();
 	if (p == BLACK1)
 	{
 		UI.FillColor = BLACK;
 	}
 
-	if (p  == YELLOW1)
+	if (p == YELLOW1)
 	{
 		UI.FillColor = YELLOW;
 	}
-	if (p  == BLUE1)
+	if (p == BLUE1)
 	{
 		UI.FillColor = BLUE;
 	}
-	if (p  == RED1)
+	if (p == RED1)
 	{
 		UI.FillColor = RED;
 	}
-	if (p  == GREEN1)
+	if (p == GREEN1)
 	{
 		UI.FillColor = GREEN;
 	}
@@ -37,13 +43,9 @@ void FillingAction::ReadActionParameters()
 	{
 		UI.FillColor = ORANGE;
 	}
-}
-void FillingAction::Execute()
-{
-	CFigure* f = pManager->Get_selected();
-	Output* pOut = pManager->GetOutput();
-
-	ReadActionParameters();
+	if (p == transparent) {
+		UI.FillColor = GREY;
+	}
 
 	if (f != NULL) {
 		if (f->IsSelected())

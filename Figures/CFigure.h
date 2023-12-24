@@ -3,7 +3,6 @@
 
 #include "..\defs.h"
 #include "..\GUI\Output.h"
-
 //Base class for all figures
 class CFigure
 {

@@ -63,7 +63,7 @@ void pick_both::Execute() {
 			colour = "black";
 			break;
 		case 6:
-			x = GREY;
+			x = Transparent;
 			colour = "non-filled";
 			break;
 		}

@@ -44,6 +44,7 @@ void SaveAction::Execute()
 	else if (UI.FillColor == GREEN) Out << "GREEN\n";
 	else if (UI.FillColor == YELLOW) Out << "YELLOW\n";
 	else if (UI.FillColor == BLACK) Out << "BLACK\n";
+	else if (UI.FillColor == Transparent) Out << "TRANSPARENT\n";
 	Out << pManager->GetFigCount() << endl;
 	pManager->SaveAll(Out);
 	Out.close();

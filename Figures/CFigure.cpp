@@ -13,7 +13,7 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
 	Selected = false;
 	hidden = false;
-	if (UI.IsFilledNext) {
+	if (UI.IsFilledNext&&FigureGfxInfo.FillClr!= Transparent &&FigureGfxInfo.DrawClr!= Transparent) {
 		FigGfxInfo.isFilled = 1;
 	}
 }
@@ -37,14 +37,18 @@ void CFigure::ChngDrawClr(color Dclr)
 {	FigGfxInfo.DrawClr = Dclr; }
 
 void CFigure::ChngFillClr(color Fclr)
-{	
-	FigGfxInfo.isFilled = true;
-	FigGfxInfo.FillClr = Fclr; 
+{
+	if (Fclr != Transparent) {
+		FigGfxInfo.isFilled = true;
+		FigGfxInfo.FillClr = Fclr;
+	}
+	else
+		FigGfxInfo.isFilled = false;
 }
 color CFigure::get_color() {
 	if(FigGfxInfo.isFilled)
 	return FigGfxInfo.FillClr;
-	return GRAY;
+	return Transparent;
 }
 string CFigure::GetDrawClrName()
 {

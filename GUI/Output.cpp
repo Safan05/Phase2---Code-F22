@@ -5,13 +5,13 @@ Output::Output()
 {
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
-	UI.width = 1450;
+	UI.width = 1470;
 	UI.height = 700;
 	UI.wx = 5;
 	UI.wy = 5;
 	UI.StatusBarHeight = 50;
 	UI.ToolBarHeight = 50;
-	UI.MenuItemWidth = 60;
+	UI.MenuItemWidth = 58;
 	UI.DrawColor = BLUE;	//Drawing color
 	UI.FillColor = GREEN;	//Filling color
 	UI.MsgColor = RED;		//Messages color
@@ -154,12 +154,10 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_MOVE] = "images\\MenuItems\\Menu_Move.jpeg";
 	MenuItemImages[ITM_MOVEBYDRAG] = "images\\MenuItems\\MoveByDrag.jpg";
 	MenuItemImages[ITM_Voice]= "images\\MenuItems\\Menu_Voice.jpeg";
+	MenuItemImages[ITM_TRANSPARENT] = "images\\MenuItems\\Transparent.jpeg";
 	//Draw menu item one image at a time
 	for (int i = 0; i < DRAW_ITM_COUNT; i++)
 		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
-
-
-
 	//Draw a line under the toolbar
 	pWind->SetPen(RED, UI.PenWidth);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);

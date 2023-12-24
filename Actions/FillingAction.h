@@ -10,6 +10,7 @@ private:
 	Point P;
 	//GreenAction* c;
 	//BlackAction* b;
+	ActionType p;
 public:
 	FillingAction(ApplicationManager* pApp);//constructor
 	//	bool ClickPoint(Point po);

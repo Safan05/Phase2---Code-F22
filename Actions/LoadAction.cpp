@@ -41,6 +41,7 @@ void LoadAction::Execute()
 	else if (FillColor == "GREEN")  UI.FillColor = GREEN;
 	else if (FillColor == "YELLOW") UI.FillColor = YELLOW;
 	else if (FillColor == "BLACK")  UI.FillColor = BLACK;
+	else if (FillColor == "TRANSPARENT") UI.FillColor = Transparent;
 	int n;
 	In >> n;
 	for (int i = 0; i < n; i++) {

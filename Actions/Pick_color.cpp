@@ -57,7 +57,7 @@ void Pick_color::Execute() {
 			pOut->PrintMessage("You have to choose black figures");
 			break;
 		case 6:
-			x = GRAY;
+			x = Transparent;
 			pOut->PrintMessage("You have to choose non-filled figures");
 				break;
 			}

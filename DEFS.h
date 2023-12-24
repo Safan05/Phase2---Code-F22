@@ -41,6 +41,7 @@ enum ActionType //The actions supported (you can add more if needed)
 	RED1,
 	GREEN1,
 	BLUE1,
+	transparent,
 	MOVE,
 	MOVEBYDRAG,
 	STATUS			//A click on the status bar
