@@ -25,14 +25,13 @@ void ClearAllAction::Execute()
 	else
 	for (int i = 0; i < pManager->GetRecFIGCount(); i++)
 	{
-		if (pManager->GetRECFigList()[i] != NULL) {
+		if (pManager->GetRECFigList()[i] != NULL) 
+		{
 			CFigure* d1 = pManager->GetRECFigList()[i]->copy();
 			if (pManager->GetRECFigList()[i]->IsSelected() == 1) {
-				pManager->AddFigure(d1);
 				pManager->set_selected(d1);
 			}
-			else
-				pManager->AddFigure(d1);
+			pManager->AddFigure(d1);
 			delete  pManager->GetRECFigList()[i];
 			pManager->GetRECFigList()[i] = NULL;
 		}

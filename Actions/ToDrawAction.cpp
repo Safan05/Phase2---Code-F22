@@ -8,8 +8,7 @@
 #include "..\GUI\Output.h"
 
 ToDrawAction::ToDrawAction(ApplicationManager* pApp):Action(pApp)
-{
-}
+{}
 
 void ToDrawAction::Execute()
 {
@@ -18,5 +17,4 @@ void ToDrawAction::Execute()
 }
 
 void ToDrawAction::ReadActionParameters()
-{
-}
+{}

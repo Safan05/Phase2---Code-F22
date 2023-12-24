@@ -22,7 +22,6 @@ void FillingAction::Execute()
 	{
 		UI.FillColor = BLACK;
 	}
-
 	if (p == YELLOW1)
 	{
 		UI.FillColor = YELLOW;
@@ -44,7 +43,7 @@ void FillingAction::Execute()
 		UI.FillColor = ORANGE;
 	}
 	if (p == transparent) {
-		UI.FillColor = GREY;
+		UI.FillColor = transparent;
 	}
 
 	if (f != NULL) {
