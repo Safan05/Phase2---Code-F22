@@ -9,12 +9,14 @@
     <ClCompile Include="Actions\delete_action.cpp" />
     <ClCompile Include="Actions\DrawingAction.cpp" />
     <ClCompile Include="Actions\FillingAction.cpp" />
+    <ClCompile Include="Actions\MoveAction.cpp" />
     <ClCompile Include="Actions\pick_figure.cpp" />
     <ClCompile Include="Actions\PlayRecAction.cpp" />
     <ClCompile Include="Actions\selectAction.cpp" />
     <ClCompile Include="Actions\StartRecAction.cpp" />
     <ClCompile Include="Actions\StopRecAction.cpp" />
     <ClCompile Include="Actions\ClearAllAction.cpp" />
+    <ClCompile Include="Actions\ActionToplay.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
     <ClCompile Include="CMUgraphicsLib\colors.cpp" />
@@ -51,6 +53,7 @@
     <ClCompile Include="CMUgraphicsLib\jpeg\jquant1.c" />
     <ClCompile Include="CMUgraphicsLib\jpeg\jquant2.c" />
     <ClCompile Include="CMUgraphicsLib\jpeg\jutils.c" />
+    <ClCompile Include="Actions\ExitAction.cpp" />
     <ClCompile Include="Figures\CCirc.cpp" />
     <ClCompile Include="Figures\CFigure.cpp" />
     <ClCompile Include="Figures\CHexa.cpp" />
@@ -66,24 +69,12 @@
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\VoiceAction.cpp" />
     <ClCompile Include="Actions\pick_both.cpp" />
-    <ClCompile Include="Actions\MoveAction.cpp" />
     <ClCompile Include="Actions\Pick_color.cpp" />
-    <ClCompile Include="Actions\ActionToplay.cpp" />
-    <ClCompile Include="Actions\ExitAction.cpp" />
-<<<<<<< HEAD
-=======
     <ClCompile Include="Actions\ToPlayAction.cpp" />
     <ClCompile Include="Actions\ToDrawAction.cpp" />
     <ClCompile Include="Actions\ToFiguresAction.cpp" />
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 745157dfe335ad997b66bd4f25a3eb26c8835254
-=======
     <ClCompile Include="Actions\MoveByDrag.cpp" />
->>>>>>> 4dd311eddc933b72ee48419c32c2de282b629fc4
-=======
-    <ClCompile Include="Actions\MoveByDrag.cpp" />
->>>>>>> 4dd311eddc933b72ee48419c32c2de282b629fc4
+    <ClCompile Include="Actions\ResizeAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\ActionToPick.h" />
@@ -94,12 +85,14 @@
     <ClInclude Include="Actions\delete_action.h" />
     <ClInclude Include="Actions\DrawingAction.h" />
     <ClInclude Include="Actions\FillingAction.h" />
+    <ClInclude Include="Actions\MoveAction.h" />
     <ClInclude Include="Actions\pick_figure.h" />
     <ClInclude Include="Actions\PlayRecAction.h" />
     <ClInclude Include="Actions\selectAction.h" />
     <ClInclude Include="Actions\StartRecAction.h" />
     <ClInclude Include="Actions\StopRecAction.h" />
     <ClInclude Include="Actions\ClearAllAction.h" />
+    <ClInclude Include="Actions\ActionToplay.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
     <ClInclude Include="CMUgraphicsLib\colors.h" />
@@ -120,6 +113,7 @@
     <ClInclude Include="CMUgraphicsLib\jpeg\jpegint.h" />
     <ClInclude Include="CMUgraphicsLib\jpeg\jpeglib.h" />
     <ClInclude Include="CMUgraphicsLib\jpeg\jversion.h" />
+    <ClInclude Include="Actions\ExitAction.h" />
     <ClInclude Include="Figures\CCirc.h" />
     <ClInclude Include="Figures\CFigure.h" />
     <ClInclude Include="Figures\CHexa.h" />
@@ -137,24 +131,12 @@
     <ClInclude Include="Actions\VoiceAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\pick_both.h" />
-    <ClInclude Include="Actions\MoveAction.h" />
     <ClInclude Include="Actions\Pick_color.h" />
-    <ClInclude Include="Actions\ActionToplay.h" />
-    <ClInclude Include="Actions\ExitAction.h" />
-<<<<<<< HEAD
-=======
     <ClInclude Include="Actions\ToPlayAction.h" />
     <ClInclude Include="Actions\ToDrawAction.h" />
     <ClInclude Include="Actions\ToFiguresAction.h" />
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 745157dfe335ad997b66bd4f25a3eb26c8835254
-=======
     <ClInclude Include="Actions\MoveByDrag.h" />
->>>>>>> 4dd311eddc933b72ee48419c32c2de282b629fc4
-=======
-    <ClInclude Include="Actions\MoveByDrag.h" />
->>>>>>> 4dd311eddc933b72ee48419c32c2de282b629fc4
+    <ClInclude Include="Actions\ResizeAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

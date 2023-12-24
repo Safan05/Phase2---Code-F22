@@ -16,6 +16,7 @@
 #include "Actions\ClearAllAction.h"
 #include "Actions\Pick_color.h"
 #include "Actions\pick_both.h"
+#include "Actions\ResizeAction.h"
 #include "Figures/CCirc.h"
 #include "Figures/CHexa.h"
 #include "Figures/CRectangle.h"
@@ -185,6 +186,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case MOVEBYDRAG:
 			pAct = new MoveByDrag(this);
+			break;
+		case RESIZE:
+			pAct = new ResizeAction(this);
 			break;
 		case EXIT:
 			pAct = new ExitAction(this);

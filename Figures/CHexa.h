@@ -3,6 +3,7 @@
 class CHexa :public CFigure
 {
 private:
+	int SideLength;
 	Point Center;
 public:
 	CHexa();
@@ -14,6 +15,6 @@ public:
 	void Load(ifstream& Infile);
 	virtual void Move(Point c, Output* out);
 	virtual char type();
-	virtual void ReSize(Point c, Output* out);
+	virtual void Resize(Point c, Output* out);
 	virtual CFigure* copy();
 };

@@ -82,4 +82,4 @@ void CRectangle::Move(Point c, Output* out)
 	else
 		out->PrintMessage("Invalid point");
 }
-void CRectangle::ReSize(Point c, Output* out) {}
+void CRectangle::Resize(Point c, Output* out) {}

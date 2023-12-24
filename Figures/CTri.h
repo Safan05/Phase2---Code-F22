@@ -19,7 +19,7 @@ public:
 	virtual void Move(Point c, Output* out);
 	int CalcDistfromCenter(Point P,Point C,char cord);
 	virtual char type();
-	virtual void ReSize(Point c, Output* out);
+	virtual void Resize(Point c, Output* out);
 	virtual CFigure* copy();
 
 };

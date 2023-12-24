@@ -91,7 +91,7 @@ void CTri::Move(Point c, Output* out)
 	else
 		out->PrintMessage("Invalid point");
 }
-void CTri::ReSize(Point c, Output* out){}
+void CTri::Resize(Point c, Output* out){}
 
 int CTri::CalcDistfromCenter(Point P, Point C, char cord)
 {

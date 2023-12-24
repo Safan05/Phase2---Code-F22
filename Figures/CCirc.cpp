@@ -86,10 +86,13 @@ void CCirc::Move(Point c, Output* out)
 
 
 }
-void CCirc::ReSize(Point c, Output* out)
+void CCirc::Resize(Point c, Output* out)
 {
 	Point c2;
-	if ((((c.y - UI.ToolBarHeight) >= r) && ((UI.height - UI.StatusBarHeight) - c.y >= r)))
+	int x = c.x - Center.x;
+	int y = c.y - Center.y;
+	r = sqrt(x * x + y * y);
+	if (((Center.y - UI.ToolBarHeight) >= r) && ((UI.height - UI.StatusBarHeight) - Center.y >= r))
 	{
 		point = c;
 

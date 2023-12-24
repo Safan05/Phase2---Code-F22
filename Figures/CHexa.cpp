@@ -1,6 +1,6 @@
 #include "CHexa.h"
 #include<fstream>
-double area_cal(int x1, int x2, int x3, int y1, int y2, int y3) {
+double area_cal(double x1, double x2, double x3, double y1, double y2, double y3) {
 	double area = abs((x1 * y2) - (x1 * y3) - (y1 * x2) + (y1 * x3) + (y3 * x2) - (y2 * x3));
 	return area;
 }
@@ -9,6 +9,7 @@ CHexa::CHexa()
 }
 CHexa::CHexa(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
+	SideLength = 100;
 	Center = P1;
 }
 
@@ -26,16 +27,18 @@ char CHexa::type() {
 	return 'H';
 }
 bool CHexa::is_inside(int x, int y) const {
-	double area_hex = 13050;
+	
+	double cos = SideLength * sqrt(3) / 2;
+	double area_hex = (3.0/2)*(sqrt(3))*SideLength*SideLength*2;
 	          //area_cal(P1.x         , x, P2.x         ,P1.y    ,y,         P2,y)
-	double a1 = area_cal(Center.x + 50, x, Center.x + 25,Center.y,y,Center.y-43.3 );
-	double a2 = area_cal(Center.x + 50, x, Center.x + 25, Center.y, y, Center.y + 43.3);
-	double a3 = area_cal(Center.x - 25, x, Center.x + 25, Center.y+43.3, y, Center.y + 43.3);
-	double a4 = area_cal(Center.x - 25, x, Center.x -50, Center.y + 43.3, y, Center.y );
-	double a5 = area_cal(Center.x - 25, x, Center.x - 50, Center.y - 43.3, y, Center.y);
-	double a6 = area_cal(Center.x - 25, x, Center.x + 25, Center.y - 43.3, y, Center.y-43.3);
+	double a1 = area_cal(Center.x + SideLength, x, Center.x + SideLength/2.0,Center.y,y,Center.y-cos );
+	double a2 = area_cal(Center.x + SideLength, x, Center.x + SideLength / 2.0, Center.y, y, Center.y + cos);
+	double a3 = area_cal(Center.x - SideLength/2.0, x, Center.x + SideLength / 2.0, Center.y+ cos, y, Center.y + cos);
+	double a4 = area_cal(Center.x - SideLength / 2.0, x, Center.x - SideLength, Center.y + cos, y, Center.y );
+	double a5 = area_cal(Center.x - SideLength / 2.0, x, Center.x - SideLength, Center.y - cos, y, Center.y);
+	double a6 = area_cal(Center.x - SideLength / 2.0, x, Center.x + SideLength / 2.0, Center.y - cos, y, Center.y- cos);
 	double flag = a1 + a2 + a3 + a4 + a5 + a6;
-	if(flag==area_hex)
+	if(floor(flag)==floor(area_hex))
 	return 1;
 	return 0;
 }
@@ -77,4 +80,6 @@ void CHexa::Move(Point c, Output* out)
 	else
 		out->PrintMessage("Invalid point");
 }
-void CHexa::ReSize(Point c, Output* out) {}
+void CHexa::Resize(Point c, Output* out) {
+
+}

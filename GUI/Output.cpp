@@ -5,13 +5,13 @@ Output::Output()
 {
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
-	UI.width = 1470;
+	UI.width = 1500;
 	UI.height = 700;
 	UI.wx = 5;
 	UI.wy = 5;
 	UI.StatusBarHeight = 50;
 	UI.ToolBarHeight = 50;
-	UI.MenuItemWidth = 58;
+	UI.MenuItemWidth = 55;
 	UI.DrawColor = BLUE;	//Drawing color
 	UI.FillColor = Transparent;	//Filling color
 	UI.MsgColor = RED;		//Messages color
@@ -155,6 +155,7 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_MOVEBYDRAG] = "images\\MenuItems\\MoveByDrag.jpg";
 	MenuItemImages[ITM_Voice]= "images\\MenuItems\\Menu_Voice.jpeg";
 	MenuItemImages[ITM_TRANSPARENT] = "images\\MenuItems\\Transparent.jpeg";
+	MenuItemImages[ITM_RESIZE] = "images\\MenuItems\\resize.jpeg";
 	//Draw menu item one image at a time
 	for (int i = 0; i < DRAW_ITM_COUNT; i++)
 		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
@@ -289,8 +290,9 @@ void Output::DrawTri(Point P1, Point P2, Point P3, GfxInfo TriGfxInfo, bool sele
 
 	pWind->DrawTriangle(P1.x, P1.y, P2.x, P2.y, P3.x, P3.y, style);
 }
-void Output::Drawhexa(Point P1, GfxInfo RectGfxInfo, bool selected) const
+void Output::Drawhexa(Point P1, GfxInfo RectGfxInfo, bool selected,int y) const
 {
+	int side = y * sqrt(3) / 2;
 	color DrawingClr;
 	if (selected)
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
@@ -306,8 +308,8 @@ void Output::Drawhexa(Point P1, GfxInfo RectGfxInfo, bool selected) const
 	}
 	else
 		style = FRAME;
-	int arrX[6] = { P1.x + 25 , P1.x + 50 , P1.x + 25 ,P1.x - 25, P1.x - 50 , P1.x - 25 };
-	int arrY[6] = { P1.y + 43.3, P1.y  , P1.y - 43.3, P1.y - 43.3  ,  P1.y  , P1.y + 43.3 };
+	int arrX[6] = { P1.x + y/2 , P1.x + y , P1.x + y/2 ,P1.x - y/2, P1.x - y , P1.x - y/2 };
+	int arrY[6] = { P1.y + side, P1.y  , P1.y - side, P1.y - side  ,  P1.y  , P1.y + side };
 
 	pWind->DrawPolygon(arrX, arrY, 6, style);
 }

@@ -88,6 +88,7 @@ ActionType Input::GetUserAction() const
 			case ITM_GREEN1:  return GREEN1;
 			case ITM_BLUE1:   return BLUE1;
 			case ITM_TRANSPARENT: return transparent;
+			case ITM_RESIZE: return RESIZE;
 			case ITM_MOVE:  return MOVE;
 			case ITM_MOVEBYDRAG:  return MOVEBYDRAG;
 			case ITM_Voice: return Voice;

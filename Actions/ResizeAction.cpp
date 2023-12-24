@@ -1,12 +1,11 @@
-#include "MoveByDrag.h"
+#include "ResizeAction.h"
 #include "..\ApplicationManager.h"
 
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
-MoveByDrag::MoveByDrag(ApplicationManager* pApp) :Action(pApp)
+ResizeAction::ResizeAction(ApplicationManager* pApp) :Action(pApp)
 {}
-
-void MoveByDrag::ReadActionParameters()
+void ResizeAction::ReadActionParameters()
 {
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
@@ -14,29 +13,29 @@ void MoveByDrag::ReadActionParameters()
 	pOut->ClearStatusBar();
 }
 
-void MoveByDrag::Execute()
+void ResizeAction::Execute()
 {
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	CFigure* f = pManager->Get_selected();
 	buttonstate B = BUTTON_DOWN;
-	d.x = 0; d.y = 0;	
-	bool flag=0;
+	d.x = 0; d.y = 0;
+	bool flag = 0;
 	if (f != NULL)
 	{
-		if (f->IsSelected()&& (B == BUTTON_DOWN))
+		if (f->IsSelected() && (B == BUTTON_DOWN))
 		{
 			pOut->PrintMessage("Drag a point inside the figure");
 			while (B == BUTTON_DOWN) {
 				B = pIn->GetLeftClickState();
-				while(B==BUTTON_UP){ B = pIn->GetLeftClickState(); }
+				while (B == BUTTON_UP) { B = pIn->GetLeftClickState(); }
 				Point M = d;
 				ReadActionParameters();
 				if (M.x != d.x && M.y != d.y) {
-				ReadActionParameters();
-					if (f->is_inside(d.x, d.y)||flag) {
+					ReadActionParameters();
+					if (f->is_inside(d.x, d.y) || flag) {
 						flag = 1;
-						f->Move(d, pOut);
+						f->Resize(d, pOut);
 						pManager->UpdateInterface();
 					}
 					else {
@@ -51,5 +50,3 @@ void MoveByDrag::Execute()
 			pOut->PrintMessage("Move Figure : select figure");
 	}
 }
-
-
