@@ -123,7 +123,7 @@ int CTri::CalcDistfromCenter(Point P, Point C, char cord)
 
 Point CTri::GetCenter()
 {
-	return Point();
+	return Center;
 }
 
 void CTri::Undocolor(ApplicationManager* p)
@@ -138,10 +138,50 @@ void CTri::Undocolor(ApplicationManager* p)
 
 void CTri::UndoMove(ApplicationManager* p)
 {
+
+	Point v1, v2, v3;
+	int Xcc1 = CalcDistfromCenter(Vertex1, Center, 'x');
+	int Xcc2 = CalcDistfromCenter(Vertex2, Center, 'x');
+	int Xcc3 = CalcDistfromCenter(Vertex3, Center, 'x');
+	int Ycc1 = CalcDistfromCenter(Vertex1, Center, 'y');
+	int Ycc2 = CalcDistfromCenter(Vertex2, Center, 'y');
+	int Ycc3 = CalcDistfromCenter(Vertex3, Center, 'y');
+	Center = p->Getpoint();
+	v1.x = Center.x + Xcc1;
+	v2.x = Center.x + Xcc2;
+	v3.x = Center.x + Xcc3;
+	v1.y = Center.y + Ycc1;
+	v2.y = Center.y + Ycc2;
+	v3.y = Center.y + Ycc3;
+	 
+		Vertex1 = v1;
+		Vertex2 = v2;
+		Vertex3 = v3;
+	
+	
 }
 
 void CTri::RedoMove(ApplicationManager* p)
 {
+	Point v1, v2, v3;
+	int Xcc1 = CalcDistfromCenter(Vertex1, Center, 'x');
+	int Xcc2 = CalcDistfromCenter(Vertex2, Center, 'x');
+	int Xcc3 = CalcDistfromCenter(Vertex3, Center, 'x');
+	int Ycc1 = CalcDistfromCenter(Vertex1, Center, 'y');
+	int Ycc2 = CalcDistfromCenter(Vertex2, Center, 'y');
+	int Ycc3 = CalcDistfromCenter(Vertex3, Center, 'y');
+	Center = p->GetpointRedo();
+	v1.x = Center.x + Xcc1;
+	v2.x = Center.x + Xcc2;
+	v3.x = Center.x + Xcc3;
+	v1.y = Center.y + Ycc1;
+	v2.y = Center.y + Ycc2;
+	v3.y = Center.y + Ycc3;
+
+	Vertex1 = v1;
+	Vertex2 = v2;
+	Vertex3 = v3;
+
 }
 
 void CTri::Undocolordraw(ApplicationManager* p)

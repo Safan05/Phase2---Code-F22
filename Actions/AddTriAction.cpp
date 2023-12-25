@@ -42,6 +42,7 @@ void AddTriAction::ReadActionParameters()
 				TriGfxInfo.isFilled = true;
 				TriGfxInfo.DrawClr = pOut->getCrntDrawColor();
 				TriGfxInfo.FillClr = pOut->getCrntFillColor();
+			    pManager->Addfillcolor(pOut->getCrntFillColor());
 			}
 			else
 			{

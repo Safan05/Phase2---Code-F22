@@ -63,8 +63,6 @@ void FillingAction::Execute()
 			d1->setID(f->GetID());
 			pManager->AddRECFig(d1);
 		}
-		
-		 
 	}
 	else
 		pOut->PrintMessage("Change Filling Color : select figure ");

@@ -18,69 +18,49 @@ RedoAction::RedoAction(ApplicationManager* pApp) : Action(pApp)
 
 void RedoAction::ReadActionParameters()
 {
-	Output* pOut = pManager->GetOutput();
-	Input* pIn = pManager->GetInput();
-	pOut->PrintMessage("Redo Action");
-	Action* b = pManager->GetfirstRedoAction();
-	if (dynamic_cast<AddCircAction*>(b))
-	{
-		CFigure* f = pManager->GetlastRedoFig();
-		pManager->AddFigure(f);
-		//pManager->deleteRedoAction();
-	}
-	if (dynamic_cast<AddHexaAction*>(b))
-	{
-		CFigure* f = pManager->GetlastRedoFig();
-		pManager->AddFigure(f);
-		//pManager->deleteRedoAction();
-
-	}
-	if (dynamic_cast<AddRectAction*>(b))
-	{
-		CFigure* f = pManager->GetlastRedoFig();
-		pManager->AddFigure(f);
-		//pManager->deleteRedoAction();
-
-	}
-	if (dynamic_cast<AddSquareAction*>(b))
-	{
-		CFigure* f = pManager->GetlastRedoFig();
-		pManager->AddFigure(f);
-		//pManager->deleteRedoAction();
-
-	}
-	if (dynamic_cast<AddTriAction*>(b))
-	{
-		CFigure* f = pManager->GetlastRedoFig();
-		pManager->AddFigure(f);
-		//pManager->deleteRedoAction();
-
-	}
-	if (dynamic_cast<DrawingAction*>(b))
-	{
-		CFigure* f = pManager->GetfigSelectedC();
-		f->Redocolordraw(pManager);
-	}
-	if (dynamic_cast<FillingAction*>(b))
-	{
-
-		CFigure* f = pManager->GetfigSelectedC();
-		f->Redocolor(pManager);
-	}
-	if (dynamic_cast<MoveAction*>(b))
-	{
-		CFigure* f1 = pManager->GetfigselectedM();
-		f1->RedoMove(pManager);
-	}
-	if (dynamic_cast<delete_action*>(b))
-	{
-	}
-
-	//pManager->delRedoAction();
-	//pManager->delfigredo();
+	 
 }
 
 void RedoAction::Execute()
 {
 	ReadActionParameters();
+
+	Output* pOut = pManager->GetOutput();
+	Input* pIn = pManager->GetInput();
+	pOut->PrintMessage("Redo Action");
+	Action* b = pManager->GetfirstRedoAction();
+
+
+		if (dynamic_cast<AddCircAction*>(b) || dynamic_cast<AddHexaAction*>(b) || dynamic_cast<AddRectAction*>(b) || dynamic_cast<AddSquareAction*>(b) || dynamic_cast<AddTriAction*>(b))
+		{
+			CFigure* f = pManager->GetlastRedoFig();
+			pManager->AddFigure(f);
+
+		}
+		else if (dynamic_cast<DrawingAction*>(b))
+		{
+			CFigure* f = pManager->GetfigSelectedC();
+			f->Redocolordraw(pManager);
+		}
+
+		else if (dynamic_cast<FillingAction*>(b))
+		{
+
+			CFigure* f = pManager->GetfigSelectedC();
+			f->Redocolor(pManager);
+		}
+		else if (dynamic_cast<MoveAction*>(b))
+		{
+			CFigure* f1 = pManager->GetfigselectedM();
+			f1->RedoMove(pManager);
+		}
+		else if (dynamic_cast<delete_action*>(b))
+		{
+			CFigure* f = pManager->GetlastRedoFig();
+			pManager->AddFigure(f);
+		}
+		
+
+	pManager->delRedoAction();
+	pManager->delfigredo();
 }

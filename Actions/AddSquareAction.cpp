@@ -34,6 +34,7 @@ void AddSquareAction::ReadActionParameters()
 			SquareGfxInfo.isFilled = true;
 			SquareGfxInfo.DrawClr = pOut->getCrntDrawColor();
 			SquareGfxInfo.FillClr = pOut->getCrntFillColor();
+		    pManager->Addfillcolor(pOut->getCrntFillColor());
 		}
 		else
 		{

@@ -28,7 +28,10 @@ void delete_action::Execute() {
 		d1->Sethidden(1);
 		pManager->AddRECFig(d1);
 	}
+	CFigure* f1 = f->copy();
+	pManager->AddFigdel(f1);
 	pManager->deletefig(f);
+	pManager->AddUndoAction(this);
 	Output* pOut = pManager->GetOutput();
 	pOut->ClearStatusBar();
 }

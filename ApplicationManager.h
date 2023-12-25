@@ -29,6 +29,7 @@ private:
 	Point pointmove[5];
 	color fillcolor[10];
 	color drawcolor[10];
+	CFigure* figdel[5];
 	bool filled;
 	int UndoCount;
 	int Redocount;
@@ -40,6 +41,8 @@ private:
 	int numoffill;
 	int redofigcount;
 	int RecFIGCount;
+	int undoactioncount;
+	int figdell;
 	bool Is_Recording;
 
 public:	
@@ -73,7 +76,6 @@ public:
 	void AddRECFig(CFigure* pFig);
 	void SetIsRec(bool Rec);
 	bool GetIsRec();
-	void Setundocount();
 	int GetUndoCount();
 	void AddUndoAction(Action* pAct);
 	void AddRedoAction(Action* p);
@@ -113,6 +115,10 @@ public:
 	Action** GetRedoAction();
 	CFigure** GetRedofig();
 	int Getredofigcount();
+	void Setundocount();
+	int Getundocount();
+	void AddFigdel(CFigure* f);
+	CFigure* Getfigdel();
 };
 
 #endif

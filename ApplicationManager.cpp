@@ -52,6 +52,8 @@ ApplicationManager::ApplicationManager()
 	numofpoints = 0;
 	numoffill = 0;
 	numofdraw = 0;
+	undoactioncount = 0;
+	figdell = 0;
 	filled = false;
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
@@ -312,7 +314,22 @@ bool ApplicationManager::GetIsRec()
 
 void ApplicationManager::Setundocount()
 {
-	UndoCount = 0;
+	undoactioncount++;
+}
+
+int ApplicationManager::Getundocount()
+{
+	return undoactioncount;
+}
+
+void ApplicationManager::AddFigdel(CFigure* f)
+{
+	figdel[figdell++] = f;
+}
+
+CFigure* ApplicationManager::Getfigdel()
+{
+	return figdel[--figdell];
 }
 
 int ApplicationManager::GetUndoCount()

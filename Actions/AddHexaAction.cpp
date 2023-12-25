@@ -32,6 +32,7 @@ void AddHexaAction::ReadActionParameters()
 			HexaGfxInfo.isFilled = true;
 			HexaGfxInfo.DrawClr = pOut->getCrntDrawColor();
 			HexaGfxInfo.FillClr = pOut->getCrntFillColor();
+		    pManager->Addfillcolor(pOut->getCrntFillColor());
 			//get drawing, filling colors and pen width from the interface
 
 		}

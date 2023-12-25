@@ -7,6 +7,8 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(Figur
 {
 	Corner1 = P1;
 	Corner2 = P2;
+	Center.x = (Corner1.x - Corner2.x) / 2;
+	Center.y = (Corner1.y - Corner2.y) / 2;
 }
 
 
@@ -103,17 +105,32 @@ void CRectangle::Undocolor(ApplicationManager* p)
 }
 
 void CRectangle::UndoMove(ApplicationManager* p)
-{
-
+{   
+	Point c2;
+	int x = Corner2.x - Corner1.x;
+	int y = Corner2.y - Corner1.y;
+	Corner1 = p->Getpoint();
+	c2.x = Corner1.x + x;
+	c2.y = Corner1.y + y;
+		Corner2 = c2;
+	
 }
 
 Point CRectangle::GetCenter()
 {
-	return Point();
+	return Corner1;
 }
 
 void CRectangle::RedoMove(ApplicationManager* p)
 {
+	Point c2;
+	int x = Corner2.x - Corner1.x;
+	int y = Corner2.y - Corner1.y;
+	Corner1 = p->GetpointRedo();
+	c2.x = Corner1.x + x;
+	c2.y = Corner1.y + y;
+	Corner2 = c2;
+
 }
 
 void CRectangle::Undocolordraw(ApplicationManager* p)

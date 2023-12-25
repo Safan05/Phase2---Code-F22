@@ -8,6 +8,7 @@ class CRectangle : public CFigure
 private:
 	Point Corner1;	
 	Point Corner2;
+	Point Center;
 public:
 	CRectangle();
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );

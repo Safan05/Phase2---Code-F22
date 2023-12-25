@@ -39,6 +39,7 @@ void AddCircAction::ReadActionParameters()
 					CircGfxInfo.isFilled = true;
 					CircGfxInfo.DrawClr = pOut->getCrntDrawColor();
 					CircGfxInfo.FillClr = pOut->getCrntFillColor();
+			     	pManager->Addfillcolor(pOut->getCrntFillColor());
 					//get drawing, filling colors and pen width from the interface
 				}
 				else
@@ -48,7 +49,6 @@ void AddCircAction::ReadActionParameters()
 					CircGfxInfo.FillClr = pOut->getCrntFillColor();
 				}
 				pManager->Adddrawcolor(pOut->getCrntDrawColor());
-
 				pOut->ClearStatusBar();
 			}
 			else  pOut->PrintMessage("Invalid, Can't draw in Toolbar");
