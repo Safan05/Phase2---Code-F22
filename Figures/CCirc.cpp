@@ -1,5 +1,6 @@
 #include "CCirc.h"
 #include<fstream>
+#include "..\ApplicationManager.h"
 CCirc::CCirc()
 {
 }
@@ -100,4 +101,71 @@ void CCirc::Resize(Point c, Output* out)
 	else
 		out->PrintMessage("Invalid point");
 
+}
+
+void CCirc::Undocolor(ApplicationManager* p)
+{
+	FigGfxInfo.FillClr = p->Getfillcolor();
+	p->defill();
+	if (p->Getnumoffill() == 0 && FigGfxInfo.isFilled == true)
+	{
+		FigGfxInfo.isFilled = false;
+
+	}
+}
+
+void CCirc::UndoMove(ApplicationManager* p)
+{
+	Point c2;
+	int x = point.x - Center.x;
+	int y = point.y - Center.y;
+	Center = p->Getpoint();
+	c2.x = Center.x + x;
+	c2.y = Center.y + y;
+	point = c2;
+}
+
+Point CCirc::GetCenter()
+{
+	return Center;
+}
+
+void CCirc::RedoMove(ApplicationManager* p)
+{
+	Point c2;
+	int x = point.x - Center.x;
+	int y = point.y - Center.y;
+	Center = p->GetpointRedo();
+	c2.x = Center.x + x;
+	c2.y = Center.y + y;
+	point = c2;
+}
+
+void CCirc::Undocolordraw(ApplicationManager* p)
+{
+	if (p->Getnumofdraw() != 0)
+	{
+		FigGfxInfo.DrawClr = p->Getdrawcolor();
+		p->deldraw();
+	}
+	else
+	{
+		FigGfxInfo.DrawClr = BLUE;
+	}
+}
+
+void CCirc::Redocolor(ApplicationManager* p)
+{
+	if (p->Getnumoffill() == 0 && FigGfxInfo.isFilled == false)
+	{
+		FigGfxInfo.isFilled = true;
+	}
+	p->Incrementfill();
+	FigGfxInfo.FillClr = p->GetfillRedo();
+}
+
+void CCirc::Redocolordraw(ApplicationManager* p)
+{
+	p->Incrementdraw();
+	FigGfxInfo.DrawClr = p->GetdrawRedo();
 }

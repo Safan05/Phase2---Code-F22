@@ -1,5 +1,6 @@
 #include "CTri.h"
 #include<fstream>
+#include "..\ApplicationManager.h"
 int area_cal(int x1, int x2, int x3, int y1, int y2, int y3) {
 	int area = abs((x1 * y2) - (x1 * y3) - (y1 * x2) + (y1 * x3) + (y3 * x2) - (y2 * x3));
 	return area;
@@ -103,4 +104,56 @@ int CTri::CalcDistfromCenter(Point P, Point C, char cord)
 		int b = P.y - C.y;
 		return b;
 	}
+}
+
+Point CTri::GetCenter()
+{
+	return Point();
+}
+
+void CTri::Undocolor(ApplicationManager* p)
+{
+	FigGfxInfo.FillClr = p->Getfillcolor();
+	p->defill();
+	if (p->Getnumoffill() == 0 && FigGfxInfo.isFilled == true)
+	{
+		FigGfxInfo.isFilled = false;
+	}
+}
+
+void CTri::UndoMove(ApplicationManager* p)
+{
+}
+
+void CTri::RedoMove(ApplicationManager* p)
+{
+}
+
+void CTri::Undocolordraw(ApplicationManager* p)
+{
+	if (p->Getnumofdraw() != 0)
+	{
+		FigGfxInfo.DrawClr = p->Getdrawcolor();
+		p->deldraw();
+	}
+	else
+	{
+		FigGfxInfo.DrawClr = BLUE;
+	}
+}
+
+void CTri::Redocolor(ApplicationManager* p)
+{
+	if (p->Getnumoffill() == 0 && FigGfxInfo.isFilled == false)
+	{
+		FigGfxInfo.isFilled = true;
+	}
+	p->Incrementfill();
+	FigGfxInfo.FillClr = p->GetfillRedo();
+}
+
+void CTri::Redocolordraw(ApplicationManager* p)
+{
+	p->Incrementdraw();
+	FigGfxInfo.DrawClr = p->GetdrawRedo();
 }

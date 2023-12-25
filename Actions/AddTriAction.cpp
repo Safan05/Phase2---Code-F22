@@ -37,10 +37,20 @@ void AddTriAction::ReadActionParameters()
 			//Read 3nd Vertex and store in point Vertex3
 			pIn->GetPointClicked(Vertex3.x, Vertex3.y);
 			if (ValidP(Vertex3)) {
+				if (pManager->GetFilled() == true)
+				{
+				TriGfxInfo.isFilled = true;
+				TriGfxInfo.DrawClr = pOut->getCrntDrawColor();
+				TriGfxInfo.FillClr = pOut->getCrntFillColor();
+			}
+			else
+			{
 				TriGfxInfo.isFilled = false;	//default is not filled
 				//get drawing, filling colors and pen width from the interface
 				TriGfxInfo.DrawClr = pOut->getCrntDrawColor();
 				TriGfxInfo.FillClr = pOut->getCrntFillColor();
+			}
+			pManager->Adddrawcolor(pOut->getCrntDrawColor());
 
 				pOut->ClearStatusBar();
 				}
@@ -48,7 +58,8 @@ void AddTriAction::ReadActionParameters()
 			}
 		else pOut->PrintMessage("Invalid Point, Can't place point here");
 	}
-	else pOut->PrintMessage("Invalid Point, Can't place point here");
+	else
+		pOut->PrintMessage("Invalid Point, Can't place point here");
 }
 bool AddTriAction::Valid()
 {
@@ -73,6 +84,7 @@ void AddTriAction::Execute()
 
 			//Add the triangle to the list of figures
 			pManager->AddFigure(T);
+			pManager->AddUndoAction(this);
 			if (pManager->GetIsRec()) {
 				CTri* T1 = new CTri(Vertex1, Vertex2, Vertex3, TriGfxInfo);
 				T1->setID(T->GetID());

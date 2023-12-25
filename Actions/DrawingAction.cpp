@@ -44,11 +44,13 @@ void DrawingAction::Execute()
 	ReadActionParameters();
 	CFigure* f = pManager->Get_selected();
 	Output* pOut = pManager->GetOutput();
-	if (f != NULL) {
-		if (f->IsSelected())
-		{
+	if (f != NULL)
+	{
 			drawing = pOut->getCrntDrawColor();
-
+			f->ChngDrawClr(drawing);
+			pManager->AddfigselectedC(f);
+			pManager->Adddrawcolor(drawing);
+			pManager->AddUndoAction(this);
 			f->ChngDrawClr(drawing);
 			if (pManager->GetIsRec())
 			{
@@ -56,8 +58,7 @@ void DrawingAction::Execute()
 				d1->setID(f->GetID());
 				pManager->AddRECFig(d1);
 			}
-		}
-		else
-			pOut->PrintMessage("Change Filling Color : select figure ");
 	}
+	else
+		pOut->PrintMessage("Change Filling Color : select figure ");
 }

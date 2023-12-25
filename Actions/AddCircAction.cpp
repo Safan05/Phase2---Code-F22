@@ -34,10 +34,20 @@ void AddCircAction::ReadActionParameters()
 		pIn->GetPointClicked(point.x, point.y);
 		if (ValidP(point)) {
 			if (Valid()) {
-				CircGfxInfo.isFilled = false;	//default is not filled
-				//get drawing, filling colors and pen width from the interface
-				CircGfxInfo.DrawClr = pOut->getCrntDrawColor();
-				CircGfxInfo.FillClr = pOut->getCrntFillColor();
+				if (pManager->GetFilled() == true)
+				{
+					CircGfxInfo.isFilled = true;
+					CircGfxInfo.DrawClr = pOut->getCrntDrawColor();
+					CircGfxInfo.FillClr = pOut->getCrntFillColor();
+					//get drawing, filling colors and pen width from the interface
+				}
+				else
+				{
+					CircGfxInfo.isFilled = false; //default is not filled
+					CircGfxInfo.DrawClr = pOut->getCrntDrawColor();
+					CircGfxInfo.FillClr = pOut->getCrntFillColor();
+				}
+				pManager->Adddrawcolor(pOut->getCrntDrawColor());
 
 				pOut->ClearStatusBar();
 			}
@@ -75,6 +85,7 @@ void AddCircAction::Execute()
 
 			//Add the circle to the list of figures
 			pManager->AddFigure(C);
+			pManager->AddUndoAction(this);
 			if (pManager->GetIsRec()) {
 				CCirc* C1 = new CCirc(center, point, CircGfxInfo);
 				C1->setID(C->GetID());

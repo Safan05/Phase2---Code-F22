@@ -75,6 +75,8 @@
     <ClCompile Include="Actions\ToFiguresAction.cpp" />
     <ClCompile Include="Actions\MoveByDrag.cpp" />
     <ClCompile Include="Actions\ResizeAction.cpp" />
+    <ClCompile Include="Actions\UndoAction.cpp" />
+    <ClCompile Include="Actions\RedoAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\ActionToPick.h" />
@@ -137,6 +139,8 @@
     <ClInclude Include="Actions\ToFiguresAction.h" />
     <ClInclude Include="Actions\MoveByDrag.h" />
     <ClInclude Include="Actions\ResizeAction.h" />
+    <ClInclude Include="Actions\UndoAction.h" />
+    <ClInclude Include="Actions\RedoAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

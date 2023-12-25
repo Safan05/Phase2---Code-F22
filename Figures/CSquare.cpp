@@ -1,5 +1,6 @@
 #include "CSquare.h"
 #include<fstream>
+#include "..\ApplicationManager.h"
 CSquare::CSquare()
 {
 }
@@ -65,3 +66,59 @@ void CSquare::Move(Point c, Output* out)
 
 }
 void CSquare::Resize(Point c, Output* out) {}
+
+
+Point CSquare::GetCenter()
+{
+	return Center;
+}
+
+void CSquare::UndoMove(ApplicationManager* p)
+{
+	Center = p->Getpoint();
+}
+
+void CSquare::Undocolor(ApplicationManager* p)
+{
+	FigGfxInfo.FillClr = p->Getfillcolor();
+	p->defill();
+	if (p->Getnumoffill() == 0 && FigGfxInfo.isFilled == true)
+	{
+		FigGfxInfo.isFilled = false;
+	}
+}
+
+void CSquare::RedoMove(ApplicationManager* p)
+{
+	Center = p->GetpointRedo();
+}
+
+void CSquare::Undocolordraw(ApplicationManager* p)
+{
+	//if (p->Getnumofdraw() != 0)
+	//{
+	FigGfxInfo.DrawClr = p->Getdrawcolor();
+	p->deldraw();
+	//}
+	/*else
+	{
+		FigGfxInfo.DrawClr = BLUE;
+	}*/
+}
+
+void CSquare::Redocolor(ApplicationManager* p)
+{
+	if (p->Getnumoffill() == 0 && FigGfxInfo.isFilled == false)
+	{
+		FigGfxInfo.isFilled = true;
+	}
+	p->Incrementfill();
+	FigGfxInfo.FillClr = p->GetfillRedo();
+}
+
+void CSquare::Redocolordraw(ApplicationManager* p)
+{
+
+	p->Incrementdraw();
+	FigGfxInfo.DrawClr = p->GetdrawRedo();
+}

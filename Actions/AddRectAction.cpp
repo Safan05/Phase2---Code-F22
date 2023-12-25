@@ -32,10 +32,20 @@ void AddRectAction::ReadActionParameters()
 		//Read 2nd corner and store in point P2
 		pIn->GetPointClicked(P2.x, P2.y);
 		if (ValidP(P2)) {
-			RectGfxInfo.isFilled = false;	//default is not filled
-			//get drawing, filling colors and pen width from the interface
+			if (pManager->GetFilled() == true)
+			{
+			RectGfxInfo.isFilled = true;
 			RectGfxInfo.DrawClr = pOut->getCrntDrawColor();
 			RectGfxInfo.FillClr = pOut->getCrntFillColor();
+			//get drawing, filling colors and pen width from the interface
+		}
+		else
+		{
+			RectGfxInfo.isFilled = false;	//default is not filled
+			RectGfxInfo.DrawClr = pOut->getCrntDrawColor();
+			RectGfxInfo.FillClr = pOut->getCrntFillColor();
+		}
+		pManager->Adddrawcolor(pOut->getCrntDrawColor());
 
 			pOut->ClearStatusBar();
 		}
@@ -66,6 +76,7 @@ void AddRectAction::Execute()
 
 			//Add the rectangle to the list of figures
 			pManager->AddFigure(R);
+			pManager->AddUndoAction(this);
 			if (pManager->GetIsRec()) 
 			{
 				CRectangle* R1 = new CRectangle(P1, P2, RectGfxInfo);

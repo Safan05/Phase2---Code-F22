@@ -1,5 +1,6 @@
 #include "CHexa.h"
 #include<fstream>
+#include "..\ApplicationManager.h"
 double area_cal(double x1, double x2, double x3, double y1, double y2, double y3) {
 	double area = abs((x1 * y2) - (x1 * y3) - (y1 * x2) + (y1 * x3) + (y3 * x2) - (y2 * x3));
 	return area;
@@ -82,4 +83,59 @@ void CHexa::Move(Point c, Output* out)
 }
 void CHexa::Resize(Point c, Output* out) {
 
+}
+
+Point CHexa::GetCenter()
+{
+	return Center;
+}
+
+void CHexa::Undocolor(ApplicationManager* p)
+{
+	FigGfxInfo.FillClr = p->Getfillcolor();
+	p->defill();
+	if (p->Getnumoffill() == 0 && FigGfxInfo.isFilled == true)
+	{
+		FigGfxInfo.isFilled = false;
+	}
+}
+
+void CHexa::UndoMove(ApplicationManager* p)
+{
+
+	Center = p->Getpoint();
+}
+
+void CHexa::RedoMove(ApplicationManager* p)
+{
+	Center = p->GetpointRedo();
+}
+
+void CHexa::Undocolordraw(ApplicationManager* p)
+{
+	if (p->Getnumofdraw() != 0)
+	{
+		FigGfxInfo.DrawClr = p->Getdrawcolor();
+		p->deldraw();
+	}
+	else
+	{
+		FigGfxInfo.DrawClr = BLUE;
+	}
+}
+
+void CHexa::Redocolor(ApplicationManager* p)
+{
+	if (p->Getnumoffill() == 0 && FigGfxInfo.isFilled == false)
+	{
+		FigGfxInfo.isFilled = true;
+	}
+	p->Incrementfill();
+	FigGfxInfo.FillClr = p->GetfillRedo();
+}
+
+void CHexa::Redocolordraw(ApplicationManager* p)
+{
+	p->Incrementdraw();
+	FigGfxInfo.DrawClr = p->GetdrawRedo();
 }

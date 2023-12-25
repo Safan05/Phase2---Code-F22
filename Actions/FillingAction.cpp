@@ -46,11 +46,16 @@ void FillingAction::Execute()
 		UI.FillColor = Transparent;
 	}
 
-	if (f != NULL) {
-		if (f->IsSelected())
-		{
+	if (f != NULL)
+	{
+		 
 		filling = pOut->getCrntFillColor();
 		f->ChngFillClr(filling);
+
+		pManager->SetFilled(true);
+		pManager->AddfigselectedC(f);
+		pManager->Addfillcolor(filling);
+		pManager->AddUndoAction(this);
 		UI.IsFilledNext = 1;
 		if (pManager->GetIsRec())
 		{
@@ -58,8 +63,9 @@ void FillingAction::Execute()
 			d1->setID(f->GetID());
 			pManager->AddRECFig(d1);
 		}
-		}
-		else
-			pOut->PrintMessage("Change Filling Color : select figure ");
+		
+		 
 	}
+	else
+		pOut->PrintMessage("Change Filling Color : select figure ");
 }
