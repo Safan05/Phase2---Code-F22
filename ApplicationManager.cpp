@@ -32,6 +32,8 @@
 #include "Actions/ToPlayAction.h"
 #include "Actions/ToDrawAction.h"
 #include "Actions/ToFiguresAction.h"
+#include "Actions/UndoAction.h"
+#include "Actions/RedoAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -42,12 +44,31 @@ ApplicationManager::ApplicationManager()
 	pIn = pOut->CreateInput();
 	FigCount = 0;
 	RecFIGCount = 0;
+	UndoCount = 0;
+	redofigcount = 0;
+	Redocount = 0;
+	SelectedfigM = 0;
+	SelectedfigC = 0;
+	numofpoints = 0;
+	numoffill = 0;
+	numofdraw = 0;
+	filled = false;
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
 		FigList[i] = NULL;	
 	for (int i = 0; i < MaxRecActions; i++)
 		RECFigList[i] = NULL;
 	SelectedFig = NULL;
+	for (int i = 0; i < MaxUndoActions; i++)
+		UndoactionList[i] = NULL;
+	for (int i = 0; i < MaxRedoActions; i++)
+		RedoactionList[i] = NULL;
+	for (int i = 0; i < MaxRedoFiglist; i++)
+		RedoFiglist[i] = NULL;
+	for (int i = 0; i < 5; i++)
+		numofmoved[i] = NULL;
+	for (int i = 0; i < 5; i++)
+		numofchanged[i] = NULL;
 }
 int ApplicationManager::count_fig(char Fig_t) {
 	int count = 0;
@@ -199,16 +220,27 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case Pick_both:
 			pAct = new pick_both(this);
 			break;
+		case UNDO:
+			pAct = new UndoAction(this);
+			 
+			break;
+		case REDO:
+			pAct = new RedoAction(this);
+			break;
 		case STATUS:	//a click on the status bar ==> no action
 			return;
 	}
 	
 	//Execute the created action
-	if(pAct != NULL)
+	if (pAct != NULL)
 	{
 		pAct->Execute();//Execute
-		delete pAct;	//You may need to change this line depending to your implementation
-		pAct = NULL;
+		if (dynamic_cast<selectAction*>(pAct) || dynamic_cast<RedoAction*>(pAct) || dynamic_cast<UndoAction*>(pAct) || dynamic_cast<ClearAllAction*>(pAct) || dynamic_cast<VoiceAction*>(pAct) || dynamic_cast<pick_figure*>(pAct) || dynamic_cast<StartRecAction*>(pAct) || dynamic_cast<StopRecAction*>(pAct) || dynamic_cast<PlayRecAction*>(pAct) || dynamic_cast<ActionToPick*>(pAct) || dynamic_cast<ClearAllAction*>(pAct) || dynamic_cast<SaveAction*>(pAct) || dynamic_cast<LoadAction*>(pAct))
+		{
+			delete pAct;
+			pAct = NULL;
+		}
+
 	}
 }
 //==================================================================================//
@@ -276,6 +308,249 @@ void ApplicationManager::SetIsRec(bool Rec)
 bool ApplicationManager::GetIsRec()
 {
 	return Is_Recording;
+}
+
+void ApplicationManager::Setundocount()
+{
+	UndoCount = 0;
+}
+
+int ApplicationManager::GetUndoCount()
+{
+	return UndoCount;
+}
+
+void ApplicationManager::AddUndoAction(Action* pAct)
+{
+	if (UndoCount < MaxUndoActions)
+	{
+		UndoactionList[UndoCount++] = pAct;
+	}
+	else
+	{
+		delete UndoactionList[0];
+		UndoactionList[0] = NULL;
+		for (int i = 0; i < (MaxUndoActions - 1); i++)
+		{
+			UndoactionList[i] = UndoactionList[i + 1];
+		}
+		UndoactionList[4] = pAct;
+	}
+}
+
+
+
+void ApplicationManager::deletelastfig()
+{
+	if (FigList[FigCount - 1] != NULL)
+	{
+		AddRedofiglist(FigList[FigCount - 1]);
+		FigList[FigCount - 1] = NULL;
+		FigCount--;
+	}
+}
+
+CFigure* ApplicationManager::Getlastfig()
+{
+	return FigList[FigCount - 1];
+}
+
+void ApplicationManager::AddRedofiglist(CFigure* f)
+{
+	//	if (RedoFiglist[redofigcount++]!=NULL)
+	RedoFiglist[redofigcount++] = f;
+}
+
+Action* ApplicationManager::GetfirstRedoAction()
+{
+	if (RedoactionList[GetRedoCount() - 1])
+		return RedoactionList[GetRedoCount() - 1];
+}
+
+CFigure* ApplicationManager::GetlastRedoFig()
+{
+	return RedoFiglist[redofigcount - 1];
+}
+
+int ApplicationManager::GetRedoCount()
+{
+	return Redocount;
+}
+
+CFigure* ApplicationManager::GetfigselectedM()
+{
+	return numofmoved[SelectedfigM - 1];
+}
+
+void ApplicationManager::deleteRedoAction()
+{
+	if (RedoactionList[GetRedoCount() - 1])
+	{
+		delete RedoactionList[GetRedoCount() - 1];
+		RedoactionList[GetRedoCount() - 1] = NULL;
+		Redocount--;
+	}
+}
+
+void ApplicationManager::Addpoint(Point p)
+{
+	pointmove[numofpoints++] = p;
+}
+
+Point ApplicationManager::Getpoint()
+{
+	return pointmove[numofpoints - 1];
+}
+
+void ApplicationManager::Addfillcolor(color g)
+{
+	fillcolor[numoffill++] = g;
+}
+
+color ApplicationManager::Getfillcolor()
+{
+	return fillcolor[numoffill - 2];
+}
+
+void ApplicationManager::Adddrawcolor(color g)
+{
+	drawcolor[numofdraw++] = g;
+}
+
+void ApplicationManager::deldraw()
+{
+	numofdraw--;
+}
+
+void ApplicationManager::delUndocount()
+{
+	UndoCount--;
+}
+
+void ApplicationManager::delRedoAction()
+{
+	if (RedoactionList[Redocount - 1])
+	{
+		delete RedoactionList[Redocount - 1];
+		RedoactionList[Redocount - 1] = NULL;
+		Redocount--;
+	}
+}
+
+void ApplicationManager::delfigredo()
+{
+	if (RedoFiglist[redofigcount - 1] != NULL)
+	{
+		//delete RedoFiglist[redofigcount - 1];
+		//RedoFiglist[redofigcount - 1] = NULL;
+		redofigcount--;
+	}
+}
+
+void ApplicationManager::SetFilled(bool f)
+{
+	filled = f;
+}
+
+bool ApplicationManager::GetFilled()
+{
+	return filled;
+}
+
+color ApplicationManager::GetfillRedo()
+{
+	return fillcolor[numoffill - 1];
+}
+
+color ApplicationManager::GetdrawRedo()
+{
+	return drawcolor[numofdraw - 1];
+}
+
+void ApplicationManager::Incrementfill()
+{
+	numoffill++;
+}
+
+void ApplicationManager::Incrementdraw()
+{
+	numofdraw++;
+}
+
+Point ApplicationManager::GetpointRedo()
+{
+	return pointmove[numofpoints - 2];
+}
+
+Action** ApplicationManager::GetUndoAction()
+{
+	return UndoactionList;
+}
+
+Action** ApplicationManager::GetRedoAction()
+{
+	return RedoactionList;
+}
+
+CFigure** ApplicationManager::GetRedofig()
+{
+	return RedoFiglist;
+}
+
+int ApplicationManager::Getredofigcount()
+{
+	return redofigcount;
+}
+
+color ApplicationManager::Getdrawcolor()
+{
+	return drawcolor[numofdraw - 2];
+}
+
+void ApplicationManager::defill()
+{
+	numoffill--;
+}
+
+int ApplicationManager::Getnumoffill()
+{
+	return numoffill;
+}
+
+int ApplicationManager::Getnumofdraw()
+{
+	return numofdraw;
+}
+
+CFigure* ApplicationManager::GetfigSelectedC()
+{
+	return numofchanged[SelectedfigC - 1];
+}
+
+
+void ApplicationManager::AddfigselectedC(CFigure* f)
+{
+	numofchanged[SelectedfigC++] = f;
+}
+
+void ApplicationManager::AddfigselectedM(CFigure* f)
+{
+	numofmoved[SelectedfigM++] = f;
+}
+
+Action* ApplicationManager::GetlastUndo()
+{
+
+	if (UndoactionList[(GetUndoCount() - 1)])
+		return UndoactionList[(GetUndoCount() - 1)];
+}
+
+void ApplicationManager::AddRedoAction(Action* p)
+{
+	if (Redocount < MaxRedoActions)
+	{
+		RedoactionList[Redocount++] = p;
+	}
 }
 
 

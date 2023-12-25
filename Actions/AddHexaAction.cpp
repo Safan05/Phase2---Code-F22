@@ -27,10 +27,21 @@ void AddHexaAction::ReadActionParameters()
 	pIn->GetPointClicked(center.x, center.y);
 	if (ValidP(center)) {
 		if (Valid()) {
-			HexaGfxInfo.isFilled = false;	//default is not filled
-			//get drawing, filling colors and pen width from the interface
+			if (pManager->GetFilled() == true)
+			{
+			HexaGfxInfo.isFilled = true;
 			HexaGfxInfo.DrawClr = pOut->getCrntDrawColor();
 			HexaGfxInfo.FillClr = pOut->getCrntFillColor();
+			//get drawing, filling colors and pen width from the interface
+
+		}
+		else
+		{
+			HexaGfxInfo.isFilled = false;	//default is not filled
+			HexaGfxInfo.DrawClr = pOut->getCrntDrawColor();
+			HexaGfxInfo.FillClr = pOut->getCrntFillColor();
+		}
+		pManager->Adddrawcolor(pOut->getCrntDrawColor());
 
 			pOut->ClearStatusBar();
 		}
@@ -61,6 +72,7 @@ void AddHexaAction::Execute()
 
 			//Add the hexagon to the list of figures
 			pManager->AddFigure(H);
+			pManager->AddUndoAction(this);
 			if (pManager->GetIsRec()) {
 				CHexa*H1 = new CHexa(center, HexaGfxInfo);
 				H1->setID(H->GetID());

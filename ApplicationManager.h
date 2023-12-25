@@ -9,7 +9,8 @@
 //Main class that manages everything in the application.
 class ApplicationManager
 {
-	enum { MaxFigCount = 200, MaxRecActions = 20 };	//Max no of figures
+	enum { MaxFigCount = 200, MaxRecActions = 20 , MaxUndoActions = 5, MaxRedoFiglist = 5, MaxRedoActions = 5
+	};	//Max no of figures
 
 
 private:
@@ -20,6 +21,24 @@ private:
 	Input* pIn;
 	Output* pOut;
 	CFigure* RECFigList[MaxRecActions];
+	Action* UndoactionList[MaxUndoActions];
+	Action* RedoactionList[MaxRedoActions];
+	CFigure* RedoFiglist[MaxRedoFiglist];
+	CFigure* numofmoved[10];
+	CFigure* numofchanged[10];//array of pointers to figures stored the changed color figures
+	Point pointmove[5];
+	color fillcolor[10];
+	color drawcolor[10];
+	bool filled;
+	int UndoCount;
+	int Redocount;
+	int ActionCount;
+	int SelectedfigM;
+	int SelectedfigC;
+	int numofpoints;
+	int numofdraw;
+	int numoffill;
+	int redofigcount;
 	int RecFIGCount;
 	bool Is_Recording;
 
@@ -54,7 +73,46 @@ public:
 	void AddRECFig(CFigure* pFig);
 	void SetIsRec(bool Rec);
 	bool GetIsRec();
-
+	void Setundocount();
+	int GetUndoCount();
+	void AddUndoAction(Action* pAct);
+	void AddRedoAction(Action* p);
+	void deleteRedoAction();
+	Action* GetfirstRedoAction();
+	int GetRedoCount();
+	void AddRedofiglist(CFigure* f);
+	CFigure* GetlastRedoFig();
+	void deletelastfig();
+	CFigure* Getlastfig();
+	Action* GetlastUndo();
+	void AddfigselectedM(CFigure* f);
+	CFigure* GetfigselectedM();
+	void AddfigselectedC(CFigure* f);
+	CFigure* GetfigSelectedC();
+	void Addpoint(Point p);
+	Point Getpoint();
+	void Addfillcolor(color g);
+	color Getfillcolor();
+	void Adddrawcolor(color g);
+	color Getdrawcolor();
+	void defill();
+	int Getnumoffill();
+	int Getnumofdraw();
+	void deldraw();
+	void delUndocount();
+	void delRedoAction();
+	void delfigredo();
+	void SetFilled(bool f);
+	bool GetFilled();
+	color GetfillRedo();
+	color GetdrawRedo();
+	void Incrementfill();
+	void Incrementdraw();
+	Point GetpointRedo();
+	Action** GetUndoAction();
+	Action** GetRedoAction();
+	CFigure** GetRedofig();
+	int Getredofigcount();
 };
 
 #endif

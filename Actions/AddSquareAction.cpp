@@ -27,11 +27,22 @@ void AddSquareAction::ReadActionParameters()
 	//Read center and store in point P
 	pIn->GetPointClicked(P.x, P.y);
 	if (ValidP(P)) {
-		if (Valid()) {
+		if (Valid()) 
+		{ 
+			if (pManager->GetFilled() == true)
+			{
+			SquareGfxInfo.isFilled = true;
+			SquareGfxInfo.DrawClr = pOut->getCrntDrawColor();
+			SquareGfxInfo.FillClr = pOut->getCrntFillColor();
+		}
+		else
+		{
 			SquareGfxInfo.isFilled = false;	//default is not filled
 			//get drawing, filling colors and pen width from the interface
 			SquareGfxInfo.DrawClr = pOut->getCrntDrawColor();
 			SquareGfxInfo.FillClr = pOut->getCrntFillColor();
+		}
+		pManager->Adddrawcolor(pOut->getCrntDrawColor());
 
 			pOut->ClearStatusBar();
 		}
@@ -63,6 +74,7 @@ void AddSquareAction::Execute()
 
 		//Add the square to the list of figures
 		pManager->AddFigure(S);
+		pManager->AddUndoAction(this);
 		if (pManager->GetIsRec())
 		{
 			CSquare* S1 = new CSquare(P, SquareGfxInfo);

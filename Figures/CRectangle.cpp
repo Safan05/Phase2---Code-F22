@@ -91,3 +91,57 @@ void CRectangle::Resize(Point c, Output* out) {
 	else
 		out->PrintMessage("Invalid point");
 }
+
+void CRectangle::Undocolor(ApplicationManager* p)
+{
+	FigGfxInfo.FillClr = p->Getfillcolor();
+	p->defill();
+	if (p->Getnumoffill() == 0 && FigGfxInfo.isFilled == true)
+	{
+		FigGfxInfo.isFilled = false;
+	}
+}
+
+void CRectangle::UndoMove(ApplicationManager* p)
+{
+
+}
+
+Point CRectangle::GetCenter()
+{
+	return Point();
+}
+
+void CRectangle::RedoMove(ApplicationManager* p)
+{
+}
+
+void CRectangle::Undocolordraw(ApplicationManager* p)
+{
+	if (p->Getnumofdraw() != 0)
+	{
+		FigGfxInfo.DrawClr = p->Getdrawcolor();
+		p->deldraw();
+	}
+	else
+	{
+		FigGfxInfo.DrawClr = BLUE;
+	}
+}
+
+void CRectangle::Redocolor(ApplicationManager* p)
+{
+	if (p->Getnumoffill() == 0 && FigGfxInfo.isFilled == false)
+	{
+		FigGfxInfo.isFilled = true;
+	}
+	p->Incrementfill();
+	FigGfxInfo.FillClr = p->GetfillRedo();
+}
+
+void CRectangle::Redocolordraw(ApplicationManager* p)
+{
+
+	p->Incrementdraw();
+	FigGfxInfo.DrawClr = p->GetdrawRedo();
+}

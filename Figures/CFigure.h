@@ -4,6 +4,7 @@
 #include "..\defs.h"
 #include "..\GUI\Output.h"
 //Base class for all figures
+class ApplicationManager;
 class CFigure
 {
 protected:
@@ -44,6 +45,13 @@ public:
 	virtual void Move(Point c, Output* out) = 0;	
 	virtual void Resize(Point c, Output* out) = 0;
 	void setID(int i);
+	virtual void Undocolor(ApplicationManager* p) = 0;
+	virtual void UndoMove(ApplicationManager* p) = 0;
+	virtual Point GetCenter() = 0;
+	virtual void RedoMove(ApplicationManager* p) = 0;
+	virtual void Undocolordraw(ApplicationManager* p) = 0;
+	virtual void Redocolor(ApplicationManager* p) = 0;
+	virtual void Redocolordraw(ApplicationManager* p) = 0;
 };
 
 #endif
