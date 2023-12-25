@@ -56,8 +56,7 @@ void RedoAction::Execute()
 		}
 		else if (dynamic_cast<delete_action*>(b))
 		{
-			CFigure* f = pManager->GetlastRedoFig();
-			pManager->AddFigure(f);
+			pManager->deletelastfig();
 		}
 		
 
