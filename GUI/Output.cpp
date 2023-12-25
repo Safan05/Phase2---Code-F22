@@ -248,7 +248,7 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 	pWind->DrawRectangle(P1.x, P1.y, P2.x, P2.y, style);
 
 }
-void Output::DrawSQ(Point P1, GfxInfo RectGfxInfo, bool selected) const
+void Output::DrawSQ(Point P1, GfxInfo RectGfxInfo, bool selected,int sidelength) const
 {
 	color DrawingClr;
 	if (selected)
@@ -266,7 +266,7 @@ void Output::DrawSQ(Point P1, GfxInfo RectGfxInfo, bool selected) const
 	else
 		style = FRAME;
 
-	pWind->DrawRectangle(P1.x - 75, P1.y - 75, P1.x + 75, P1.y + 75, style);
+	pWind->DrawRectangle(P1.x - sidelength/2, P1.y - sidelength / 2, P1.x + sidelength / 2, P1.y + sidelength / 2, style);
 }
 
 

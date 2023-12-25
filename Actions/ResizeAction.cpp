@@ -45,6 +45,13 @@ void ResizeAction::Execute()
 				}
 				B = pIn->GetLeftClickState();
 			}
+			if (pManager->GetIsRec())
+			{
+				CFigure* d1 = f->copy();
+				d1->setID(f->GetID());
+
+				pManager->AddRECFig(d1);
+			}
 		}
 		else
 			pOut->PrintMessage("Move Figure : select figure");

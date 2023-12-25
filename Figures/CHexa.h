@@ -5,6 +5,7 @@ class CHexa :public CFigure
 private:
 	int SideLength;
 	Point Center;
+	double Height;
 public:
 	CHexa();
 	CHexa(Point, GfxInfo FigureGfxInfo);

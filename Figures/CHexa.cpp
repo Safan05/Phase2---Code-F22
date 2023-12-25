@@ -11,12 +11,13 @@ CHexa::CHexa(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	SideLength = 100;
 	Center = P1;
+	Height = SideLength * sqrt(3) / 2.0;
 }
 
 void CHexa::Draw(Output* pOut) const
 {
 	//Call Output::Drawhexa to draw a hexagon on the screen	
-	pOut->Drawhexa(Center, FigGfxInfo, Selected);
+	pOut->Drawhexa(Center, FigGfxInfo, Selected,SideLength);
 
 }
 CFigure* CHexa::copy() {
@@ -28,15 +29,14 @@ char CHexa::type() {
 }
 bool CHexa::is_inside(int x, int y) const {
 	
-	double cos = SideLength * sqrt(3) / 2;
 	double area_hex = (3.0/2)*(sqrt(3))*SideLength*SideLength*2;
 	          //area_cal(P1.x         , x, P2.x         ,P1.y    ,y,         P2,y)
-	double a1 = area_cal(Center.x + SideLength, x, Center.x + SideLength/2.0,Center.y,y,Center.y-cos );
-	double a2 = area_cal(Center.x + SideLength, x, Center.x + SideLength / 2.0, Center.y, y, Center.y + cos);
-	double a3 = area_cal(Center.x - SideLength/2.0, x, Center.x + SideLength / 2.0, Center.y+ cos, y, Center.y + cos);
-	double a4 = area_cal(Center.x - SideLength / 2.0, x, Center.x - SideLength, Center.y + cos, y, Center.y );
-	double a5 = area_cal(Center.x - SideLength / 2.0, x, Center.x - SideLength, Center.y - cos, y, Center.y);
-	double a6 = area_cal(Center.x - SideLength / 2.0, x, Center.x + SideLength / 2.0, Center.y - cos, y, Center.y- cos);
+	double a1 = area_cal(Center.x + SideLength, x, Center.x + SideLength/2.0,Center.y,y,Center.y- Height);
+	double a2 = area_cal(Center.x + SideLength, x, Center.x + SideLength / 2.0, Center.y, y, Center.y + Height);
+	double a3 = area_cal(Center.x - SideLength/2.0, x, Center.x + SideLength / 2.0, Center.y+ Height, y, Center.y + Height);
+	double a4 = area_cal(Center.x - SideLength / 2.0, x, Center.x - SideLength, Center.y + Height, y, Center.y );
+	double a5 = area_cal(Center.x - SideLength / 2.0, x, Center.x - SideLength, Center.y - Height, y, Center.y);
+	double a6 = area_cal(Center.x - SideLength / 2.0, x, Center.x + SideLength / 2.0, Center.y - Height, y, Center.y- Height);
 	double flag = a1 + a2 + a3 + a4 + a5 + a6;
 	if(floor(flag)==floor(area_hex))
 	return 1;
@@ -73,7 +73,7 @@ void CHexa::Load(ifstream& Infile)
 
 void CHexa::Move(Point c, Output* out)
 {
-	if ((((c.y + 43.3 - UI.ToolBarHeight) > 86.6) && ((UI.height - UI.StatusBarHeight) - c.y >= 43.3)))
+	if ((((c.y + Height - UI.ToolBarHeight) > 2*Height) && ((UI.height - UI.StatusBarHeight) - c.y >= Height)))
 	{
 		Center = c;
 	}
@@ -81,5 +81,15 @@ void CHexa::Move(Point c, Output* out)
 		out->PrintMessage("Invalid point");
 }
 void CHexa::Resize(Point c, Output* out) {
-
+	int a=c.x-Center.x;
+	int b = c.y - Center.y;
+	int S = sqrt(a * a + b * b);
+	double h= S * sqrt(3) / 2;
+	if ((((Center.y + h - UI.ToolBarHeight) > 2 * h) && ((UI.height - UI.StatusBarHeight) - Center.y >= h)))
+	{
+		SideLength = S;
+		Height = h;
+	}
+	else
+		out->PrintMessage("Invalid point");
 }

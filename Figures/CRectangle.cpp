@@ -3,7 +3,6 @@
 #include "..\ApplicationManager.h"
 CRectangle::CRectangle()
 {}
-
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Corner1 = P1;
@@ -82,4 +81,13 @@ void CRectangle::Move(Point c, Output* out)
 	else
 		out->PrintMessage("Invalid point");
 }
-void CRectangle::Resize(Point c, Output* out) {}
+void CRectangle::Resize(Point c, Output* out) {
+	Point c1, c2;
+	if ((c.y > UI.ToolBarHeight) && (c.y < UI.height - UI.StatusBarHeight) && (Corner2.y > UI.ToolBarHeight) && (Corner2.y < UI.height - UI.StatusBarHeight))
+	{
+
+		Corner1 = c;
+	}
+	else
+		out->PrintMessage("Invalid point");
+}

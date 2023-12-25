@@ -4,6 +4,7 @@ class CSquare : public CFigure
 {
 private:
 	Point Center;
+	int SideLength;
 public:
 	CSquare();
 	CSquare(Point, GfxInfo FigureGfxInfo);

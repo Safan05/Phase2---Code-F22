@@ -1,5 +1,11 @@
 #include "CTri.h"
 #include<fstream>
+int mini(int a, int b) {
+	if (a < b)
+		return a;
+	else
+		return b;
+}
 int area_cal(int x1, int x2, int x3, int y1, int y2, int y3) {
 	int area = abs((x1 * y2) - (x1 * y3) - (y1 * x2) + (y1 * x3) + (y3 * x2) - (y2 * x3));
 	return area;
@@ -91,7 +97,16 @@ void CTri::Move(Point c, Output* out)
 	else
 		out->PrintMessage("Invalid point");
 }
-void CTri::Resize(Point c, Output* out){}
+void CTri::Resize(Point c, Output* out){
+ {
+		if ((c.y > UI.ToolBarHeight) && (c.y < UI.height - UI.StatusBarHeight) && (Vertex2.y > UI.ToolBarHeight) && (Vertex2.y < UI.height - UI.StatusBarHeight) && (Vertex3.y > UI.ToolBarHeight) && (Vertex3.y < UI.height - UI.StatusBarHeight))
+		{
+			Vertex1 = c;
+		}
+		else
+			out->PrintMessage("Invalid point");
+	}
+}
 
 int CTri::CalcDistfromCenter(Point P, Point C, char cord)
 {
