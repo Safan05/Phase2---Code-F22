@@ -380,7 +380,7 @@ void ApplicationManager::AddRedofiglist(CFigure* f)
 
 Action* ApplicationManager::GetfirstRedoAction()
 {
-	if (RedoactionList[GetRedoCount() - 1])
+	if (RedoactionList[GetRedoCount() - 1] != NULL)
 		return RedoactionList[GetRedoCount() - 1];
 }
 
@@ -448,7 +448,7 @@ void ApplicationManager::delRedoAction()
 {
 	if (RedoactionList[Redocount - 1])
 	{
-		delete RedoactionList[Redocount - 1];
+		//delete RedoactionList[Redocount - 1];
 		RedoactionList[Redocount - 1] = NULL;
 		Redocount--;
 	}

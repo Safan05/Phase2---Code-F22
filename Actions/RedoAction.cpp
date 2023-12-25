@@ -59,7 +59,7 @@ void RedoAction::Execute()
 			pManager->deletelastfig();
 		}
 		
-
-	pManager->delRedoAction();
-	pManager->delfigredo();
+		pManager->AddUndoAction(b);
+	    pManager->delRedoAction();
+	    pManager->delfigredo();
 }
