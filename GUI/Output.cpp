@@ -15,11 +15,11 @@ Output::Output()
 	UI.DrawColor = BLACK;	//Drawing color
 	UI.FillColor = Transparent;	//Filling color
 	UI.MsgColor = RED;		//Messages color
-	UI.BkGrndColor = LIGHTGOLDENRODYELLOW;	//Background color
-	UI.ToolBarColor = WHITE;
+	UI.BkGrndColor = WHITE;	//Background color
+	UI.ToolBarColor = AZURE;
 	UI.HighlightColor = MAGENTA;	//This color should NOT be used to draw figures. use if for highlight only
 	UI.StatusBarColor = TURQUOISE;
-	UI.PenWidth = 3;	//width of the figures frames
+	UI.PenWidth = 4;	//width of the figures frames
 	//Create the output window
 	pWind = CreateWind(UI.width, UI.height, UI.wx, UI.wy);
 	//Change the title
@@ -198,7 +198,7 @@ void Output::PrintMessage(string msg) const	//Prints a message on status bar
 	ClearStatusBar();	//First clear the status bar
 
 	pWind->SetPen(UI.MsgColor, 50);
-	pWind->SetFont(20, BOLD, BY_NAME, "Arial");
+	pWind->SetFont(20, BOLD, BY_NAME, "SWISS");
 	pWind->DrawString(10, UI.height - (int)(UI.StatusBarHeight / 1.5), msg);
 	pWind->UpdateBuffer();
 }
