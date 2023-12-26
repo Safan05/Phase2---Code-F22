@@ -25,27 +25,34 @@ void FillingAction::Execute()
 	else if (p == YELLOW1)
 	{
 		UI.FillColor = YELLOW;
+		UI.IsFilledNext = 1;
 	}
 	else if (p == BLUE1)
 	{
 		UI.FillColor = BLUE;
+		UI.IsFilledNext = 1;
+
 	}
 	else if (p == RED1)
 	{
 		UI.FillColor = RED;
+		UI.IsFilledNext = 1;
+
 	}
 	else if (p == GREEN1)
 	{
 		UI.FillColor = GREEN;
+		UI.IsFilledNext = 1;
 	}
 	else if (p == ORANGE1)
 	{
 		UI.FillColor = ORANGE;
+		UI.IsFilledNext = 1;
 	}
 	else if (p == transparent) {
 		UI.FillColor = Transparent;
+		UI.IsFilledNext = 0;
 	}
-
 	if (f != NULL)
 	{
 		CFigure* d1 = f->copy();

@@ -22,6 +22,10 @@ void MoveByDrag::Execute()
 	buttonstate B = BUTTON_DOWN;
 	d.x = 0; d.y = 0;	
 	bool flag=0;
+	CFigure* d1 = f->copy();
+	d1->setID(f->GetID());
+	pManager->AddUndo(d1);
+	f->Move(d, pOut);
 	if (f != NULL)
 	{
 		if (f->IsSelected()&& (B == BUTTON_DOWN))
