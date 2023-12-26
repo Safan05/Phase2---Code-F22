@@ -24,6 +24,12 @@ void RedoAction::Execute() {
 				x->SetSelected(0);
 				pManager->replacefig(in_list, x);
 				UI.FillColor = x->get_color();
+				if (pManager->GetIsRec()) //record
+				{
+					CFigure* d1 = x->copy();
+					d1->setID(x->GetID());
+					pManager->AddRECFig(d1);
+				}
 			}
 			else
 				in_list = redo;
@@ -33,6 +39,12 @@ void RedoAction::Execute() {
 			in_list = NULL;
 		}
 		else {
+			if (pManager->GetIsRec()) { // record
+				CFigure* d1 = in_list->copy();
+				d1->setID(in_list->GetID());
+				d1->Sethidden(1);
+				pManager->AddRECFig(d1);
+			}
 			pManager->deletefig(in_list);
 		}
 		pManager->decrementRedoCount();
