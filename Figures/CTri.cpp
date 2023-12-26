@@ -72,6 +72,8 @@ void CTri::Load(ifstream& Infile)
 		FigGfxInfo.isFilled = 1;
 		SetFillClrName();
 	}
+	Center.x = (Vertex1.x + Vertex2.x + Vertex3.x) / 3;
+	Center.y = (Vertex1.y + Vertex2.y + Vertex3.y) / 3;
 }
 void CTri::Move(Point c, Output* out)
 {

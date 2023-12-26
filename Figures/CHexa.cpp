@@ -45,7 +45,7 @@ bool CHexa::is_inside(int x, int y) const {
 }
 void CHexa::PrintInfo(Output* pOut)
 {
-	pOut->PrintMessage("Hexagon    ID " + std::to_string(ID)+ "       Center ( " + std::to_string(Center.x) + " , " + std::to_string(Center.y) + " ) " + "      Side = 50");
+	pOut->PrintMessage("Hexagon    ID " + std::to_string(ID)+ "       Center ( " + std::to_string(Center.x) + " , " + std::to_string(Center.y) + " ) " + "      Side = " + std::to_string(SideLength));
 }
 
 void CHexa::Save(ofstream& OutFile)
@@ -70,6 +70,7 @@ void CHexa::Load(ifstream& Infile)
 		FigGfxInfo.isFilled = 1;
 		SetFillClrName();
 	}
+	Height = SideLength * sqrt(3) / 2.0;
 }
 
 void CHexa::Move(Point c, Output* out)
