@@ -36,7 +36,7 @@ void CSquare::PrintInfo(Output* pOut)
 
 void CSquare::Save(ofstream& OutFile)
 {
-	OutFile << "SQUARE\t" << ID << "\t" << Center.x << "\t" << Center.y << "\t" << GetDrawClrName() << "\t" ;
+	OutFile << "SQUARE\t" << ID << "\t" << Center.x << "\t" << Center.y << "\t" << SideLength<<"\t"<< GetDrawClrName() << "\t";
 	if (FigGfxInfo.isFilled) {
 		OutFile << GetFillClrName() << "\n";
 	}
@@ -45,7 +45,7 @@ void CSquare::Save(ofstream& OutFile)
 
 void CSquare::Load(ifstream& Infile)
 {
-	Infile >> ID >> Center.x >> Center.y >> DrawColor;
+	Infile >> ID >> Center.x >> Center.y >>SideLength>> DrawColor;
 	SetDrawClrName();
 	Infile >> FillColor;
 	if (FillColor == "NO_FILL") {
