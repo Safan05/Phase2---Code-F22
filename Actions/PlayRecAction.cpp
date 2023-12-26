@@ -39,7 +39,7 @@ void PlayRecAction::UpdateRECInterface()
 			this->CompareID(pManager->GetRECFigList()[i]->GetID(), i);
 			Sleep(1000);
 			pOut->ClearDrawArea();
-			if (pManager->GetRECFigList()[i]->GetID() == 600) 
+			/*if (pManager->GetRECFigList()[i]->GetID() == 600) 
 			{
 				for (int j = 0; j < i + 1; j++) {
 
@@ -50,8 +50,9 @@ void PlayRecAction::UpdateRECInterface()
 					}
 				}
 			}
-			else
-				for (int j = 0; j < i+1; j++) {
+			else*/
+				for (int j = 0; j < i+1; j++) 
+				{
 
 				if (pManager->GetRECFigList()[j] != NULL && !(pManager->GetRECFigList()[j]->Ishidden())) {
 					pManager->GetRECFigList()[j]->Draw(pOut);		

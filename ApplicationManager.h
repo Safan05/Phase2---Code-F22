@@ -59,6 +59,7 @@ public:
 	void AddRECFig(CFigure* pFig);
 	void SetIsRec(bool Rec);
 	bool GetIsRec();
+	void ResetRecFIGCount();
 	int GetUndoCount();
 	int GetRedoCount();
 	void decrementUndoCount();//decreasing the undo actions by 1

@@ -313,6 +313,11 @@ bool ApplicationManager::GetIsRec()
 	return Is_Recording;
 }
 
+void ApplicationManager::ResetRecFIGCount()
+{
+	RecFIGCount = 0;
+}
+
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//
