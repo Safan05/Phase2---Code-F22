@@ -40,7 +40,7 @@ void AddHexaAction::ReadActionParameters()
 
 bool AddHexaAction::Valid()
 {
-	return (((center.y + 43.3 - UI.ToolBarHeight) > 86.6) && ((UI.height - UI.StatusBarHeight) - center.y >= 43.3));
+	return (((center.y + 86.6 - UI.ToolBarHeight) > 173.2) && ((UI.height - UI.StatusBarHeight) - center.y >= 86.6));
 }
 
 bool AddHexaAction::ValidP(Point P)
