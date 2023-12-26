@@ -1,60 +1,43 @@
 #include "UndoAction.h"
 #include "..\ApplicationManager.h"
-
-#include "..\GUI\input.h"
-#include "..\GUI\Output.h"
-#include "AddCircAction.h"
-#include "AddHexaAction.h"
-#include "AddRectAction.h"
-#include "AddSquareAction.h"
-#include "AddTriAction.h"
-#include "delete_action.h"
-#include "DrawingAction.h"
-#include "FillingAction.h"
-#include "MoveAction.h"
-#include "..\Figures\CRectangle.h"
-UndoAction::UndoAction(ApplicationManager* pApp) :Action(pApp)
-{
+#include "..\Figures\CFigure.h"
+UndoAction::UndoAction(ApplicationManager* pApp):Action(pApp){
 }
-
-void UndoAction::ReadActionParameters()
-{ 
-}
-
-void UndoAction::Execute()
-{
-	ReadActionParameters();
-
+void UndoAction::Execute() {
 	Output* pOut = pManager->GetOutput();
-	Input* pIn = pManager->GetInput();
-	pOut->PrintMessage("Undo Action");
-	Action* c = pManager->GetlastUndo();
-	pManager->delUndocount();
-	//pManager->Setundocount();
-	if (dynamic_cast<AddCircAction*>(c) || dynamic_cast<AddHexaAction*>(c) || dynamic_cast<AddRectAction*>(c) || dynamic_cast<AddSquareAction*>(c) || dynamic_cast<AddTriAction*>(c))
-	{
-		pManager->deletelastfig();
-	} 
-	else if (dynamic_cast<DrawingAction*>(c))
-	{
-		CFigure* f6 = pManager->GetfigSelectedC();
-		f6->Undocolordraw(pManager);
+	if (pManager->GetUndoCount() > 0) { //checking if there is undo actions to do
+		CFigure* undo = pManager->GetUndo()[pManager->GetUndoCount() - 1];
+		CFigure* in_list = pManager->GetFigBy_id(undo->GetID());
+		if (in_list != NULL) { //undo for actions excluding delete
+			CFigure* F = in_list->copy();
+			pManager->AddRedo(F);
+		}
+		else { //undo for delete action 
+			CFigure* z = undo->copy();
+			z->setID(undo->GetID());
+			z->Sethidden(1); //hidden here is just a flag as if it is seen in redo it deletes the figure
+			pManager->AddRedo(z);
+		}
+		if (!undo->Ishidden()) { //not doing an undo for add figure
+			if (undo != NULL) { //undo is not null just a safety checker to use copy or not
+				CFigure* x = undo->copy();
+				x->SetSelected(0);
+				pManager->replacefig(in_list,x);
+				UI.FillColor = x->get_color();
+			}
+			else
+			in_list = undo;
+			delete undo;
+			undo = NULL;
+			delete in_list;
+			in_list = NULL;
+		}
+		else { //undo for add figure action
+			pManager->deletefig(in_list);
+		}
+		pManager->decrementUndoCount(); //to decrease undo count by 1
 	}
-	else if (dynamic_cast<FillingAction*>(c))
-	{
-		CFigure* f = pManager->GetfigSelectedC();
-		f->Undocolor(pManager);
-	}
-	else if (dynamic_cast <MoveAction*>(c))
-	{
-		CFigure* f1 = pManager->GetfigselectedM();
-		f1->UndoMove(pManager);
-	}
-	else if (dynamic_cast<delete_action*>(c))
-	{
-		CFigure* f = pManager->Getfigdel();
-		pManager->AddFigure(f);
-		pManager->AddRedofiglist(f);
-	}
-	pManager->AddRedoAction(c);
+	else
+		pOut->PrintMessage("No more actions to Undo");
 }
+void UndoAction::ReadActionParameters(){}

@@ -25,21 +25,19 @@ void MoveAction::Execute()
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
 	CFigure* f = pManager->Get_selected();
-	Point c;
 	if (f != NULL)
 	{
-		pManager->Addpoint(d);
-		c = f->GetCenter();
-		pManager->Addpoint(c);
+		CFigure* d1 = f->copy();
+		d1->setID(f->GetID());
+		pManager->AddUndo(d1);
 		f->Move(d, pOut);
-		pManager->AddfigselectedM(f);
-		pManager->AddUndoAction(this);
 		if (pManager->GetIsRec())
 		{
 			CFigure* d1 = f->copy();
 			d1->setID(f->GetID());
 			pManager->AddRECFig(d1);
 		}
+
 
 	}
 	else

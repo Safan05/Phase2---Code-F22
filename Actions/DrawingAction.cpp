@@ -46,11 +46,10 @@ void DrawingAction::Execute()
 	Output* pOut = pManager->GetOutput();
 	if (f != NULL)
 	{
+		CFigure* d1 = f->copy();
+		d1->setID(f->GetID());
+		pManager->AddUndo(d1);
 			drawing = pOut->getCrntDrawColor();
-			f->ChngDrawClr(drawing);
-			pManager->AddfigselectedC(f);
-			pManager->Adddrawcolor(drawing);
-			pManager->AddUndoAction(this);
 			f->ChngDrawClr(drawing);
 			if (pManager->GetIsRec())
 			{

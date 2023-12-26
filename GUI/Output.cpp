@@ -12,7 +12,7 @@ Output::Output()
 	UI.StatusBarHeight = 50;
 	UI.ToolBarHeight = 50;
 	UI.MenuItemWidth = 55;
-	UI.DrawColor = BLUE;	//Drawing color
+	UI.DrawColor = BLACK;	//Drawing color
 	UI.FillColor = Transparent;	//Filling color
 	UI.MsgColor = RED;		//Messages color
 	UI.BkGrndColor = LIGHTGOLDENRODYELLOW;	//Background color
@@ -108,7 +108,6 @@ void Output::ClearToolbar() const
 	pWind->SetBrush(UI.ToolBarColor);
 	pWind->DrawRectangle(0, 0, UI.width, UI.ToolBarHeight);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
-	pWind->UpdateBuffer();
 }
 void Output::ClearStatusBar() const
 {
@@ -116,7 +115,6 @@ void Output::ClearStatusBar() const
 	pWind->SetPen(UI.StatusBarColor, UI.PenWidth);
 	pWind->SetBrush(UI.StatusBarColor);
 	pWind->DrawRectangle(0, UI.height - UI.StatusBarHeight, UI.width, UI.height);
-	pWind->UpdateBuffer();
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 void Output::CreateDrawToolBar() const
@@ -192,7 +190,6 @@ void Output::ClearDrawArea() const
 	pWind->SetBrush(UI.BkGrndColor);
 	pWind->DrawRectangle(0, UI.ToolBarHeight, UI.width, UI.height - UI.StatusBarHeight);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
-	pWind->UpdateBuffer();
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 

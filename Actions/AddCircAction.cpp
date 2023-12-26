@@ -33,23 +33,12 @@ void AddCircAction::ReadActionParameters()
 		//Read 2nd point and store in point point
 		pIn->GetPointClicked(point.x, point.y);
 		if (ValidP(point)) {
-			if (Valid()) {
-				if (pManager->GetFilled() == true)
-				{
-					CircGfxInfo.isFilled = true;
-					CircGfxInfo.DrawClr = pOut->getCrntDrawColor();
-					CircGfxInfo.FillClr = pOut->getCrntFillColor();
-			     	pManager->Addfillcolor(pOut->getCrntFillColor());
-					//get drawing, filling colors and pen width from the interface
-				}
-				else
+			if (Valid())
 				{
 					CircGfxInfo.isFilled = false; //default is not filled
 					CircGfxInfo.DrawClr = pOut->getCrntDrawColor();
 					CircGfxInfo.FillClr = pOut->getCrntFillColor();
-				}
-				pManager->Adddrawcolor(pOut->getCrntDrawColor());
-				pOut->ClearStatusBar();
+					pOut->ClearStatusBar();
 			}
 			else  pOut->PrintMessage("Invalid, Can't draw in Toolbar");
 		}
@@ -85,12 +74,15 @@ void AddCircAction::Execute()
 
 			//Add the circle to the list of figures
 			pManager->AddFigure(C);
-			pManager->AddUndoAction(this);
 			if (pManager->GetIsRec()) {
 				CCirc* C1 = new CCirc(center, point, CircGfxInfo);
 				C1->setID(C->GetID());
 				pManager->AddRECFig(C1);
 			}
+			CCirc* C1 = new CCirc(center, point, CircGfxInfo);
+			C1->Sethidden(1);
+			C1->setID(C->GetID());
+			pManager->AddUndo(C1);
 		}
 		
 		

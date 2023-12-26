@@ -1,65 +1,43 @@
 #include "RedoAction.h"
 #include "..\ApplicationManager.h"
-#include "..\GUI\input.h"
-#include "..\GUI\Output.h"
-#include "AddCircAction.h"
-#include "AddHexaAction.h"
-#include "AddRectAction.h"
-#include "AddSquareAction.h"
-#include "AddTriAction.h"
-#include "delete_action.h"
-#include "DrawingAction.h"
-#include "FillingAction.h"
-#include "MoveAction.h"
-#include "..\Figures\CRectangle.h"
-RedoAction::RedoAction(ApplicationManager* pApp) : Action(pApp)
-{
+#include "..\Figures\CFigure.h"
+RedoAction::RedoAction(ApplicationManager* pApp) :Action(pApp) {
 }
-
-void RedoAction::ReadActionParameters()
-{
-	 
-}
-
-void RedoAction::Execute()
-{
-	ReadActionParameters();
-
+void RedoAction::Execute() {
 	Output* pOut = pManager->GetOutput();
-	Input* pIn = pManager->GetInput();
-	pOut->PrintMessage("Redo Action");
-	Action* b = pManager->GetfirstRedoAction();
-
-
-		if (dynamic_cast<AddCircAction*>(b) || dynamic_cast<AddHexaAction*>(b) || dynamic_cast<AddRectAction*>(b) || dynamic_cast<AddSquareAction*>(b) || dynamic_cast<AddTriAction*>(b))
-		{
-			CFigure* f = pManager->GetlastRedoFig();
-			pManager->AddFigure(f);
-
+	if (pManager->GetRedoCount() > 0) {
+		CFigure* redo = pManager->GetRedo()[pManager->GetRedoCount() - 1];
+		CFigure* in_list = pManager->GetFigBy_id(redo->GetID());
+		if (in_list != NULL) {
+			CFigure* F = in_list->copy();
+			pManager->AddUndo(F);
 		}
-		else if (dynamic_cast<DrawingAction*>(b))
-		{
-			CFigure* f = pManager->GetfigSelectedC();
-			f->Redocolordraw(pManager);
+		else {
+			CFigure* z = redo->copy();
+			z->setID(redo->GetID());
+			z->Sethidden(1);
+			pManager->AddUndo(z);
 		}
-
-		else if (dynamic_cast<FillingAction*>(b))
-		{
-
-			CFigure* f = pManager->GetfigSelectedC();
-			f->Redocolor(pManager);
+		if (!redo->Ishidden()) {
+			if (redo != NULL) {
+				CFigure* x = redo->copy();
+				x->SetSelected(0);
+				pManager->replacefig(in_list, x);
+				UI.FillColor = x->get_color();
+			}
+			else
+				in_list = redo;
+			delete redo;
+			redo = NULL;
+			delete in_list;
+			in_list = NULL;
 		}
-		else if (dynamic_cast<MoveAction*>(b))
-		{
-			CFigure* f1 = pManager->GetfigselectedM();
-			f1->RedoMove(pManager);
+		else {
+			pManager->deletefig(in_list);
 		}
-		else if (dynamic_cast<delete_action*>(b))
-		{
-			pManager->deletelastfig();
-		}
-		
-		pManager->AddUndoAction(b);
-	    pManager->delRedoAction();
-	    pManager->delfigredo();
+		pManager->decrementRedoCount();
+	}
+	else
+		pOut->PrintMessage("No more actions to Redo");
 }
+void RedoAction::ReadActionParameters() {}

@@ -10,7 +10,7 @@
 #include <mciapi.h>
 #include "VoiceAction.h"
 #pragma comment (lib, "Winmm.lib")
-AddTriAction::AddTriAction(ApplicationManager* pApp):Action(pApp)
+AddTriAction::AddTriAction(ApplicationManager* pApp) :Action(pApp)
 {
 	if (VoiceAction::voice)
 		PlaySound(TEXT("voice\\triangle.wav"), NULL, SND_FILENAME | SND_ASYNC);
@@ -37,34 +37,22 @@ void AddTriAction::ReadActionParameters()
 			//Read 3nd Vertex and store in point Vertex3
 			pIn->GetPointClicked(Vertex3.x, Vertex3.y);
 			if (ValidP(Vertex3)) {
-				if (pManager->GetFilled() == true)
-				{
-				TriGfxInfo.isFilled = true;
-				TriGfxInfo.DrawClr = pOut->getCrntDrawColor();
-				TriGfxInfo.FillClr = pOut->getCrntFillColor();
-			    pManager->Addfillcolor(pOut->getCrntFillColor());
-			}
-			else
-			{
 				TriGfxInfo.isFilled = false;	//default is not filled
 				//get drawing, filling colors and pen width from the interface
 				TriGfxInfo.DrawClr = pOut->getCrntDrawColor();
 				TriGfxInfo.FillClr = pOut->getCrntFillColor();
-			}
-			pManager->Adddrawcolor(pOut->getCrntDrawColor());
 
 				pOut->ClearStatusBar();
-				}
-			else pOut->PrintMessage("Invalid Point, Can't place point here");
 			}
+			else pOut->PrintMessage("Invalid Point, Can't place point here");
+		}
 		else pOut->PrintMessage("Invalid Point, Can't place point here");
 	}
-	else
-		pOut->PrintMessage("Invalid Point, Can't place point here");
+	else pOut->PrintMessage("Invalid Point, Can't place point here");
 }
 bool AddTriAction::Valid()
 {
-	return (Vertex1.y > UI.ToolBarHeight) && (Vertex1.y < UI.height - UI.StatusBarHeight) && (Vertex2.y > UI.ToolBarHeight) && (Vertex2.y < UI.height - UI.StatusBarHeight)&& (Vertex3.y > UI.ToolBarHeight) && (Vertex3.y < UI.height - UI.StatusBarHeight);
+	return (Vertex1.y > UI.ToolBarHeight) && (Vertex1.y < UI.height - UI.StatusBarHeight) && (Vertex2.y > UI.ToolBarHeight) && (Vertex2.y < UI.height - UI.StatusBarHeight) && (Vertex3.y > UI.ToolBarHeight) && (Vertex3.y < UI.height - UI.StatusBarHeight);
 }
 
 bool AddTriAction::ValidP(Point P)
@@ -77,21 +65,24 @@ void AddTriAction::Execute()
 {
 	//This action needs to read some parameters first
 
-	
-		ReadActionParameters();
-		if (Valid()) {
-			//Create a triangle with the parameters read from the user
-			CTri* T = new CTri(Vertex1, Vertex2, Vertex3, TriGfxInfo);
 
-			//Add the triangle to the list of figures
-			pManager->AddFigure(T);
-			pManager->AddUndoAction(this);
-			if (pManager->GetIsRec()) {
-				CTri* T1 = new CTri(Vertex1, Vertex2, Vertex3, TriGfxInfo);
-				T1->setID(T->GetID());
-				pManager->AddRECFig(T1);
-			}
+	ReadActionParameters();
+	if (Valid()) {
+		//Create a triangle with the parameters read from the user
+		CTri* T = new CTri(Vertex1, Vertex2, Vertex3, TriGfxInfo);
+
+		//Add the triangle to the list of figures
+		pManager->AddFigure(T);
+		if (pManager->GetIsRec()) {
+			CTri* T1 = new CTri(Vertex1, Vertex2, Vertex3, TriGfxInfo);
+			T1->setID(T->GetID());
+			pManager->AddRECFig(T1);
 		}
-		
-	
+		CTri* T1 = new CTri(Vertex1, Vertex2, Vertex3, TriGfxInfo);
+		T1->setID(T->GetID());
+		T1->Sethidden(1);
+		pManager->AddUndo(T1);
+	}
+
+
 }

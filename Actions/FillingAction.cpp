@@ -48,14 +48,11 @@ void FillingAction::Execute()
 
 	if (f != NULL)
 	{
-		 
+		CFigure* d1 = f->copy();
+		d1->setID(f->GetID());
+		pManager->AddUndo(d1);
 		filling = pOut->getCrntFillColor();
 		f->ChngFillClr(filling);
-
-		pManager->SetFilled(true);
-		pManager->AddfigselectedC(f);
-		pManager->Addfillcolor(filling);
-		pManager->AddUndoAction(this);
 		UI.IsFilledNext = 1;
 		if (pManager->GetIsRec())
 		{

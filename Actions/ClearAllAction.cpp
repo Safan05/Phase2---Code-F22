@@ -12,9 +12,18 @@ void ClearAllAction::ReadActionParameters()
 void ClearAllAction::Execute()
 {
 	pManager->Clearall();
-	UI.DrawColor = BLUE;
+	UI.DrawColor = BLACK;
 	UI.FillColor = Transparent;
 	UI.IsFilledNext = 0;
+	for (int i = 0; i < pManager->GetUndoCount(); i++) {
+		delete pManager->GetUndo()[i];
+		pManager->GetUndo()[i] = NULL;
+	}
+	for (int i = 0; i < pManager->GetRedoCount(); i++) {
+		delete pManager->GetRedo()[i];
+		pManager->GetRedo()[i] = NULL;
+	}
+	pManager->setUndo_RedoCount(0);
 	if(pManager->GetIsRec())
 	{
 		CCirc* c1 = new CCirc;
@@ -36,31 +45,5 @@ void ClearAllAction::Execute()
 		}
 		delete  pManager->GetRECFigList()[i];
 		pManager->GetRECFigList()[i] = NULL;
-	}
-	for (int i = 0; i < pManager->GetUndoCount(); i++)
-	{
-		if (pManager->GetUndoAction()[i] != NULL)
-		{
-			delete pManager->GetUndoAction()[i];
-			pManager->GetUndoAction()[i] = NULL;
-		}
-	}
-	for (int i = 0; i < pManager->GetRedoCount(); i++)
-	{
-		if (pManager->GetRedoAction()[i] != NULL)
-		{
-			delete pManager->GetRedoAction()[i];
-			pManager->GetRedoAction()[i] = NULL;
-		}
-
-	}
-	for (int i = 0; i < pManager->Getredofigcount(); i++)
-	{
-		if (pManager->GetRedofig()[i] != NULL)
-		{
-			delete pManager->GetRedofig()[i];
-			pManager->GetRedofig()[i] = NULL;
-		}
-
 	}
 }

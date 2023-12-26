@@ -31,10 +31,11 @@ void delete_action::Execute() {
 	if (f!=NULL)
 	{
 		CFigure* f1 = f->copy();
-		pManager->AddFigdel(f1);
+		CFigure* d1 = f->copy();
+		d1->setID(f->GetID());
+		pManager->AddUndo(d1);
 	}
 	pManager->deletefig(f);
-	pManager->AddUndoAction(this);
 	Output* pOut = pManager->GetOutput();
 	pOut->ClearStatusBar();
 }

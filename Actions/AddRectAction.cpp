@@ -32,23 +32,11 @@ void AddRectAction::ReadActionParameters()
 		//Read 2nd corner and store in point P2
 		pIn->GetPointClicked(P2.x, P2.y);
 		if (ValidP(P2)) {
-			if (pManager->GetFilled() == true)
-			{
-			RectGfxInfo.isFilled = true;
-			RectGfxInfo.DrawClr = pOut->getCrntDrawColor();
-			RectGfxInfo.FillClr = pOut->getCrntFillColor();
-		    pManager->Adddrawcolor(pOut->getCrntDrawColor());
-			//get drawing, filling colors and pen width from the interface
-		}
-		else
-		{
 			RectGfxInfo.isFilled = false;	//default is not filled
 			RectGfxInfo.DrawClr = pOut->getCrntDrawColor();
 			RectGfxInfo.FillClr = pOut->getCrntFillColor();
-		}
-		pManager->Addfillcolor(pOut->getCrntFillColor());
-
 			pOut->ClearStatusBar();
+
 		}
 		else pOut->PrintMessage("Invalid Point, Can't place point here");
 	}
@@ -77,16 +65,18 @@ void AddRectAction::Execute()
 
 			//Add the rectangle to the list of figures
 			pManager->AddFigure(R);
-			pManager->AddUndoAction(this);
 			if (pManager->GetIsRec()) 
 			{
 				CRectangle* R1 = new CRectangle(P1, P2, RectGfxInfo);
 				R1->setID(R->GetID());
 				pManager->AddRECFig(R1);
 			}
+			CRectangle* R1 = new CRectangle(P1, P2, RectGfxInfo);
+			R1->setID(R->GetID());
+			R1->Sethidden(1);
+			pManager->AddUndo(R1);
 		}
 
-		//if (pManager->GetIsRec())
-		//	pManager->AddAction(this);
+
 	//}
 }

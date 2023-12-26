@@ -17,12 +17,5 @@ public:
 	virtual char type();
 	virtual void Resize(Point c, Output* out);
 	virtual CFigure* copy();
-	virtual void Undocolor(ApplicationManager* p);
-	virtual void UndoMove(ApplicationManager* p);
-	virtual Point GetCenter();
-	virtual void RedoMove(ApplicationManager* p);
-	virtual void Undocolordraw(ApplicationManager* p);
-	virtual void Redocolor(ApplicationManager* p);
-	virtual void Redocolordraw(ApplicationManager* p);
 };
 
